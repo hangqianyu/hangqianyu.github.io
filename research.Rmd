@@ -2,4 +2,4 @@
 title: "Research"
 ---
 
-Here is my thoughts about stream restoration which might be beneficial for your project as well.
+Here are my thoughts about stream restoration which might be beneficial for your project as well.
