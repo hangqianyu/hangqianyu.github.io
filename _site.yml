@@ -9,8 +9,6 @@ navbar:
       href: cv.html
     - text: "Tutorial"
       href: tutorial.html
-    - text: "Love"
-      href: love.html
   
   right:
     - text: "NC State"
@@ -21,7 +19,10 @@ navbar:
           href: https://www.lib.ncsu.edu/
         - text: "Bio&Ag Eng"
           href: https://www.bae.ncsu.edu/
-
+    - text: "US"
+      href: us.html
+    - text: "STORIES"
+      href: stories.html
 output:
   html_document:
     theme: united
