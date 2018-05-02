@@ -19,10 +19,19 @@ navbar:
           href: https://www.lib.ncsu.edu/
         - text: "Bio&Ag Eng"
           href: https://www.bae.ncsu.edu/
+    - text: "Connect"
+      menu:
+        - text: "Google Scholar"
+          href: https://scholar.google.com/citations?user=bakil3oAAAAJ&hl=en
+        - text: "ResearchGate"
+          href: https://www.researchgate.net/profile/Qianyu_Hang2
+        - text: "Github"
+          href: https://github.com/hangqianyu  
     - text: "US"
       href: us.html
     - text: "STORIES"
       href: stories.html
+
 output:
   html_document:
     theme: united
