@@ -1,4 +1,5 @@
-name: "Personal research website"
+name: "Qianyu's Life"
+output_dir: "."
 navbar:
   title: "Qianyu's life"
   left:
@@ -10,13 +11,17 @@ navbar:
       href: tutorial.html
     - text: "Love"
       href: love.html
+  
   right:
-  memu:
     - text: "NC State"
-      href: https://www.ncsu.edu/
-    - text: "Bio&Ag Eng"
-      href: https://www.bae.ncsu.edu/
-output_dir: "."
+      menu:
+        - text: "NC State"
+          href: https://www.ncsu.edu/
+        - text: "Libraries"
+          href: https://www.lib.ncsu.edu/
+        - text: "Bio&Ag Eng"
+          href: https://www.bae.ncsu.edu/
+
 output:
   html_document:
     theme: united
