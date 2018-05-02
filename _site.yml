@@ -2,6 +2,10 @@ name: "Personal research website"
 navbar:
   title: "Qianyu's life"
   left:
+    - text: "Research"
+      href: research.html
+    - text: "CV"
+      href: cv.html
     - text: "Tutorial"
       href: tutorial.html
     - text: "Love"

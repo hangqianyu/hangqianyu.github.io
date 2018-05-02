@@ -6,23 +6,8 @@ output: html_document
 
 ----
 
-It's possible to create well-designed websites for free using [RStudio's R Markdown](http://rmarkdown.rstudio.com/) and hosting them on [Github](http://github.com). This is very new and incredibly cool. It is a really powerful way to communicate science using the same reproducible workflow you use for your analyses and collaborations.
-
-***Creating websites with R Markdown can be done without knowing R or HTML, CSS, etc,*** and that's where we'll start. However, R Markdown integrates with these tools so the more you know the more complex and beautiful your website can be. This tutorial borrows heavily from a lot of great tutorials and resources you should check out too -- there are links throughout. 
-
-The best way to learn is to follow along with your own laptop, but all are welcome. We'll spend half the time with the tutorial and half the time for you to work on your own website and get help. If you bring your laptop please do this beforehand: 
-
-1. install [RStudio](https://www.rstudio.com/products/rstudio/download/)
-1. create a [GitHub]((http://github.com)) account ([advice](http://happygitwithr.com/github-acct.html))
-1. set up your computer to talk to GitHub
-    - have RStudio linked directly (preferred) ([instructions sections 8-14](http://happygitwithr.com/hello-git.html))
-    - or install the [Desktop App](https://desktop.github.com/)
-    - or be familiar with git commands for the command line ([tutorial](https://try.github.io/levels/1/challenges/1))
-
-----
+## Biography
+I am currently a PhD student at Department of Biological and Agricultural Engineering, NC State University. I came to NC State after completing my Master’s degree in environmental engineering at Chinese Research Academy of Environmental Sciences in China. During my master’s study, I focused on the application of plant carbon source in improving nitrate removal efficiency for treatment of nitrate-rich agricultural runoff by constructed wetlands and bioreactors. At NC State, I work on quantifying the water quality benefits of a stream restoration in the coastal plain of NC. The overarching questions that motivate my research are 1) whether stream restoration does improve water quality? 2) how do we precisely quantify and interpret the real impacts of stream restoration on water quality?
 
 
-**Examples:**
 
-We have been using R Markdown for the Ocean Health Index:  [**ohi-science.org/ohi-global**](http://ohi-science.org/ohi-global).  
-And R Markdown is much more than just websites -- here's a [**one-minute video about R Markdown**](http://rmarkdown.rstudio.com/lesson-1.html) to get you excited. 
