@@ -1,0 +1,13 @@
+name: "Personal research website"
+navbar:
+  title: "Joey and Molly"
+  left:
+    - text: "Tutorial"
+      href: tutorial.html
+    - text: "Love"
+      href: love.html
+output_dir: "."
+output:
+  html_document:
+    theme: united
+    highlight: textmate
