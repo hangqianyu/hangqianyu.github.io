@@ -1,6 +1,6 @@
 name: "Personal research website"
 navbar:
-  title: "Joey and Molly"
+  title: "Qianyu's life"
   left:
     - text: "Tutorial"
       href: tutorial.html
