@@ -1,7 +1,9 @@
 ---
 title: "PhD life"
 author:  "[Qianyu Hang](https://github.com/hangqianyu) at NC State University, May 2, 2018"
-output: html_document
+output:
+  html_document:
+    fig_width: 1
 ---
 
 ----

@@ -10,6 +10,12 @@ navbar:
       href: tutorial.html
     - text: "Love"
       href: love.html
+  right:
+  memu:
+    - text: "NC State"
+      href: https://www.ncsu.edu/
+    - text: "Bio&Ag Eng"
+      href: https://www.bae.ncsu.edu/
 output_dir: "."
 output:
   html_document:
