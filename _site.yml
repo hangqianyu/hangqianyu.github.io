@@ -24,13 +24,22 @@ navbar:
     - text: "STORIES"
       href: stories.html
     - text: "Connect"
+      icon: fa-link
       menu:
+        - text: "email"
+          icon: fa fa-envelope-o
+          href: mailto:qhang@ncsu.edu
         - text: "Google Scholar"
+          icon: fa-google 
           href: https://scholar.google.com/citations?user=bakil3oAAAAJ&hl=en
         - text: "ResearchGate"
           href: https://www.researchgate.net/profile/Qianyu_Hang2
         - text: "Github"
+          icon: fa-github
           href: https://github.com/hangqianyu
+        - text: "Linkedin"
+          icon: fa-linkedin
+          href: https://www.linkedin.com/in/qianyu-hang-99562215a/
 
 output:
   html_document:
