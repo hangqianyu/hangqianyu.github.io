@@ -1,5 +1,12 @@
 ---
 title: "Love"
+output:
+  html_document:
+    fig_width: 0.5
 ---
 
 This is not all about research though. Some stories to show the support from my family, Yanhua and all people care about me. Thank you all.
+
+![](images/yanhua1.jpg)
+
+![](images/yanhua2.jpg)
