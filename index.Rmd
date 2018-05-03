@@ -1,6 +1,6 @@
 ---
 title: "Biogeochemistry and Ecological Engineering"
-author:  "[Qianyu Hang](https://github.com/hangqianyu) at NC State University, May 2, 2018"
+author:  "[Qianyu Hang](https://github.com/hangqianyu) at NC State University"
 output:
   html_document:
     fig_width: 0.5

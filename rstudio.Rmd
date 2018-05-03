@@ -1,7 +1,12 @@
 ---
-title: "Tutorial"
+title: "Data analysis in R Studio"
+author:  "[Qianyu Hang](https://github.com/hangqianyu) at NC State University"
+output:
+  html_document:
+    toc: true
+    toc_float: true
 ---
-
+----------
 ### Basic programming notes and queries
 ```{r eval=FALSE}
 args(sd) # Useful trick for inspecting the arguments of sd() function in a quick way
@@ -417,18 +422,39 @@ prop.table(tab, 2)  # Conditional on columns, make column add to 1
   - Coordinates, the space on which the data will be plotted
   - Themes, all non-data ink
 
+* Typical Aesthetics
+  - x, X axis position
+  - y, y axis position
+  - colour, colour of dots, outlines of other shapes
+  - fill, fill colour
+  - size, diameter of points, thickness of lines
+  - alpha, transparency
+  - linetype, line dash pattern
+  - labels, text on a plot or axes
+  - shape, shape
+
 ```{r eval=FALSE}
-ggplot(mtcars, aes(x = cyl, y = mpg, color = disp, size = disp, shape = categorical column)) + 
+ggplot(mtcars, aes(x = cyl, y = mpg, col = disp, size = disp, shape = categorical column, shape = 1, size = 4)) + 
   geom_point(alpha = 0.4, position = "jitter") + # alpha means the transparency of discrete points, 0-1, jitter expands the points more evenly, or you can just use geom_jitter()
   geom_smooth(aes(group = 1), method = "lm", se = FALSE) # if you do not want any error shading, you can set se = FALSE, lm means lineal model method in scatter plot, group = 1 tells ggplot to draw a single linear model through all the points in different colors.
 ```
 
-Note that you can also call `aes()` within the `geom_point()` function. 
+Note that you can also call `aes()` within the `geom_point()` function. Which shape to use? The default geom_point() uses shape = 19 (a solid circle with an outline the same colour as the inside). Good alternatives are shape = 1 (hollow) and shape = 16 (solid, no outline). These all use the col aesthetic (don't forget to set alpha for solid points). A really nice alternative is shape = 21 which allows you to use both fill for the inside and col for the outline! This is a great little trick for when you want to map two aesthetics to a dot. 
 
+```{r eval=FALSE}
+ggplot(mtcars, aes(x = wt, y = mpg, fill = cyl, col = am, shape = 21, size = 4, label = cyl)) +
+  geom_point(alpha = 0.6) +
+  geom_text()
+```
 
+This time you'll use these arguments to set attributes of the plot, not aesthetics. However, there are some pitfalls you'll have to watch out for: these attributes can overwrite the aesthetics of your plot! **A word about shapes:** In the exercise "All about aesthetics, part 2", you saw that shape = 21 results in a point that has a fill and an outline. Shapes in R can have a value from 1-25. Shapes 1-20 can only accept a color aesthetic, but shapes 21-25 have both a color and a fill aesthetic.
+```{r eval=FALSE}
+ggplot(mtcars, aes(x=wt, y=mpg, col=cyl)) +
+geom_point(col = my_color)
+# The col setting in geom_point can overwrite the aesthetics of plot
+```
 
-
-
+**A word about hexadecimal colours**: Hexadecimal, literally "related to 16", is a base-16 alphanumeric counting system. Individual values come from the ranges 0-9 and A-F. This means there are 256 possible two-digit values (i.e. 00 - FF). Hexadecimal colours use this system to specify a six-digit code for Red, Green and Blue values ("#RRGGBB") of a colour (i.e. Pure blue: "#0000FF", black: "#000000", white: "#FFFFFF"). R can accept hex codes as valid colours.
 
 
 

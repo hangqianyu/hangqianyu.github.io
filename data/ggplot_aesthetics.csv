@@ -1,0 +1,10 @@
+Aesthetic,Description
+x,X axis position
+y,Y axis position
+colour,"Colour of dots, outlines of other shapes"
+fill,Fill colour
+size,"Diameter of points, thickness of lines"
+alpha,Transparency
+linetype,Line dash pattern
+labels,Text on a plot or axes
+shape,Shape
