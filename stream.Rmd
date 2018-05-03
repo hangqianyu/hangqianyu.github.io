@@ -1,6 +1,6 @@
 ---
-title: "Untitled"
-output: html_document
+title: "Stream Restoration"
+author:  "[Qianyu Hang](https://github.com/hangqianyu) at NC State University"
 ---
 
 ---------

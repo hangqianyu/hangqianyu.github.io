@@ -4,7 +4,7 @@ navbar:
   title: "Qianyu's Life"
   left:
     - text: "Research"
-      memu:
+      menu: 
         - text: "Stream Restoration"
           href: stream.html
     - text: "CV"
