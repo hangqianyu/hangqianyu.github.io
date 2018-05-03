@@ -59,9 +59,10 @@ mean() calculate the arithmetic mean.
 round() Round the values to 0 decimal places by default. Try out ?round in the console for variations of round() and ways to change the number of digits to round to
 ```
 
-### Differences between [, [[ and $
+**Differences between [, [[ and $**
 Please refer to [Detailed explanation](https://www.r-bloggers.com/r-accessors-explained/)
 
+****************
 ### Read flat files/excel files, i.e., table/csv/txt/xls/xlsx files
 There are several ways to do it. Basically, for "utils" package which is already existed in system library, it is east to read a table using read.table() function as below: 
 ```{r eval=FALSE}
@@ -114,7 +115,9 @@ getSheets(object) # to list all sheets in R
 
 For example, lapply(getSheets(loadWorkbook(".xlsx file")), readWorksheet, object = ".xlsx file")
 ```
-### How to connect to a database?
+
+****************
+### connecting to a database
 The first step to import data from a SQL database is creating a connection to it. We might need different packages depending on the database you want to connect to. All of these packages do this in a uniform way, as specified in the "DBI" or "RMySQL" package. If the MySQL database is a remote database hosted on a server, you'll also have to specify the following arguments in dbConnect(): dbname, host, port, user and password. For example,
 ```{r eval=FALSE}
 con <- dbConnect(RMySQL::MySQL(), 
@@ -141,6 +144,7 @@ In your life as a data scientist, you'll often be working with huge databases th
 dbGetQuery(con, "SELECT age, name FROM people WHERE gender = or > or < 'male' AND ... > ...")
 ```
 
+****************
 ### Import data from the web
 Pay attention to http:// and https://. There is, however, a safer alternative to HTTP, namely HTTPS, which stands for HypterText Transfer Protocol Secure. Just remember this: HTTPS is relatively safe, HTTP is not. We can use the standard importing functions with https:// connections since R version 3.2.2
 
@@ -182,7 +186,8 @@ Apart from converting JSON to R with fromJSON(), you can also use toJSON() to co
 toJSON(x, ...) # x is the object to be encoded
 ```
 
-### How to import data from statistical softwares (like SAS, STATA, SPSS) into R
+****************
+### Import data from statistical softwares (like SAS, STATA, SPSS) into R
 Two packages can be useful to do this. One is "haven", the other is "foreign" package. "haven" can deal with data from SAS, STATA and SPSS. For "haven" package 
 ```{r eval=FALSE}
 read_sas() # to import SAS data
@@ -207,6 +212,7 @@ as.factor() # to convert lable as a factor
 
 For "foreign" package, it offers a simple function to import and read STATA data: read.dta(). The arguments you will use most often are convert.dates, convert.factors, missing.type and convert.underscore, besides object. It's all about correctly converting STATA data to standard R data structures. Where foreign provided read.dta() to read Stata data, there's also read.spss() to read SPSS data files. To get a data frame, make sure to set to.data.frame = TRUE inside read.spss(). 
 
+****************
 ### Cleaning data
 Understanding the structure of your data.
 
@@ -217,6 +223,7 @@ glimpse(object)
 
 View the top (top six rows) by head(object, n = ...) function, n means how many rows you wanna show in R. While tail(object, n = ...) is to show the last six rows (by default) you wanna print out. 
 
+****************
 ### Visualizing your data
 ```{r eval=FALSE}
 hist(object) # to view histogram plot of a single variable
@@ -246,7 +253,7 @@ my_df[-(1:5), ] # Omit first 5 rows of my_df
 my_df[, -4]     # Omit fourth column of my_df
 ```
 
-
+****************
 ### Type conversions
 It is often necessary to change, or coerce, the way that variables in a dataset are stored. This could be because of the way they were read into R (with read.csv(), for example) or perhaps the function you are using to analyze the data requires variables to be coded a certain way. Only certain coercions are allowed, but the rules for what works are generally pretty intuitive. For example, trying to convert a character string to a number gives an error: as.numeric("some text"). There are a few less intuitive results. For example, under the hood, the logical values TRUE and FALSE are coded as 1 and 0, respectively. Therefore, as.logical(1) returns TRUE and as.numeric(TRUE) returns 1.
 ```{r eval=FALSE}
@@ -291,6 +298,7 @@ str_detect(string, pattern) # string: input string; pattern: pattern to look for
 str_replace(string, pattern, replacement) # replacement: a character vector of replacements.
 ```
 
+****************
 ### Finding and dealing with missing values
 As you've seen, missing values in R should be represented by NA, but unfortunately you will not always be so lucky. Before you can deal with missing values, you have to find them in the data. If missing values are properly coded as NA, the is.na() function will help you find them. Otherwise, if your dataset is too big to just look at the whole thing, you may need to try searching for some of the usual suspects like "", "#N/A", etc. You can also use the summary() and table() functions to turn up unexpected values in your data. 
 ```{r eval=FALSE}
@@ -392,8 +400,47 @@ prop.table(tab)     # Joint proportions
 prop.table(tab, 2)  # Conditional on columns, make column add to 1
 ```
 
+*****************
+### `ggplot2` Visualization
+* Limitations of base plot functions
+  - Plot does not get redrawn
+  - Plot is drawn as an image
+  - Need to manually add legend
+  - No unified framework for plotting
+
+* All Grammatical Elements:
+  - Data, the dataset being plotted
+  - Aesthetics, the scales onto which we map our data
+  - Geometries, the visual elements used for our data
+  - Facets, plotting small multiples
+  - Statistics, representations of our data to aid understanding
+  - Coordinates, the space on which the data will be plotted
+  - Themes, all non-data ink
+
 ```{r eval=FALSE}
-ggplot(comics, aes(x = align)) + 
-  geom_bar() +
-  facet_wrap(~gender)
+ggplot(mtcars, aes(x = cyl, y = mpg, color = disp, size = disp, shape = categorical column)) + 
+  geom_point(alpha = 0.4, position = "jitter") + # alpha means the transparency of discrete points, 0-1, jitter expands the points more evenly, or you can just use geom_jitter()
+  geom_smooth(aes(group = 1), method = "lm", se = FALSE) # if you do not want any error shading, you can set se = FALSE, lm means lineal model method in scatter plot, group = 1 tells ggplot to draw a single linear model through all the points in different colors.
 ```
+
+Note that you can also call `aes()` within the `geom_point()` function. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

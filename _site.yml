@@ -32,14 +32,14 @@ navbar:
         - text: "Google Scholar"
           icon: fa-google 
           href: https://scholar.google.com/citations?user=bakil3oAAAAJ&hl=en
-        - text: "ResearchGate"
-          href: https://www.researchgate.net/profile/Qianyu_Hang2
         - text: "Github"
           icon: fa-github
           href: https://github.com/hangqianyu
         - text: "Linkedin"
           icon: fa-linkedin
           href: https://www.linkedin.com/in/qianyu-hang-99562215a/
+        - text: "ResearchGate"
+          href: https://www.researchgate.net/profile/Qianyu_Hang2
 
 output:
   html_document:

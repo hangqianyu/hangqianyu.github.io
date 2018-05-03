@@ -237,9 +237,6 @@ $(document).ready(function () {
       </a>
     </li>
     <li>
-      <a href="https://www.researchgate.net/profile/Qianyu_Hang2">ResearchGate</a>
-    </li>
-    <li>
       <a href="https://github.com/hangqianyu">
         <span class="fa fa-github"></span>
          
@@ -252,6 +249,9 @@ $(document).ready(function () {
          
         Linkedin
       </a>
+    </li>
+    <li>
+      <a href="https://www.researchgate.net/profile/Qianyu_Hang2">ResearchGate</a>
     </li>
   </ul>
 </li>
@@ -309,10 +309,8 @@ x %in% c(a, b, c), TRUE if x is in the vector c(a, b, c)</code></pre>
 sum() calculate the sum of all the values in a data structure.
 mean() calculate the arithmetic mean.
 round() Round the values to 0 decimal places by default. Try out ?round in the console for variations of round() and ways to change the number of digits to round to</code></pre>
-</section>
-<section id="differences-between-and" class="level3">
-<h3>Differences between [, [[ and $</h3>
-<p>Please refer to <a href="https://www.r-bloggers.com/r-accessors-explained/">Detailed explanation</a></p>
+<p><strong>Differences between [, [[ and $</strong> Please refer to <a href="https://www.r-bloggers.com/r-accessors-explained/">Detailed explanation</a></p>
+<hr />
 </section>
 <section id="read-flat-filesexcel-files-i.e.-tablecsvtxtxlsxlsx-files" class="level3">
 <h3>Read flat files/excel files, i.e., table/csv/txt/xls/xlsx files</h3>
@@ -353,9 +351,10 @@ removeSheet(object, sheet) # remove sheets
 getSheets(object) # to list all sheets in R
 
 For example, lapply(getSheets(loadWorkbook(&quot;.xlsx file&quot;)), readWorksheet, object = &quot;.xlsx file&quot;)</code></pre>
+<hr />
 </section>
-<section id="how-to-connect-to-a-database" class="level3">
-<h3>How to connect to a database?</h3>
+<section id="connecting-to-a-database" class="level3">
+<h3>connecting to a database</h3>
 <p>The first step to import data from a SQL database is creating a connection to it. We might need different packages depending on the database you want to connect to. All of these packages do this in a uniform way, as specified in the “DBI” or “RMySQL” package. If the MySQL database is a remote database hosted on a server, you’ll also have to specify the following arguments in dbConnect(): dbname, host, port, user and password. For example,</p>
 <pre class="r"><code>con &lt;- dbConnect(RMySQL::MySQL(), 
                  dbname = &quot;tweater&quot;, 
@@ -373,6 +372,7 @@ dbReadTable(object, &quot;column/table name&quot;) # to tell R that which data y
 dbDisconnect(object) #  is polite to disconnect the databases after you are done</code></pre>
 <p>In your life as a data scientist, you’ll often be working with huge databases that contain tables with millions of rows. If you want to do some analyses on this data, it’s possible that you only need a fraction of this data. In this case, it’s a good idea to send SQL queries to your database, and only import the data you actually need into R. dbGetQuery() is what you need. As usual, you first pass the connection object to it. The second argument is an SQL query in the form of a character string. This example selects the age variable from the people dataset where gender equals “male”:</p>
 <pre class="r"><code>dbGetQuery(con, &quot;SELECT age, name FROM people WHERE gender = or &gt; or &lt; &#39;male&#39; AND ... &gt; ...&quot;)</code></pre>
+<hr />
 </section>
 <section id="import-data-from-the-web" class="level3">
 <h3>Import data from the web</h3>
@@ -400,9 +400,10 @@ str(wine)</code></pre>
 fromJSON(json2)</code></pre>
 <p>Apart from converting JSON to R with fromJSON(), you can also use toJSON() to convert R data to a JSON format. In its most basic use, you simply pass this function an R object to convert to a JSON. The result is an R object of the class json, which is basically a character string representing that JSON.</p>
 <pre class="r"><code>toJSON(x, ...) # x is the object to be encoded</code></pre>
+<hr />
 </section>
-<section id="how-to-import-data-from-statistical-softwares-like-sas-stata-spss-into-r" class="level3">
-<h3>How to import data from statistical softwares (like SAS, STATA, SPSS) into R</h3>
+<section id="import-data-from-statistical-softwares-like-sas-stata-spss-into-r" class="level3">
+<h3>Import data from statistical softwares (like SAS, STATA, SPSS) into R</h3>
 <p>Two packages can be useful to do this. One is “haven”, the other is “foreign” package. “haven” can deal with data from SAS, STATA and SPSS. For “haven” package</p>
 <pre class="r"><code>read_sas() # to import SAS data
 
@@ -417,6 +418,7 @@ read_sav() # to import SPSS data (por or sav files)</code></pre>
 <p>You learned how to import a data file using the command read_sav(). With SPSS data files, it can also happen that some of the variables you import have the labelled class. This is done to keep all the labelling information that was originally present in the .sav and .por files. It’s advised to coerce (or change) these variables to factors or other standard R classes.</p>
 <pre class="r"><code>as.factor() # to convert lable as a factor</code></pre>
 <p>For “foreign” package, it offers a simple function to import and read STATA data: read.dta(). The arguments you will use most often are convert.dates, convert.factors, missing.type and convert.underscore, besides object. It’s all about correctly converting STATA data to standard R data structures. Where foreign provided read.dta() to read Stata data, there’s also read.spss() to read SPSS data files. To get a data frame, make sure to set to.data.frame = TRUE inside read.spss().</p>
+<hr />
 </section>
 <section id="cleaning-data" class="level3">
 <h3>Cleaning data</h3>
@@ -424,6 +426,7 @@ read_sav() # to import SPSS data (por or sav files)</code></pre>
 <p>First, view its class by class(); Second, view its dimensions by dim(). Third, look at column names by names(). Fourth, to summarize data by summary(). Like str() function, we use the dplyr package to view structure of object as well.</p>
 <pre class="r"><code>glimpse(object)</code></pre>
 <p>View the top (top six rows) by head(object, n = …) function, n means how many rows you wanna show in R. While tail(object, n = …) is to show the last six rows (by default) you wanna print out.</p>
+<hr />
 </section>
 <section id="visualizing-your-data" class="level3">
 <h3>Visualizing your data</h3>
@@ -448,6 +451,7 @@ my_df[, 4]   # Fourth column of my_df
 
 my_df[-(1:5), ] # Omit first 5 rows of my_df
 my_df[, -4]     # Omit fourth column of my_df</code></pre>
+<hr />
 </section>
 <section id="type-conversions" class="level3">
 <h3>Type conversions</h3>
@@ -479,6 +483,7 @@ as.logical(...)</code></pre>
 <pre class="r"><code>str_detect(string, pattern) # string: input string; pattern: pattern to look for.
 
 str_replace(string, pattern, replacement) # replacement: a character vector of replacements.</code></pre>
+<hr />
 </section>
 <section id="finding-and-dealing-with-missing-values" class="level3">
 <h3>Finding and dealing with missing values</h3>
@@ -550,9 +555,33 @@ states_str %&gt;%
 options(scipen = 999, digits = 3) # Print fewer digits
 prop.table(tab)     # Joint proportions
 prop.table(tab, 2)  # Conditional on columns, make column add to 1</code></pre>
-<pre class="r"><code>ggplot(comics, aes(x = align)) + 
-  geom_bar() +
-  facet_wrap(~gender)</code></pre>
+<hr />
+</section>
+<section id="ggplot2-visualization" class="level3">
+<h3><code>ggplot2</code> Visualization</h3>
+<ul>
+<li>Limitations of base plot functions
+<ul>
+<li>Plot does not get redrawn</li>
+<li>Plot is drawn as an image</li>
+<li>Need to manually add legend</li>
+<li>No unified framework for plotting</li>
+</ul></li>
+<li>All Grammatical Elements:
+<ul>
+<li>Data, the dataset being plotted</li>
+<li>Aesthetics, the scales onto which we map our data</li>
+<li>Geometries, the visual elements used for our data</li>
+<li>Facets, plotting small multiples</li>
+<li>Statistics, representations of our data to aid understanding</li>
+<li>Coordinates, the space on which the data will be plotted</li>
+<li>Themes, all non-data ink</li>
+</ul></li>
+</ul>
+<pre class="r"><code>ggplot(mtcars, aes(x = cyl, y = mpg, color = disp, size = disp, shape = categorical column)) + 
+  geom_point(alpha = 0.4, position = &quot;jitter&quot;) + # alpha means the transparency of discrete points, 0-1, jitter expands the points more evenly, or you can just use geom_jitter()
+  geom_smooth(aes(group = 1), method = &quot;lm&quot;, se = FALSE) # if you do not want any error shading, you can set se = FALSE, lm means lineal model method in scatter plot, group = 1 tells ggplot to draw a single linear model through all the points in different colors.</code></pre>
+<p>Note that you can also call <code>aes()</code> within the <code>geom_point()</code> function.</p>
 </section>
 
 
