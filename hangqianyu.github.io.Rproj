@@ -13,4 +13,4 @@ RnwWeave: Sweave
 LaTeX: pdfLaTeX
 
 BuildType: Website
-WebsitePath: ~/Google drive/hangqianyu.github.io
+WebsitePath: C:/Users/qhang/Google Drive/hangqianyu.github.io
