@@ -708,7 +708,13 @@ prop.table(tab, 2)  # Conditional on columns, make column add to 1</code></pre>
   geom_point(alpha = 0.6) +
   geom_text()</code></pre>
 <p>This time you’ll use these arguments to set attributes of the plot, not aesthetics. However, there are some pitfalls you’ll have to watch out for: these attributes can overwrite the aesthetics of your plot! <strong>A word about shapes:</strong> In the exercise “All about aesthetics, part 2”, you saw that shape = 21 results in a point that has a fill and an outline. Shapes in R can have a value from 1-25. Shapes 1-20 can only accept a color aesthetic, but shapes 21-25 have both a color and a fill aesthetic.</p>
+<pre class="r"><code>ggplot(mtcars, aes(x=wt, y=mpg, col=cyl)) +
+geom_point(col = my_color)
+# The col setting in geom_point can overwrite the aesthetics of plot</code></pre>
 <p><strong>A word about hexadecimal colours</strong>: Hexadecimal, literally “related to 16”, is a base-16 alphanumeric counting system. Individual values come from the ranges 0-9 and A-F. This means there are 256 possible two-digit values (i.e. 00 - FF). Hexadecimal colours use this system to specify a six-digit code for Red, Green and Blue values (“#RRGGBB”) of a colour (i.e. Pure blue: “#0000FF”, black: “#000000”, white: “#FFFFFF”). R can accept hex codes as valid colours.</p>
+<pre class="r"><code>ggplot(mtcars, aes(x = wt, y = mpg, fill = cyl)) +
+geom_text(rownames(mtcars), col = &quot;red&quot;)
+# Remember specify characters with quotation makrs</code></pre>
 </div>
 
 

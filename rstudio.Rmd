@@ -456,6 +456,12 @@ geom_point(col = my_color)
 
 **A word about hexadecimal colours**: Hexadecimal, literally "related to 16", is a base-16 alphanumeric counting system. Individual values come from the ranges 0-9 and A-F. This means there are 256 possible two-digit values (i.e. 00 - FF). Hexadecimal colours use this system to specify a six-digit code for Red, Green and Blue values ("#RRGGBB") of a colour (i.e. Pure blue: "#0000FF", black: "#000000", white: "#FFFFFF"). R can accept hex codes as valid colours.
 
+```{r eval=FALSE}
+ggplot(mtcars, aes(x = wt, y = mpg, fill = cyl)) +
+geom_text(rownames(mtcars), col = "red")
+# Remember specify characters with quotation makrs
+```
+
 
 
 
