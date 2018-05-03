@@ -4,14 +4,16 @@ navbar:
   title: "Qianyu's Life"
   left:
     - text: "Research"
-      href: research.html
+      memu:
+        - text: "Stream Restoration"
+          href: stream.html
     - text: "CV"
       href: cv.html
     - text: "Tutorial"
       menu: 
         - text: "R Studio"
           href: rstudio.html
-  
+        
   right:
     - text: "NC State"
       menu:
