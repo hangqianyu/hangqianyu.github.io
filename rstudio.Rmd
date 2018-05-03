@@ -5,7 +5,9 @@ output:
   html_document:
     toc: true
     toc_float: true
+    fig_width: 0.1
 ---
+![](images/rstudio.png)
 ----------
 ### Basic programming notes and queries
 ```{r eval=FALSE}
@@ -432,6 +434,7 @@ prop.table(tab, 2)  # Conditional on columns, make column add to 1
   - linetype, line dash pattern
   - labels, text on a plot or axes
   - shape, shape
+![](images/shape.png)
 
 ```{r eval=FALSE}
 ggplot(mtcars, aes(x = cyl, y = mpg, col = disp, size = disp, shape = categorical column, shape = 1, size = 4)) + 
@@ -462,14 +465,83 @@ geom_text(rownames(mtcars), col = "red")
 # Remember specify characters with quotation makrs
 ```
 
+```{r eval=FALSE}
+val = c("#E41A1C", "#377EB8")
+lab = c("Manual", "Automatic")
+cyl.am +
+  geom_bar(position = "dodge") +
+  scale_x_discrete("Cylinders") + 
+  scale_y_continuous("Number") +
+  scale_fill_manual("Transmission", 
+                    values = val,
+                    labels = lab)
+```
+**Explaination to the code above:**  `scale_x_discrete()` takes as its only argument the x-axis label: "Cylinders". `scale_y_continuous()` takes as its only argument the y-axis label: "Number". `scale_fill_manual()` fixes the legend. The first argument is the title of the legend: "Transmission". Next, values and labels are set to predefined values for you. These are the colors and the labels in the legend. The result of above code will be like this:
+![](images/bar1.png)
 
+------------------
+To make a univariable plot with `ggplot2`, we can set y = o in aesthetics. So far you've focused on scatter plots since they are intuitive, easily understood and very common. A major consideration in any scatter plot is dealing with overplotting. You'll encounter this topic again in the geometries layer, but you can already make some adjustments here.
 
+* You'll have to deal with overplotting when you have:
+  - Large datasets,
+  - Imprecise data and so points are not clearly separated on your plot (you saw this in the video with the iris dataset),
+  - Interval data (i.e. data appears at fixed values), or
+  - Aligned data values on a single axis.
+  - Large datasets
+  - Aligned data values on a single axis
 
+One very common technique that I'd recommend to always use when you have solid shapes it to use alpha blending (i.e. adding transparency). An alternative is to use hollow shapes. These are adjustments to make before even worrying about positioning.
 
+```{r eval=FALSE}
+ggplot(mtcars, aes(x = wt, y = mpg, col = cyl)) +
+geom_point(size = 4, shape = 1, alpha = 0.6)
+# shape = 1 will change points to hollow points which is good, alpha can improve the overplotting
+```
 
+The plot will be like:
+![](images/overplotting.png)
 
+**37 Geometries in ggplot2**
 
-
+* abline (scatter plot)
+* area
+* bar (bar plot)
+* bin2d
+* blank
+* boxplot
+* contour
+* crossbar
+* density
+* density2d
+* dotplot
+* errorbar (bar plot)
+* errorbarh
+* freqpoly
+* hex
+* histogram (bar plot)
+* hline
+* jitter (scatter plot)
+* line  (line plot)
+* linerange
+* map
+* path
+* point (scatter plot)
+  - Essential: x, y
+  - Optional: alpha, colour, fill, shape, size
+* pointrange
+* polygon
+* quantile
+* raster
+* rect
+* ribbon
+* rug
+* segment
+* smooth
+* step
+* text
+* tile
+* violin
+* vline
 
 
 

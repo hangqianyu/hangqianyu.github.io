@@ -387,7 +387,8 @@ div.tocify {
 </div>
 
 
-<hr />
+<div id="section" class="section level2">
+<h2><img src="images/rstudio.png" /></h2>
 <div id="basic-programming-notes-and-queries" class="section level3">
 <h3>Basic programming notes and queries</h3>
 <pre class="r"><code>args(sd) # Useful trick for inspecting the arguments of sd() function in a quick way
@@ -706,7 +707,7 @@ prop.table(tab, 2)  # Conditional on columns, make column add to 1</code></pre>
 <li>alpha, transparency</li>
 <li>linetype, line dash pattern</li>
 <li>labels, text on a plot or axes</li>
-<li>shape, shape</li>
+<li>shape, shape <img src="images/shape.png" /></li>
 </ul></li>
 </ul>
 <pre class="r"><code>ggplot(mtcars, aes(x = cyl, y = mpg, col = disp, size = disp, shape = categorical column, shape = 1, size = 4)) + 
@@ -724,6 +725,79 @@ geom_point(col = my_color)
 <pre class="r"><code>ggplot(mtcars, aes(x = wt, y = mpg, fill = cyl)) +
 geom_text(rownames(mtcars), col = &quot;red&quot;)
 # Remember specify characters with quotation makrs</code></pre>
+<pre class="r"><code>val = c(&quot;#E41A1C&quot;, &quot;#377EB8&quot;)
+lab = c(&quot;Manual&quot;, &quot;Automatic&quot;)
+cyl.am +
+  geom_bar(position = &quot;dodge&quot;) +
+  scale_x_discrete(&quot;Cylinders&quot;) + 
+  scale_y_continuous(&quot;Number&quot;) +
+  scale_fill_manual(&quot;Transmission&quot;, 
+                    values = val,
+                    labels = lab)</code></pre>
+<p><strong>Explaination to the code above:</strong> <code>scale_x_discrete()</code> takes as its only argument the x-axis label: “Cylinders”. <code>scale_y_continuous()</code> takes as its only argument the y-axis label: “Number”. <code>scale_fill_manual()</code> fixes the legend. The first argument is the title of the legend: “Transmission”. Next, values and labels are set to predefined values for you. These are the colors and the labels in the legend. The result of above code will be like this: <img src="images/bar1.png" /></p>
+<hr />
+<p>To make a univariable plot with <code>ggplot2</code>, we can set y = o in aesthetics. So far you’ve focused on scatter plots since they are intuitive, easily understood and very common. A major consideration in any scatter plot is dealing with overplotting. You’ll encounter this topic again in the geometries layer, but you can already make some adjustments here.</p>
+<ul>
+<li>You’ll have to deal with overplotting when you have:
+<ul>
+<li>Large datasets,</li>
+<li>Imprecise data and so points are not clearly separated on your plot (you saw this in the video with the iris dataset),</li>
+<li>Interval data (i.e. data appears at fixed values), or</li>
+<li>Aligned data values on a single axis.</li>
+<li>Large datasets</li>
+<li>Aligned data values on a single axis</li>
+</ul></li>
+</ul>
+<p>One very common technique that I’d recommend to always use when you have solid shapes it to use alpha blending (i.e. adding transparency). An alternative is to use hollow shapes. These are adjustments to make before even worrying about positioning.</p>
+<pre class="r"><code>ggplot(mtcars, aes(x = wt, y = mpg, col = cyl)) +
+geom_point(size = 4, shape = 1, alpha = 0.6)
+# shape = 1 will change points to hollow points which is good, alpha can improve the overplotting</code></pre>
+<p>The plot will be like: <img src="images/overplotting.png" /></p>
+<p><strong>37 Geometries in ggplot2</strong></p>
+<ul>
+<li>abline (scatter plot)</li>
+<li>area</li>
+<li>bar (bar plot)</li>
+<li>bin2d</li>
+<li>blank</li>
+<li>boxplot</li>
+<li>contour</li>
+<li>crossbar</li>
+<li>density</li>
+<li>density2d</li>
+<li>dotplot</li>
+<li>errorbar (bar plot)</li>
+<li>errorbarh</li>
+<li>freqpoly</li>
+<li>hex</li>
+<li>histogram (bar plot)</li>
+<li>hline</li>
+<li>jitter (scatter plot)</li>
+<li>line (line plot)</li>
+<li>linerange</li>
+<li>map</li>
+<li>path</li>
+<li>point (scatter plot)
+<ul>
+<li>Essential: x, y</li>
+<li>Optional: alpha, colour, fill, shape, size</li>
+</ul></li>
+<li>pointrange</li>
+<li>polygon</li>
+<li>quantile</li>
+<li>raster</li>
+<li>rect</li>
+<li>ribbon</li>
+<li>rug</li>
+<li>segment</li>
+<li>smooth</li>
+<li>step</li>
+<li>text</li>
+<li>tile</li>
+<li>violin</li>
+<li>vline</li>
+</ul>
+</div>
 </div>
 
 
