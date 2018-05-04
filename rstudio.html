@@ -555,7 +555,7 @@ read_sav() # to import SPSS data (por or sav files)</code></pre>
 plot(x, y) # to view plot of two variables</code></pre>
 <p>Principles of tidy data: observations as rows, variables/attributes as columns. Remember that column headers are values, not variable names.</p>
 <p>For “tydyr” package,</p>
-<pre class="r"><code>gather(data, key, value, ...) # data: a data frame; key: bare name of new key column; value: bare name of new value column or changed column in other words, it should be -object; ...: bare names of columns to gather or not 
+<pre class="r"><code>gather(data, key, value, -...) # data: a data frame; key: bare name of new key column; value: bare name of new value column or changed column in other words; -...: bare names of columns to not gather or change
 mbta4 &lt;- gather(mbta3, &quot;month&quot;, &quot;thou_riders&quot;, -mode) # example
 
 spread(data, key, value) # is the opposite of gather() function. key: bare name of column containing keys; value: bare name of column containing values
@@ -710,6 +710,16 @@ prop.table(tab, 2)  # Conditional on columns, make column add to 1</code></pre>
 <li>shape, shape <img src="images/shape.png" /></li>
 </ul></li>
 </ul>
+<pre><code>##   Aesthetic                              Description
+## 1         x                          X axis position
+## 2         y                          Y axis position
+## 3    colour Colour of dots, outlines of other shapes
+## 4      fill                              Fill colour
+## 5      size   Diameter of points, thickness of lines
+## 6     alpha                             Transparency
+## 7  linetype                        Line dash pattern
+## 8    labels                   Text on a plot or axes
+## 9     shape                                    Shape</code></pre>
 <pre class="r"><code>ggplot(mtcars, aes(x = cyl, y = mpg, col = disp, size = disp, shape = categorical column, shape = 1, size = 4)) + 
   geom_point(alpha = 0.4, position = &quot;jitter&quot;) + # alpha means the transparency of discrete points, 0-1, jitter expands the points more evenly, or you can just use geom_jitter()
   geom_smooth(aes(group = 1), method = &quot;lm&quot;, se = FALSE) # if you do not want any error shading, you can set se = FALSE, lm means lineal model method in scatter plot, group = 1 tells ggplot to draw a single linear model through all the points in different colors.</code></pre>
@@ -797,6 +807,49 @@ geom_point(size = 4, shape = 1, alpha = 0.6)
 <li>violin</li>
 <li>vline</li>
 </ul>
+<pre class="r"><code># 1 - Define posn_d with position_dodge()
+posn_d &lt;- position_dodge(width = 0.2)
+# 2 - Use posn_d as position and adjust alpha to 0.6
+ggplot(mtcars, aes(x = cyl, fill = am)) +
+  geom_bar(position = posn_d, alpha = 0.6)</code></pre>
+<p>Result would be like: <img src="images/bar2.png" /></p>
+<pre class="r"><code>ggplot(mtcars, aes(mpg, col = cyl)) +
+  geom_freqpoly(binwidth = 1, position = &quot;identity&quot;)</code></pre>
+<p><img src="images/freqpoly.png" /></p>
+<pre class="r"><code># Add the recess periods
+ggplot(economics, aes(x = date, y = unemploy/pop)) +
+  geom_rect(data = recess,
+         aes(xmin = begin, xmax = end, ymin = -Inf, ymax = +Inf),
+         inherit.aes = FALSE, fill = &quot;red&quot;, alpha = 0.2) +
+  geom_line()</code></pre>
+<p><img src="images/line1.png" /></p>
+<pre class="r"><code># Make it easy to read
+ggplot(ChickWeight, aes(x = Time, y = weight, col = Diet)) +
+  geom_line(aes(group = Chick), alpha = 0.3) +
+  geom_smooth(lwd = 2, se = FALSE)</code></pre>
+<p><img src="images/line2.png" /></p>
+<p>While <code>qplot()</code> can do some easy plots like that:</p>
+<pre class="r"><code># qplot() with geom set to jitter manually
+qplot(factor(cyl), factor(vs), data = mtcars, geom = &quot;jitter&quot;)</code></pre>
+<p><img src="images/qplot1.png" /></p>
+<p>For “true” dot plot with <code>geom_dotplot()</code>:</p>
+<pre class="r"><code># &quot;True&quot; dot plot, with geom_dotplot():
+ggplot(mtcars, aes(cyl, wt, fill = am)) +
+  geom_dotplot(binaxis = &quot;y&quot;, stackdir = &quot;center&quot;)</code></pre>
+<p><img src="images/dotplot1.png" /></p>
+<pre class="r"><code># add facet_grid() layer
+ggplot(titanic, aes(x = Pclass, fill = Sex)) +
+  geom_bar(position = &quot;dodge&quot;) +
+  facet_grid(. ~ Survived)
+
+# Define an object for position jitterdodge, to use below
+posn.jd &lt;- position_jitterdodge(0.5, 0, 0.6)
+
+# but use the position object defined above
+ggplot(titanic, aes(x = Pclass, y = Age, color = Sex)) +
+  geom_point(size = 3, alpha = 0.5, position = posn.jd) +
+  facet_grid(. ~ Survived)</code></pre>
+<p>Two figures are compared: <img src="images/bar3.png" />, <img src="images/jitter1.png" /></p>
 </div>
 </div>
 

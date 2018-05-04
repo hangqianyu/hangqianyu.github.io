@@ -1,0 +1,569 @@
+﻿@article{RN1816,
+   author = {Alexander, Gretchen G and Allan, J David},
+   title = {Ecological success in stream restoration: case studies from the midwestern United States},
+   journal = {Environmental Management},
+   volume = {40},
+   number = {2},
+   pages = {245-255},
+   ISSN = {0364-152X},
+   year = {2007},
+   type = {Journal Article}
+}
+
+@book{RN1861,
+   author = {Allan, J David and Castillo, María M},
+   title = {Stream ecology: structure and function of running waters},
+   publisher = {Springer Science & Business Media},
+   ISBN = {1402055838},
+   year = {2007},
+   type = {Book}
+}
+
+@article{RN1860,
+   author = {Antón, Alvaro and Elosegi, Arturo and García‐Arberas, Loreto and Díez, Joserra and Rallo, Ana},
+   title = {Restoration of dead wood in Basque stream channels: effects on brown trout population},
+   journal = {Ecology of Freshwater Fish},
+   volume = {20},
+   number = {3},
+   pages = {461-471},
+   ISSN = {1600-0633},
+   year = {2011},
+   type = {Journal Article}
+}
+
+@article{RN1847,
+   author = {Bernhardt, Emily S and Palmer, Margaret A},
+   title = {Restoring streams in an urbanizing world},
+   journal = {Freshwater Biology},
+   volume = {52},
+   number = {4},
+   pages = {738-751},
+   ISSN = {1365-2427},
+   year = {2007},
+   type = {Journal Article}
+}
+
+@article{RN1814,
+   author = {Bernhardt, Emily S and Palmer, Margaret A and Allan, JD and Alexander, G and Barnas, Katie and Brooks, Shane and Carr, J and Clayton, Stephen and Dahm, Cliff and Follstad-Shah, Jennifer},
+   title = {Synthesizing US river restoration efforts},
+   journal = {Science},
+   volume = {308},
+   number = {5722},
+   pages = {636-637},
+   ISSN = {0036-8075},
+   year = {2005},
+   type = {Journal Article}
+}
+
+@article{RN1817,
+   author = {Birgand, F and Appelboom, TW and Chescheir, GM and Skaggs, RW},
+   title = {Estimating nitrogen, phosphorus, and carbon fluxes in forested and mixed-use watersheds of the lower coastal plain of North Carolina: Uncertainties associated with infrequent sampling},
+   journal = {Transactions of the ASABE},
+   volume = {54},
+   number = {6},
+   pages = {2099-2110},
+   year = {2011},
+   type = {Journal Article}
+}
+
+@article{RN1864,
+   author = {Birgand, François and Faucheux, Claire and Gruau, Gérard and Augeard, Bénédicte and Moatar, Florentina and Bordenave, Paul},
+   title = {Uncertainties in assessing annual nitrate loads and concentration indicators: Part 1. Impact of sampling frequency and load estimation algorithms},
+   journal = {Transactions of the ASABE},
+   volume = {53},
+   number = {2},
+   pages = {437-446},
+   year = {2010},
+   type = {Journal Article}
+}
+
+@article{RN1830,
+   author = {Birgand, Françoisx and Skaggs, R Wayne and Chescheir, George M and Gilliam, J Wendell},
+   title = {Nitrogen removal in streams of agricultural catchments—a literature review},
+   journal = {Critical Reviews in Environmental Science and Technology},
+   volume = {37},
+   number = {5},
+   pages = {381-487},
+   ISSN = {1064-3389},
+   year = {2007},
+   type = {Journal Article}
+}
+
+@article{RN1842,
+   author = {Booth, Derek B},
+   title = {Challenges and prospects for restoring urban streams: a perspective from the Pacific Northwest of North America: BRIDGES is a recurring feature of J-NABS intended to provide a forum for the interchange of ideas and information between basic and applied researchers in benthic science. Articles in this series will focus on topical research areas and linkages between basic and applied aspects of research, monitoring, policy, and education. Readers with ideas for topics should contact Associate Editors Nick Aumen and Marty Gurtz},
+   journal = {Journal of the North American Benthological Society},
+   volume = {24},
+   number = {3},
+   pages = {724-737},
+   ISSN = {0887-3593},
+   year = {2005},
+   type = {Journal Article}
+}
+
+@article{RN1850,
+   author = {Brinson, MM and MacDonnell, LJ and Austen, DJ and Beschta, RL and Dillaha, TA and Donahue, DL and Gregory, SV and Harvey, JW and Molles Jr, MC and Rogers, EI},
+   title = {Riparian areas: functions and strategies for management},
+   journal = {National Academy of Sciences, Washington DC},
+   volume = {444},
+   year = {2002},
+   type = {Journal Article}
+}
+
+@article{RN1839,
+   author = {Bukaveckas, Paul A},
+   title = {Effects of channel restoration on water velocity, transient storage, and nutrient uptake in a channelized stream},
+   journal = {Environmental science & technology},
+   volume = {41},
+   number = {5},
+   pages = {1570-1576},
+   ISSN = {0013-936X},
+   year = {2007},
+   type = {Journal Article}
+}
+
+@article{RN1857,
+   author = {Cooper, Scott D and Barmuta, Leon and Sarnelle, Orlando and Kratz, Kim and Diehl, Sebastian},
+   title = {Quantifying spatial heterogeneity in streams},
+   journal = {Journal of the North American Benthological Society},
+   volume = {16},
+   number = {1},
+   pages = {174-188},
+   ISSN = {0887-3593},
+   year = {1997},
+   type = {Journal Article}
+}
+
+@article{RN1836,
+   author = {Craig, Laura S and Palmer, Margaret A and Richardson, David C and Filoso, Solange and Bernhardt, Emily S and Bledsoe, Brian P and Doyle, Martin W and Groffman, Peter M and Hassett, Brooke A and Kaushal, Sujay S},
+   title = {Stream restoration strategies for reducing river nitrogen loads},
+   journal = {Frontiers in Ecology and the Environment},
+   volume = {6},
+   number = {10},
+   pages = {529-538},
+   ISSN = {1540-9309},
+   year = {2008},
+   type = {Journal Article}
+}
+
+@article{RN1822,
+   author = {Davis, Nate M and Weaver, V and Parks, K and Lydy, Michael J},
+   title = {An assessment of water quality, physical habitat, and biological integrity of an urban stream in Wichita, Kansas, prior to restoration improvements (phase I)},
+   journal = {Archives of Environmental Contamination and Toxicology},
+   volume = {44},
+   number = {3},
+   pages = {0351-0359},
+   ISSN = {0090-4341},
+   year = {2003},
+   type = {Journal Article}
+}
+
+@techreport{RN1820,
+   author = {EPA},
+   title = {National Water Quality Inventory},
+   institution = {United States Environmental Protection Agency},
+   year = {2004},
+   type = {Report}
+}
+
+@article{RN1865,
+   author = {Etheridge, J Randall and Birgand, François and Osborne, Jason A and Osburn, Christopher L and Burchell, Michael R and Irving, Justin},
+   title = {Using in situ ultraviolet‐visual spectroscopy to measure nitrogen, carbon, phosphorus, and suspended solids concentrations at a high frequency in a brackish tidal marsh},
+   journal = {Limnology and Oceanography: Methods},
+   volume = {12},
+   number = {1},
+   pages = {10-22},
+   ISSN = {1541-5856},
+   year = {2014},
+   type = {Journal Article}
+}
+
+@inbook{RN1854,
+   author = {Feld, Christian K},
+   title = {Identification and measure of hydromorphological degradation in Central European lowland streams},
+   booktitle = {Integrated Assessment of Running Waters in Europe},
+   publisher = {Springer},
+   pages = {69-90},
+   year = {2004},
+   type = {Book Section}
+}
+
+@article{RN1823,
+   author = {Filoso, Solange and Palmer, Margaret A},
+   title = {Assessing stream restoration effectiveness at reducing nitrogen export to downstream waters},
+   journal = {Ecological Applications},
+   volume = {21},
+   number = {6},
+   pages = {1989-2006},
+   ISSN = {1939-5582},
+   year = {2011},
+   type = {Journal Article}
+}
+
+@article{RN1855,
+   author = {Friberg, Nikolai and Kronvang, Brian and Ole Hansen, Hans and Svendsen, Lars M},
+   title = {Long‐term, habitat‐specific response of a macroinvertebrate community to river restoration},
+   journal = {Aquatic Conservation: Marine and Freshwater Ecosystems},
+   volume = {8},
+   number = {1},
+   pages = {87-99},
+   ISSN = {1099-0755},
+   year = {1998},
+   type = {Journal Article}
+}
+
+@article{RN1849,
+   author = {Garófano-Gómez, Virginia and Martinez-Capel, Francisco and Peredo-Parada, Matías and Julia, Esther and Marín, Olaya and Muñoz Mas, Rafael and Soares Costa, Rui M and Pinar-Arenas, Jose Luis},
+   title = {Assessing hydromorphological and floristic patterns along a regulated Mediterranean river: The Serpis River (Spain)},
+   journal = {limnetica},
+   volume = {30},
+   number = {2},
+   pages = {0307-328},
+   year = {2011},
+   type = {Journal Article}
+}
+
+@article{RN1826,
+   author = {Gerhard, Marc and Reich, Michael},
+   title = {Restoration of Streams with Large Wood: Effects of Accumulated and Built‐in Wood on Channel Morphology, Habitat Diversity and Aquatic Fauna},
+   journal = {International Review of Hydrobiology},
+   volume = {85},
+   number = {1},
+   pages = {123-137},
+   ISSN = {1522-2632},
+   year = {2000},
+   type = {Journal Article}
+}
+
+@article{RN1833,
+   author = {Groffman, Peter M and Crawford, Marshall Kamau},
+   title = {Denitrification potential in urban riparian zones},
+   journal = {Journal of Environmental Quality},
+   volume = {32},
+   number = {3},
+   pages = {1144-1149},
+   ISSN = {1537-2537},
+   year = {2003},
+   type = {Journal Article}
+}
+
+@article{RN1841,
+   author = {Groffman, Peter M and Dorsey, Ann M and Mayer, Paul M},
+   title = {N processing within geomorphic structures in urban streams},
+   journal = {Journal of the North American Benthological Society},
+   volume = {24},
+   number = {3},
+   pages = {613-625},
+   year = {2005},
+   type = {Journal Article}
+}
+
+@article{RN1851,
+   author = {Hammersmark, Christopher Trevor and Rains, Mark Cable and Mount, Jeffrey F},
+   title = {Quantifying the hydrological effects of stream restoration in a montane meadow, northern California, USA},
+   journal = {River Research and applications},
+   volume = {24},
+   number = {6},
+   pages = {735-753},
+   ISSN = {1535-1467},
+   year = {2008},
+   type = {Journal Article}
+}
+
+@article{RN1831,
+   author = {Hassett, Brooke and Palmer, Margaret and Bernhardt, Emily and Smith, Sean and Carr, Jamie and Hart, David},
+   title = {Restoring watersheds project by project: trends in Chesapeake Bay tributary restoration},
+   journal = {Frontiers in Ecology and the Environment},
+   volume = {3},
+   number = {5},
+   pages = {259-267},
+   ISSN = {1540-9309},
+   year = {2005},
+   type = {Journal Article}
+}
+
+@article{RN1834,
+   author = {Hill, Alan R},
+   title = {Nitrate removal in stream riparian zones},
+   journal = {Journal of environmental quality},
+   volume = {25},
+   number = {4},
+   pages = {743-755},
+   ISSN = {0047-2425},
+   year = {1996},
+   type = {Journal Article}
+}
+
+@article{RN1827,
+   author = {Jähnig, Sonja C and Brabec, Karel and Buffagni, Andrea and Erba, Stefania and Lorenz, Armin W and Ofenböck, Thomas and Verdonschot, Piet FM and Hering, Daniel},
+   title = {A comparative analysis of restoration measures and their effects on hydromorphology and benthic invertebrates in 26 central and southern European rivers},
+   journal = {Journal of Applied Ecology},
+   volume = {47},
+   number = {3},
+   pages = {671-680},
+   ISSN = {1365-2664},
+   year = {2010},
+   type = {Journal Article}
+}
+
+@article{RN1813,
+   author = {Jansson, Roland and Nilsson, Christer and Malmqvist, Björn},
+   title = {Restoring freshwater ecosystems in riverine landscapes: the roles of connectivity and recovery processes},
+   journal = {Freshwater Biology},
+   volume = {52},
+   number = {4},
+   pages = {589-596},
+   ISSN = {1365-2427},
+   year = {2007},
+   type = {Journal Article}
+}
+
+@article{RN1835,
+   author = {Kasahara, Tamao and Hill, Alan R},
+   title = {Effects of riffle step restoration on hyporheic zone chemistry in N-rich lowland streams},
+   journal = {Canadian Journal of Fisheries and Aquatic Sciences},
+   volume = {63},
+   number = {1},
+   pages = {120-133},
+   ISSN = {0706-652X},
+   year = {2006},
+   type = {Journal Article}
+}
+
+@article{RN1828,
+   author = {Kaushal, Sujay S and Groffman, Peter M and Mayer, Paul M and Striz, Elise and Gold, Arthur J},
+   title = {Effects of stream restoration on denitrification in an urbanizing watershed},
+   journal = {Ecological Applications},
+   volume = {18},
+   number = {3},
+   pages = {789-804},
+   ISSN = {1939-5582},
+   year = {2008},
+   type = {Journal Article}
+}
+
+@article{RN1821,
+   author = {Kenney, Melissa A and Wilcock, Peter R and Hobbs, Benjamin F and Flores, Nicholas E and Martínez, Daniela C},
+   title = {Is urban stream restoration worth it?},
+   journal = {JAWRA Journal of the American Water Resources Association},
+   volume = {48},
+   number = {3},
+   pages = {603-615},
+   ISSN = {1752-1688},
+   year = {2012},
+   type = {Journal Article}
+}
+
+@article{RN1829,
+   author = {Klocker, Carolyn A and Kaushal, Sujay S and Groffman, Peter M and Mayer, Paul M and Morgan, Raymond P},
+   title = {Nitrogen uptake and denitrification in restored and unrestored streams in urban Maryland, USA},
+   journal = {Aquatic Sciences},
+   volume = {71},
+   number = {4},
+   pages = {411-424},
+   ISSN = {1015-1621},
+   year = {2009},
+   type = {Journal Article}
+}
+
+@article{RN1815,
+   author = {Kondolf, G Mathias and Micheli, Elisabeth R},
+   title = {Evaluating stream restoration projects},
+   journal = {Environmental Management},
+   volume = {19},
+   number = {1},
+   pages = {1-15},
+   ISSN = {0364-152X},
+   year = {1995},
+   type = {Journal Article}
+}
+
+@article{RN1856,
+   author = {Lepori, F and Palm, D and Brännäs, E and Malmqvist, B},
+   title = {Does restoration of structural heterogeneity in streams enhance fish and macroinvertebrate diversity?},
+   journal = {Ecological Applications},
+   volume = {15},
+   number = {6},
+   pages = {2060-2071},
+   ISSN = {1939-5582},
+   year = {2005},
+   type = {Journal Article}
+}
+
+@article{RN1862,
+   author = {Lester, Rebecca E and Boulton, Andrew J},
+   title = {Rehabilitating agricultural streams in Australia with wood: a review},
+   journal = {Environmental Management},
+   volume = {42},
+   number = {2},
+   pages = {310-326},
+   ISSN = {0364-152X},
+   year = {2008},
+   type = {Journal Article}
+}
+
+@article{RN1819,
+   author = {Lin, Chiao-Wen},
+   title = {Characterization of the Solute Dynamics Signature of an Agricultural Coastal Plain Stream, North Carolina, USA},
+   journal = {Biological and Agricultural Engineering},
+   volume = {Ph.D},
+   year = {2017},
+   type = {Journal Article}
+}
+
+@article{RN1852,
+   author = {Lorenz, Armin W and Jähnig, Sonja C and Hering, Daniel},
+   title = {Re-meandering German lowland streams: qualitative and quantitative effects of restoration measures on hydromorphology and macroinvertebrates},
+   journal = {Environmental management},
+   volume = {44},
+   number = {4},
+   pages = {745-754},
+   ISSN = {0364-152X},
+   year = {2009},
+   type = {Journal Article}
+}
+
+@inproceedings{RN1840,
+   author = {Mayer, PM and Striz, Elise and Shedlock, Robert and Doheny, Edward and Groffman, Peter},
+   title = {The effects of ecosystem restoration on nitrogen processing in an urban mid-Atlantic Piedmont stream},
+   booktitle = {First Interagency Conference on Research in the Watersheds},
+   volume = {27},
+   pages = {30},
+   type = {Conference Proceedings}
+}
+
+@article{RN1824,
+   author = {Moerke, Ashley H and Gerard, Kerry J and Latimore, Jo A and Hellenthal, Ronald A and Lamberti, Gary A},
+   title = {Restoration of an Indiana, USA, stream: bridging the gap between basic and applied lotic ecology},
+   journal = {Journal of the North American Benthological Society},
+   volume = {23},
+   number = {3},
+   pages = {647-660},
+   ISSN = {0887-3593},
+   year = {2004},
+   type = {Journal Article}
+}
+
+@article{RN1859,
+   author = {Muotka, Timo and Paavola, Riku and Haapala, Antti and Novikmec, Milan and Laasonen, Pekka},
+   title = {Long-term recovery of stream habitat structure and benthic invertebrate communities from in-stream restoration},
+   journal = {Biological Conservation},
+   volume = {105},
+   number = {2},
+   pages = {243-253},
+   ISSN = {0006-3207},
+   year = {2002},
+   type = {Journal Article}
+}
+
+@article{RN1863,
+   author = {Palmer, Margaret A and Ambrose, Richard F and Poff, N LeRoy},
+   title = {Ecological theory and community restoration ecology},
+   journal = {Restoration ecology},
+   volume = {5},
+   number = {4},
+   pages = {291-300},
+   ISSN = {1526-100X},
+   year = {1997},
+   type = {Journal Article}
+}
+
+@article{RN1843,
+   author = {Richardson, Curtis J and Flanagan, Neal E and Ho, Mengchi and Pahl, James W},
+   title = {Integrated stream and wetland restoration: A watershed approach to improved water quality on the landscape},
+   journal = {Ecological Engineering},
+   volume = {37},
+   number = {1},
+   pages = {25-39},
+   ISSN = {0925-8574},
+   year = {2011},
+   type = {Journal Article}
+}
+
+@article{RN1832,
+   author = {Roberts, Brian J and Mulholland, Patrick J and Houser, Jeffrey N},
+   title = {Effects of upland disturbance and instream restoration on hydrodynamics and ammonium uptake in headwater streams},
+   journal = {Journal of the North American Benthological Society},
+   volume = {26},
+   number = {1},
+   pages = {38-53},
+   year = {2007},
+   type = {Journal Article}
+}
+
+@article{RN1846,
+   author = {Roni, Philip and Beechie, Timothy J and Bilby, Robert E and Leonetti, Frank E and Pollock, Michael M and Pess, George R},
+   title = {A review of stream restoration techniques and a hierarchical strategy for prioritizing restoration in Pacific Northwest watersheds},
+   journal = {North American Journal of Fisheries Management},
+   volume = {22},
+   number = {1},
+   pages = {1-20},
+   ISSN = {0275-5947},
+   year = {2002},
+   type = {Journal Article}
+}
+
+@inproceedings{RN1848,
+   author = {Rosgen, David L},
+   title = {A geomorphological approach to restoration of incised rivers},
+   booktitle = {Proceedings of the conference on management of landscapes disturbed by channel incision},
+   publisher = {ISBN 0-937099-05-8},
+   volume = {16},
+   type = {Conference Proceedings}
+}
+
+@article{RN1844,
+   author = {Spänhoff, Bernd and Arle, Jens},
+   title = {Setting attainable goals of stream habitat restoration from a macroinvertebrate view},
+   journal = {Restoration Ecology},
+   volume = {15},
+   number = {2},
+   pages = {317-320},
+   ISSN = {1526-100X},
+   year = {2007},
+   type = {Journal Article}
+}
+
+@book{RN1858,
+   author = {Tilman, David},
+   title = {Resource competition and community structure},
+   publisher = {Princeton university press},
+   ISBN = {0691083029},
+   year = {1982},
+   type = {Book}
+}
+
+@article{RN1837,
+   author = {Valett, H Maurice and Crenshaw, Chelsea L and Wagner, Paul F},
+   title = {Stream nutrient uptake, forest succession, and biogeochemical theory},
+   journal = {Ecology},
+   volume = {83},
+   number = {10},
+   pages = {2888-2901},
+   ISSN = {1939-9170},
+   year = {2002},
+   type = {Journal Article}
+}
+
+@inbook{RN1853,
+   author = {Verdonschot, PFM and Nijboer, RC},
+   title = {Towards a decision support system for stream restoration in the Netherlands: an overview of restoration projects and future needs},
+   booktitle = {Ecological restoration of aquatic and semi-aquatic ecosystems in the Netherlands (NW Europe)},
+   publisher = {Springer},
+   pages = {131-148},
+   year = {2002},
+   type = {Book Section}
+}
+
+@article{RN1838,
+   author = {Webster, Jackson R and Mulholland, Patrick J and Tank, Jennifer L and Valett, H Maurice and Dodds, Walter K and Peterson, Bruce J and Bowden, William B and Dahm, Clifford N and Findlay, Stuart and Gregory, Stanley V},
+   title = {Factors affecting ammonium uptake in streams–an inter‐biome perspective},
+   journal = {Freshwater Biology},
+   volume = {48},
+   number = {8},
+   pages = {1329-1352},
+   ISSN = {1365-2427},
+   year = {2003},
+   type = {Journal Article}
+}
+

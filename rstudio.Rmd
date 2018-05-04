@@ -242,7 +242,7 @@ Principles of tidy data: observations as rows, variables/attributes as columns. 
 
 For "tydyr" package, 
 ```{r eval=FALSE}
-gather(data, key, value, ...) # data: a data frame; key: bare name of new key column; value: bare name of new value column or changed column in other words, it should be -object; ...: bare names of columns to gather or not 
+gather(data, key, value, -...) # data: a data frame; key: bare name of new key column; value: bare name of new value column or changed column in other words; -...: bare names of columns to not gather or change
 mbta4 <- gather(mbta3, "month", "thou_riders", -mode) # example
 
 spread(data, key, value) # is the opposite of gather() function. key: bare name of column containing keys; value: bare name of column containing values
@@ -436,6 +436,10 @@ prop.table(tab, 2)  # Conditional on columns, make column add to 1
   - shape, shape
 ![](images/shape.png)
 
+```{r echo=FALSE}
+read.csv("data/ggplot_aesthetics.csv")
+```
+
 ```{r eval=FALSE}
 ggplot(mtcars, aes(x = cyl, y = mpg, col = disp, size = disp, shape = categorical column, shape = 1, size = 4)) + 
   geom_point(alpha = 0.4, position = "jitter") + # alpha means the transparency of discrete points, 0-1, jitter expands the points more evenly, or you can just use geom_jitter()
@@ -542,6 +546,80 @@ The plot will be like:
 * tile
 * violin
 * vline
+
+```{r eval=FALSE}
+# 1 - Define posn_d with position_dodge()
+posn_d <- position_dodge(width = 0.2)
+# 2 - Use posn_d as position and adjust alpha to 0.6
+ggplot(mtcars, aes(x = cyl, fill = am)) +
+  geom_bar(position = posn_d, alpha = 0.6)
+```
+Result would be like:
+![](images/bar2.png)
+
+```{r eval=FALSE}
+ggplot(mtcars, aes(mpg, col = cyl)) +
+  geom_freqpoly(binwidth = 1, position = "identity")
+```
+![](images/freqpoly.png)
+
+```{r eval=FALSE}
+# Add the recess periods
+ggplot(economics, aes(x = date, y = unemploy/pop)) +
+  geom_rect(data = recess,
+         aes(xmin = begin, xmax = end, ymin = -Inf, ymax = +Inf),
+         inherit.aes = FALSE, fill = "red", alpha = 0.2) +
+  geom_line()
+```
+![](images/line1.png)
+
+```{r eval=FALSE}
+# Make it easy to read
+ggplot(ChickWeight, aes(x = Time, y = weight, col = Diet)) +
+  geom_line(aes(group = Chick), alpha = 0.3) +
+  geom_smooth(lwd = 2, se = FALSE)
+```
+![](images/line2.png)
+
+While `qplot()` can do some easy plots like that:
+```{r eval=FALSE}
+# qplot() with geom set to jitter manually
+qplot(factor(cyl), factor(vs), data = mtcars, geom = "jitter")
+```
+![](images/qplot1.png)
+
+For "true" dot plot with `geom_dotplot()`:
+```{r eval=FALSE}
+# "True" dot plot, with geom_dotplot():
+ggplot(mtcars, aes(cyl, wt, fill = am)) +
+  geom_dotplot(binaxis = "y", stackdir = "center")
+```
+![](images/dotplot1.png)
+
+```{r eval=FALSE}
+# add facet_grid() layer
+ggplot(titanic, aes(x = Pclass, fill = Sex)) +
+  geom_bar(position = "dodge") +
+  facet_grid(. ~ Survived)
+
+# Define an object for position jitterdodge, to use below
+posn.jd <- position_jitterdodge(0.5, 0, 0.6)
+
+# but use the position object defined above
+ggplot(titanic, aes(x = Pclass, y = Age, color = Sex)) +
+  geom_point(size = 3, alpha = 0.5, position = posn.jd) +
+  facet_grid(. ~ Survived)
+```
+
+Two figures are compared: ![](images/bar3.png), ![](images/jitter1.png)
+
+
+
+
+
+
+
+
 
 
 
