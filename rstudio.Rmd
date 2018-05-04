@@ -251,6 +251,9 @@ seperate(data, col, into) # data: a data frame; col: bare name of column to sepe
 
 unite(data, col, ..., sep = "...") # is the opposite of seperate() function. data: a data frame; col: bare name of new column; ...: bare names of columns to unite (don't need a c() function, just use comma), sep: seperator used between tow joined columns
 ```
+
+For more information about `tydyr` package, please refer to [here](https://www.cnblogs.com/nxld/p/6060533.html)
+
 * Removing redundant info
 ```{r eval=FALSE}
 my_df[1:5, ] # First 5 rows of my_df
@@ -611,7 +614,61 @@ ggplot(titanic, aes(x = Pclass, y = Age, color = Sex)) +
   facet_grid(. ~ Survived)
 ```
 
-Two figures are compared: ![](images/bar3.png), ![](images/jitter1.png)
+Two figures are compared: 
+![](images/bar3.png), ![](images/jitter1.png)
+
+-----------------
+### Advanced plotting with `ggplot2`
+![](images/stat_functions.png)
+
+```{r eval=FALSE}
+ggplot(mtcars, aes(x = wt, y = mpg, col = factor(cyl))) +
+  geom_point() +
+  stat_smooth(method = "lm", se = FALSE)
+
+# 2 - Plot 1, plus another stat_smooth() containing a nested aes()
+ggplot(mtcars, aes(x = wt, y = mpg, col = factor(cyl))) +
+  geom_point() +
+  stat_smooth(method = "lm", se = FALSE) +
+  stat_smooth(method = "lm", se = FALSE, aes(group = 1))
+```
+![](images/smooth1.png), ![](images/smooth2.png)
+
+In the previous exercise we used `se = FALSE` in `stat_smooth()` to remove the 95% Confidence Interval. Here we'll consider another argument, `span`, used in LOESS smoothing, and we'll take a look at a nice scenario of properly mapping different models.
+```{r eval=FALSE}
+ggplot(mtcars, aes(x = wt, y = mpg, col = factor(cyl))) +
+  geom_point() +
+  stat_smooth(method = "lm", se = FALSE) +
+  stat_smooth(method = "loess", aes(group = 1),
+              se = FALSE, col = "black", span = 0.7)
+
+# Set col to "All", inside the aes layer of stat_smooth()
+ggplot(mtcars, aes(x = wt, y = mpg, col = factor(cyl))) +
+  geom_point() +
+  stat_smooth(method = "lm", se = FALSE) +
+  stat_smooth(method = "loess",
+              # Add col inside aes()
+              aes(group = 1, col = "All"),
+              # Remove the col argument below
+              se = FALSE, span = 0.7)
+
+# Add scale_color_manual to change the colors
+myColors <- c(brewer.pal(3, "Dark2"), "black")
+ggplot(mtcars, aes(x = wt, y = mpg, col = factor(cyl))) +
+  geom_point() +
+  stat_smooth(method = "lm", se = FALSE, span = 0.7) +
+  stat_smooth(method = "loess", 
+              aes(group = 1, col="All"), 
+              se = FALSE, span = 0.7) +
+  scale_color_manual("Cylinders", values = myColors)
+```
+![](images/smooth3.png), ![](images/smooth4.png), ![](images/smooth5.png)
+
+杭前宇
+
+
+
+
 
 
 
