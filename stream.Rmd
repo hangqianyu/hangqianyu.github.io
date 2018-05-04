@@ -1,5 +1,5 @@
 ---
-title: "Stream Restoration"
+title: "Controversial voices among the effects of stream restoration call for evaluation of robust indicators"
 author:  "[Qianyu Hang](https://github.com/hangqianyu) at NC State University"
 output:
   html_document:
