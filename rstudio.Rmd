@@ -615,7 +615,9 @@ ggplot(titanic, aes(x = Pclass, y = Age, color = Sex)) +
 ```
 
 Two figures are compared: 
-![](images/bar3.png), ![](images/jitter1.png)
+![](images/bar3.png)
+
+![](images/jitter1.png)
 
 -----------------
 ### Advanced plotting with `ggplot2`
@@ -632,7 +634,9 @@ ggplot(mtcars, aes(x = wt, y = mpg, col = factor(cyl))) +
   stat_smooth(method = "lm", se = FALSE) +
   stat_smooth(method = "lm", se = FALSE, aes(group = 1))
 ```
-![](images/smooth1.png), ![](images/smooth2.png)
+![](images/smooth1.png) 
+
+![](images/smooth2.png)
 
 In the previous exercise we used `se = FALSE` in `stat_smooth()` to remove the 95% Confidence Interval. Here we'll consider another argument, `span`, used in LOESS smoothing, and we'll take a look at a nice scenario of properly mapping different models.
 ```{r eval=FALSE}
@@ -662,16 +666,96 @@ ggplot(mtcars, aes(x = wt, y = mpg, col = factor(cyl))) +
               se = FALSE, span = 0.7) +
   scale_color_manual("Cylinders", values = myColors)
 ```
-![](images/smooth3.png), ![](images/smooth4.png), ![](images/smooth5.png)
+![](images/smooth3.png)
 
-杭前宇
+![](images/smooth4.png)
 
+![](images/smooth5.png)
 
+Focus on the color because `scale_color_brewer` on default have a maximum 9 for palette Blues.
+```{r eval=FALSE}
+ggplot(Vocab, aes(x = education, y = vocabulary, col = factor(year))) +
+  stat_smooth(method = "lm", se = FALSE) +  # smooth
+  scale_color_brewer()  # colors
 
+# Plot 5: Add the group aes, specify alpha and size
+ggplot(Vocab, aes(x = education, y = vocabulary, col = year, group = factor(year))) +
+  stat_smooth(method = "lm", se = FALSE, alpha = 2, size = 2) +
+  scale_color_gradientn(colors = brewer.pal(9, "YlOrRd"))
+```
 
+![](images/color1)
 
+![](images/color2)
 
+Another useful stat function is `stat_sum()`. This function calculates the total number of overlapping observations and is another good alternative to overplotting.
+```{r eval=FALSE}
+# Jittering only
+p <- ggplot(Vocab, aes(x = education, y = vocabulary)) +
+  geom_jitter(alpha = 0.2)
+# Add stat_sum will map overall count of each dot onto size
+p +
+  stat_sum()
+# Set size range of the dots
+p +
+  stat_sum() + 
+  scale_size(range = c(1, 10))
+```
 
+![](images/stat_sum1)
+
+![](images/stat_sum2)
+
+```{r eval=FALSE}
+library(ggplot2)
+library(Hmisc)
+wt.cyl.am <- ggplot(mtcars, aes(x = cyl,  y = wt, col = am, fill = am, group = am))
+posn.d <- position_dodge(width = 0.1)
+posn.jd <- position_jitterdodge(jitter.width = 0.1, dodge.width = 0.2)
+posn.j <- position_jitter(width = 0.2)
+# Plot 1: Jittered, dodged scatter plot with transparent points
+wt.cyl.am +
+  geom_point(position = posn.jd, alpha = 0.6)
+
+# Plot 2: Mean and SD - the easy way
+wt.cyl.am +
+  geom_point(position = posn.jd, alpha = 0.6) +
+  stat_summary(fun.data = mean_sdl, fun.args = list(mult = 1), position = posn.d)
+
+# Plot 3: Mean and 95% CI - the easy way
+wt.cyl.am +
+  geom_point(position = posn.jd, alpha = 0.6) +
+  stat_summary(fun.data = mean_cl_normal, position = posn.d)
+
+# Plot 4: Mean and SD - with T-tipped error bars - fill in ___
+wt.cyl.am +
+  stat_summary(geom = "point", fun.y = mean,
+               position = posn.d) +
+  stat_summary(geom = "errorbar", fun.data = mean_sdl,
+               position = posn.d, fun.args = list(mult = 1), width = 0.1)
+```
+
+![](images/summary1.png)
+
+![](images/summary2.png)
+![](images/summary3.png)
+
+![](images/summary4.png)
+
+```{r eval=FALSE}
+# Add three stat_summary calls to wt.cyl.am
+wt.cyl.am +
+  stat_summary(geom = "linerange", fun.data = med_IQR,
+               position = posn.d, size = 3) +
+  stat_summary(geom = "linerange", fun.data = gg_range,
+               position = posn.d, size = 3,
+               alpha = 0.4) +
+  stat_summary(geom = "point", fun.y = median,
+               position = posn.d, size = 3,
+               col = "black", shape = "X")
+```
+
+![](images/summary5.png)
 
 
 
