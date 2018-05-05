@@ -564,6 +564,7 @@ Result would be like:
 ggplot(mtcars, aes(mpg, col = cyl)) +
   geom_freqpoly(binwidth = 1, position = "identity")
 ```
+
 ![](images/freqpoly.png)
 
 ```{r eval=FALSE}
@@ -574,6 +575,7 @@ ggplot(economics, aes(x = date, y = unemploy/pop)) +
          inherit.aes = FALSE, fill = "red", alpha = 0.2) +
   geom_line()
 ```
+
 ![](images/line1.png)
 
 ```{r eval=FALSE}
@@ -582,6 +584,7 @@ ggplot(ChickWeight, aes(x = Time, y = weight, col = Diet)) +
   geom_line(aes(group = Chick), alpha = 0.3) +
   geom_smooth(lwd = 2, se = FALSE)
 ```
+
 ![](images/line2.png)
 
 While `qplot()` can do some easy plots like that:
@@ -589,6 +592,7 @@ While `qplot()` can do some easy plots like that:
 # qplot() with geom set to jitter manually
 qplot(factor(cyl), factor(vs), data = mtcars, geom = "jitter")
 ```
+
 ![](images/qplot1.png)
 
 For "true" dot plot with `geom_dotplot()`:
@@ -597,6 +601,7 @@ For "true" dot plot with `geom_dotplot()`:
 ggplot(mtcars, aes(cyl, wt, fill = am)) +
   geom_dotplot(binaxis = "y", stackdir = "center")
 ```
+
 ![](images/dotplot1.png)
 
 ```{r eval=FALSE}
@@ -615,12 +620,14 @@ ggplot(titanic, aes(x = Pclass, y = Age, color = Sex)) +
 ```
 
 Two figures are compared: 
+
 ![](images/bar3.png)
 
 ![](images/jitter1.png)
 
 -----------------
 ### Advanced plotting with `ggplot2`
+
 ![](images/stat_functions.png)
 
 ```{r eval=FALSE}
@@ -634,6 +641,7 @@ ggplot(mtcars, aes(x = wt, y = mpg, col = factor(cyl))) +
   stat_smooth(method = "lm", se = FALSE) +
   stat_smooth(method = "lm", se = FALSE, aes(group = 1))
 ```
+
 ![](images/smooth1.png) 
 
 ![](images/smooth2.png)
@@ -684,9 +692,9 @@ ggplot(Vocab, aes(x = education, y = vocabulary, col = year, group = factor(year
   scale_color_gradientn(colors = brewer.pal(9, "YlOrRd"))
 ```
 
-![](images/color1)
+![](images/color1.png)
 
-![](images/color2)
+![](images/color2.png)
 
 Another useful stat function is `stat_sum()`. This function calculates the total number of overlapping observations and is another good alternative to overplotting.
 ```{r eval=FALSE}
@@ -702,9 +710,9 @@ p +
   scale_size(range = c(1, 10))
 ```
 
-![](images/stat_sum1)
+![](images/stat_sum1.png)
 
-![](images/stat_sum2)
+![](images/stat_sum2.png)
 
 ```{r eval=FALSE}
 library(ggplot2)
@@ -757,10 +765,16 @@ wt.cyl.am +
 
 ![](images/summary5.png)
 
+```{r eval=FALSE}
+p <- ggplot(mtcars, aes(x = wt, y = hp, col = am)) + geom_point() + geom_smooth()
+p + scale_x_continuous(limits = c(3, 6), expand = c(0, 0))
+# Add coord_cartesian(): the proper way to zoom in
+p + coord_cartesian(xlim = c(3, 6))
+```
 
+![](images/scale.png)
 
-
-
+![](images/scale2.png)
 
 
 

@@ -776,37 +776,55 @@ cyl.am +
 <td><code>r # 1 - Define posn_d with position_dodge() posn_d &lt;- position_dodge(width = 0.2) # 2 - Use posn_d as position and adjust alpha to 0.6 ggplot(mtcars, aes(x = cyl, fill = am)) + geom_bar(position = posn_d, alpha = 0.6)</code> Result would be like: <img src="images/bar2.png" /></td>
 </tr>
 <tr class="odd">
-<td><code>r ggplot(mtcars, aes(mpg, col = cyl)) + geom_freqpoly(binwidth = 1, position = &quot;identity&quot;)</code> <img src="images/freqpoly.png" /></td>
+<td><code>r ggplot(mtcars, aes(mpg, col = cyl)) + geom_freqpoly(binwidth = 1, position = &quot;identity&quot;)</code></td>
 </tr>
 <tr class="even">
-<td><code>r # Add the recess periods ggplot(economics, aes(x = date, y = unemploy/pop)) + geom_rect(data = recess, aes(xmin = begin, xmax = end, ymin = -Inf, ymax = +Inf), inherit.aes = FALSE, fill = &quot;red&quot;, alpha = 0.2) + geom_line()</code> <img src="images/line1.png" /></td>
+<td><img src="images/freqpoly.png" /></td>
 </tr>
 <tr class="odd">
-<td><code>r # Make it easy to read ggplot(ChickWeight, aes(x = Time, y = weight, col = Diet)) + geom_line(aes(group = Chick), alpha = 0.3) + geom_smooth(lwd = 2, se = FALSE)</code> <img src="images/line2.png" /></td>
+<td><code>r # Add the recess periods ggplot(economics, aes(x = date, y = unemploy/pop)) + geom_rect(data = recess, aes(xmin = begin, xmax = end, ymin = -Inf, ymax = +Inf), inherit.aes = FALSE, fill = &quot;red&quot;, alpha = 0.2) + geom_line()</code></td>
 </tr>
 <tr class="even">
+<td><img src="images/line1.png" /></td>
+</tr>
+<tr class="odd">
+<td><code>r # Make it easy to read ggplot(ChickWeight, aes(x = Time, y = weight, col = Diet)) + geom_line(aes(group = Chick), alpha = 0.3) + geom_smooth(lwd = 2, se = FALSE)</code></td>
+</tr>
+<tr class="even">
+<td><img src="images/line2.png" /></td>
+</tr>
+<tr class="odd">
 <td>While <code>qplot()</code> can do some easy plots like that:</td>
 </tr>
+<tr class="even">
+<td><code>r # qplot() with geom set to jitter manually qplot(factor(cyl), factor(vs), data = mtcars, geom = &quot;jitter&quot;)</code></td>
+</tr>
 <tr class="odd">
-<td><code>r # qplot() with geom set to jitter manually qplot(factor(cyl), factor(vs), data = mtcars, geom = &quot;jitter&quot;)</code> <img src="images/qplot1.png" /></td>
+<td><img src="images/qplot1.png" /></td>
 </tr>
 <tr class="even">
 <td>For “true” dot plot with <code>geom_dotplot()</code>:</td>
 </tr>
 <tr class="odd">
-<td><code>r # &quot;True&quot; dot plot, with geom_dotplot(): ggplot(mtcars, aes(cyl, wt, fill = am)) + geom_dotplot(binaxis = &quot;y&quot;, stackdir = &quot;center&quot;)</code> <img src="images/dotplot1.png" /></td>
+<td><code>r # &quot;True&quot; dot plot, with geom_dotplot(): ggplot(mtcars, aes(cyl, wt, fill = am)) + geom_dotplot(binaxis = &quot;y&quot;, stackdir = &quot;center&quot;)</code></td>
 </tr>
 <tr class="even">
+<td><img src="images/dotplot1.png" /></td>
+</tr>
+<tr class="odd">
 <td>```r # add facet_grid() layer ggplot(titanic, aes(x = Pclass, fill = Sex)) + geom_bar(position = “dodge”) + facet_grid(. ~ Survived)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td># Define an object for position jitterdodge, to use below posn.jd &lt;- position_jitterdodge(0.5, 0, 0.6)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td># but use the position object defined above ggplot(titanic, aes(x = Pclass, y = Age, color = Sex)) + geom_point(size = 3, alpha = 0.5, position = posn.jd) + facet_grid(. ~ Survived) ```</td>
 </tr>
+<tr class="even">
+<td>Two figures are compared:</td>
+</tr>
 <tr class="odd">
-<td>Two figures are compared: <img src="images/bar3.png" /></td>
+<td><img src="images/bar3.png" /></td>
 </tr>
 <tr class="even">
 <td><img src="images/jitter1.png" /></td>
@@ -866,8 +884,8 @@ ggplot(mtcars, aes(x = wt, y = mpg, col = factor(cyl))) +
 ggplot(Vocab, aes(x = education, y = vocabulary, col = year, group = factor(year))) +
   stat_smooth(method = &quot;lm&quot;, se = FALSE, alpha = 2, size = 2) +
   scale_color_gradientn(colors = brewer.pal(9, &quot;YlOrRd&quot;))</code></pre>
-<p><img src="images/color1" /></p>
-<p><img src="images/color2" /></p>
+<p><img src="images/color1.png" /></p>
+<p><img src="images/color2.png" /></p>
 <p>Another useful stat function is <code>stat_sum()</code>. This function calculates the total number of overlapping observations and is another good alternative to overplotting.</p>
 <pre class="r"><code># Jittering only
 p &lt;- ggplot(Vocab, aes(x = education, y = vocabulary)) +
@@ -879,8 +897,8 @@ p +
 p +
   stat_sum() + 
   scale_size(range = c(1, 10))</code></pre>
-<p><img src="images/stat_sum1" /></p>
-<p><img src="images/stat_sum2" /></p>
+<p><img src="images/stat_sum1.png" /></p>
+<p><img src="images/stat_sum2.png" /></p>
 <pre class="r"><code>library(ggplot2)
 library(Hmisc)
 wt.cyl.am &lt;- ggplot(mtcars, aes(x = cyl,  y = wt, col = am, fill = am, group = am))
@@ -921,6 +939,12 @@ wt.cyl.am +
                position = posn.d, size = 3,
                col = &quot;black&quot;, shape = &quot;X&quot;)</code></pre>
 <p><img src="images/summary5.png" /></p>
+<pre class="r"><code>p &lt;- ggplot(mtcars, aes(x = wt, y = hp, col = am)) + geom_point() + geom_smooth()
+p + scale_x_continuous(limits = c(3, 6), expand = c(0, 0))
+# Add coord_cartesian(): the proper way to zoom in
+p + coord_cartesian(xlim = c(3, 6))</code></pre>
+<p><img src="images/scale.png" /></p>
+<p><img src="images/scale2.png" /></p>
 </section>
 </section>
 
