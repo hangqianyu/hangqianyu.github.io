@@ -387,9 +387,9 @@ div.tocify {
 </div>
 
 
-<div id="section" class="section level2">
+<section id="section" class="level2">
 <h2><img src="images/rstudio.png" /></h2>
-<div id="basic-programming-notes-and-queries" class="section level3">
+<section id="basic-programming-notes-and-queries" class="level3">
 <h3>Basic programming notes and queries</h3>
 <pre class="r"><code>args(sd) # Useful trick for inspecting the arguments of sd() function in a quick way
 
@@ -431,8 +431,8 @@ mean() calculate the arithmetic mean.
 round() Round the values to 0 decimal places by default. Try out ?round in the console for variations of round() and ways to change the number of digits to round to</code></pre>
 <p><strong>Differences between [, [[ and $</strong> Please refer to <a href="https://www.r-bloggers.com/r-accessors-explained/">Detailed explanation</a></p>
 <hr />
-</div>
-<div id="read-flat-filesexcel-files-i.e.-tablecsvtxtxlsxlsx-files" class="section level3">
+</section>
+<section id="read-flat-filesexcel-files-i.e.-tablecsvtxtxlsxlsx-files" class="level3">
 <h3>Read flat files/excel files, i.e., table/csv/txt/xls/xlsx files</h3>
 <p>There are several ways to do it. Basically, for “utils” package which is already existed in system library, it is east to read a table using read.table() function as below:</p>
 <pre class="r"><code>read.table(&quot;states.csv&quot;, header = TRUE/FALSE, sep = &quot;,&quot;, stringsASFactors = FALSE)
@@ -472,8 +472,8 @@ getSheets(object) # to list all sheets in R
 
 For example, lapply(getSheets(loadWorkbook(&quot;.xlsx file&quot;)), readWorksheet, object = &quot;.xlsx file&quot;)</code></pre>
 <hr />
-</div>
-<div id="connecting-to-a-database" class="section level3">
+</section>
+<section id="connecting-to-a-database" class="level3">
 <h3>connecting to a database</h3>
 <p>The first step to import data from a SQL database is creating a connection to it. We might need different packages depending on the database you want to connect to. All of these packages do this in a uniform way, as specified in the “DBI” or “RMySQL” package. If the MySQL database is a remote database hosted on a server, you’ll also have to specify the following arguments in dbConnect(): dbname, host, port, user and password. For example,</p>
 <pre class="r"><code>con &lt;- dbConnect(RMySQL::MySQL(), 
@@ -493,8 +493,8 @@ dbDisconnect(object) #  is polite to disconnect the databases after you are done
 <p>In your life as a data scientist, you’ll often be working with huge databases that contain tables with millions of rows. If you want to do some analyses on this data, it’s possible that you only need a fraction of this data. In this case, it’s a good idea to send SQL queries to your database, and only import the data you actually need into R. dbGetQuery() is what you need. As usual, you first pass the connection object to it. The second argument is an SQL query in the form of a character string. This example selects the age variable from the people dataset where gender equals “male”:</p>
 <pre class="r"><code>dbGetQuery(con, &quot;SELECT age, name FROM people WHERE gender = or &gt; or &lt; &#39;male&#39; AND ... &gt; ...&quot;)</code></pre>
 <hr />
-</div>
-<div id="import-data-from-the-web" class="section level3">
+</section>
+<section id="import-data-from-the-web" class="level3">
 <h3>Import data from the web</h3>
 <p>Pay attention to <a href="http://" class="uri">http://</a> and <a href="https://" class="uri">https://</a>. There is, however, a safer alternative to HTTP, namely HTTPS, which stands for HypterText Transfer Protocol Secure. Just remember this: HTTPS is relatively safe, HTTP is not. We can use the standard importing functions with <a href="https://" class="uri">https://</a> connections since R version 3.2.2</p>
 <p>you can read excel files on the web using the read_excel package by first downloading the file with the download.file() function. There’s more: with download.file() you can download any kind of file from the web, using HTTP and HTTPS: images, executable files, but also .RData files. An RData file is very efficient format to store R data. You can load data from an RData file using the load() function, but this function does not accept a URL string as an argument.</p>
@@ -521,8 +521,8 @@ fromJSON(json2)</code></pre>
 <p>Apart from converting JSON to R with fromJSON(), you can also use toJSON() to convert R data to a JSON format. In its most basic use, you simply pass this function an R object to convert to a JSON. The result is an R object of the class json, which is basically a character string representing that JSON.</p>
 <pre class="r"><code>toJSON(x, ...) # x is the object to be encoded</code></pre>
 <hr />
-</div>
-<div id="import-data-from-statistical-softwares-like-sas-stata-spss-into-r" class="section level3">
+</section>
+<section id="import-data-from-statistical-softwares-like-sas-stata-spss-into-r" class="level3">
 <h3>Import data from statistical softwares (like SAS, STATA, SPSS) into R</h3>
 <p>Two packages can be useful to do this. One is “haven”, the other is “foreign” package. “haven” can deal with data from SAS, STATA and SPSS. For “haven” package</p>
 <pre class="r"><code>read_sas() # to import SAS data
@@ -539,16 +539,16 @@ read_sav() # to import SPSS data (por or sav files)</code></pre>
 <pre class="r"><code>as.factor() # to convert lable as a factor</code></pre>
 <p>For “foreign” package, it offers a simple function to import and read STATA data: read.dta(). The arguments you will use most often are convert.dates, convert.factors, missing.type and convert.underscore, besides object. It’s all about correctly converting STATA data to standard R data structures. Where foreign provided read.dta() to read Stata data, there’s also read.spss() to read SPSS data files. To get a data frame, make sure to set to.data.frame = TRUE inside read.spss().</p>
 <hr />
-</div>
-<div id="cleaning-data" class="section level3">
+</section>
+<section id="cleaning-data" class="level3">
 <h3>Cleaning data</h3>
 <p>Understanding the structure of your data.</p>
 <p>First, view its class by class(); Second, view its dimensions by dim(). Third, look at column names by names(). Fourth, to summarize data by summary(). Like str() function, we use the dplyr package to view structure of object as well.</p>
 <pre class="r"><code>glimpse(object)</code></pre>
 <p>View the top (top six rows) by head(object, n = …) function, n means how many rows you wanna show in R. While tail(object, n = …) is to show the last six rows (by default) you wanna print out.</p>
 <hr />
-</div>
-<div id="visualizing-your-data" class="section level3">
+</section>
+<section id="visualizing-your-data" class="level3">
 <h3>Visualizing your data</h3>
 <pre class="r"><code>hist(object) # to view histogram plot of a single variable
 
@@ -573,8 +573,8 @@ my_df[, 4]   # Fourth column of my_df
 my_df[-(1:5), ] # Omit first 5 rows of my_df
 my_df[, -4]     # Omit fourth column of my_df</code></pre>
 <hr />
-</div>
-<div id="type-conversions" class="section level3">
+</section>
+<section id="type-conversions" class="level3">
 <h3>Type conversions</h3>
 <p>It is often necessary to change, or coerce, the way that variables in a dataset are stored. This could be because of the way they were read into R (with read.csv(), for example) or perhaps the function you are using to analyze the data requires variables to be coded a certain way. Only certain coercions are allowed, but the rules for what works are generally pretty intuitive. For example, trying to convert a character string to a number gives an error: as.numeric(“some text”). There are a few less intuitive results. For example, under the hood, the logical values TRUE and FALSE are coded as 1 and 0, respectively. Therefore, as.logical(1) returns TRUE and as.numeric(TRUE) returns 1.</p>
 <pre class="r"><code>as.character(...)
@@ -587,8 +587,8 @@ as.logical(...)</code></pre>
 <pre><code>. ymd()
 . ymd_hms()
 . ...just ?ymd or ?ymd_hms, you will find out which function you want.</code></pre>
-</div>
-<div id="string-manipulation-stringr-package" class="section level3">
+</section>
+<section id="string-manipulation-stringr-package" class="level3">
 <h3>String manipulation (“stringr” package)</h3>
 <p>There are four key functions in stringr for cleaning data:</p>
 <pre><code>-str_trim() - Trim leading and trailing white space
@@ -605,8 +605,8 @@ as.logical(...)</code></pre>
 
 str_replace(string, pattern, replacement) # replacement: a character vector of replacements.</code></pre>
 <hr />
-</div>
-<div id="finding-and-dealing-with-missing-values" class="section level3">
+</section>
+<section id="finding-and-dealing-with-missing-values" class="level3">
 <h3>Finding and dealing with missing values</h3>
 <p>As you’ve seen, missing values in R should be represented by NA, but unfortunately you will not always be so lucky. Before you can deal with missing values, you have to find them in the data. If missing values are properly coded as NA, the is.na() function will help you find them. Otherwise, if your dataset is too big to just look at the whole thing, you may need to try searching for some of the usual suspects like “”, “#N/A”, etc. You can also use the summary() and table() functions to turn up unexpected values in your data.</p>
 <pre class="r"><code>is.na(x) # an R object to be tested.
@@ -620,13 +620,13 @@ which(is.na(x)) # to find indices of missing values. very useful to replace data
 <pre class="r"><code>complete.cases(object, ...) # to see which rows have no missing values
 
 na.omit(object, ...) # to remove all rows with any missing values</code></pre>
-</div>
-<div id="identifying-outliers-and-obvious-errors" class="section level3">
+</section>
+<section id="identifying-outliers-and-obvious-errors" class="level3">
 <h3>Identifying outliers and obvious errors</h3>
 <p>summary() and hist() are most useful functions to identify outliers. Another useful way of looking at strange values is with boxplots boxplot(). Simply put, boxplots draw a box around the middle 50% of values for a given variable, with a bolded horizontal line drawn at the median. Values that fall far from the bulk of the data points (i.e. outliers) are denoted by open circles.</p>
 <p>There are a number of stylistic conventions in the R language. Depending on who you ask, these conventions may vary. Because the period (.) has special meaning in certain situations, we generally recommend using underscores (_) to separate words in variable names. We also prefer all lowercase letters so that no one has to remember which letters are uppercase or lowercase.</p>
-</div>
-<div id="dplyr-package" class="section level3">
+</section>
+<section id="dplyr-package" class="level3">
 <h3>dplyr package</h3>
 <p>a <strong>tbl</strong> (pronounced tibble) is just a special kind of data.frame. They make your data easier to look at, but also easier to work with. On top of this, it is straightforward to derive a tbl from a data.frame structure using <strong>tbl_df()</strong>.</p>
 <p>Notes: Modifying data with lookup tables. Please refer to <a href="https://nicercode.github.io/">Nice R Code</a>.</p>
@@ -647,8 +647,8 @@ one_of(x) # every name that appears in x, which should be a character vector.</c
 <p>With lapply(), you could use <code>[[</code> to select specific elements from your list. The same thing is true for sapply()! Once you know about vapply(), there’s really no reason to use sapply() anymore. If the output that lapply() would generate can be simplified to an array, you’ll want to use vapply() to do this securely. If simplification is not possible, simply stick to lapply().</p>
 <p>The droplevels() function removes unused levels of factor variables from your dataset. As you saw in the video, it’s often useful to determine which levels are unused (i.e. contain zero values) with the table() function.</p>
 <p>load data by data() function in dplyr package. use group_by() function to <a href="https://blog.csdn.net/qq_28219759/article/details/52963773">group indexes together</a>.</p>
-</div>
-<div id="sampling-from-dataset" class="section level3">
+</section>
+<section id="sampling-from-dataset" class="level3">
 <h3>Sampling from dataset</h3>
 <p><strong>Simple random sample in R</strong></p>
 <pre class="r"><code># Simple random sample
@@ -677,8 +677,8 @@ options(scipen = 999, digits = 3) # Print fewer digits
 prop.table(tab)     # Joint proportions
 prop.table(tab, 2)  # Conditional on columns, make column add to 1</code></pre>
 <hr />
-</div>
-<div id="ggplot2-visualization" class="section level3">
+</section>
+<section id="ggplot2-visualization" class="level3">
 <h3><code>ggplot2</code> Visualization</h3>
 <ul>
 <li>Limitations of base plot functions
@@ -748,7 +748,7 @@ cyl.am +
 <p><strong>Explaination to the code above:</strong> <code>scale_x_discrete()</code> takes as its only argument the x-axis label: “Cylinders”. <code>scale_y_continuous()</code> takes as its only argument the y-axis label: “Number”. <code>scale_fill_manual()</code> fixes the legend. The first argument is the title of the legend: “Transmission”. Next, values and labels are set to predefined values for you. These are the colors and the labels in the legend. The result of above code will be like this: <img src="images/bar1.png" /></p>
 <table style="width:25%;">
 <colgroup>
-<col width="25%" />
+<col style="width: 25%" />
 </colgroup>
 <tbody>
 <tr class="odd">
@@ -813,8 +813,8 @@ cyl.am +
 </tr>
 </tbody>
 </table>
-</div>
-<div id="advanced-plotting-with-ggplot2" class="section level3">
+</section>
+<section id="advanced-plotting-with-ggplot2" class="level3">
 <h3>Advanced plotting with <code>ggplot2</code></h3>
 <p><img src="images/stat_functions.png" /></p>
 <pre class="r"><code>ggplot(mtcars, aes(x = wt, y = mpg, col = factor(cyl))) +
@@ -921,8 +921,8 @@ wt.cyl.am +
                position = posn.d, size = 3,
                col = &quot;black&quot;, shape = &quot;X&quot;)</code></pre>
 <p><img src="images/summary5.png" /></p>
-</div>
-</div>
+</section>
+</section>
 
 
 
