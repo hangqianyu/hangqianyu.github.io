@@ -812,10 +812,9 @@ thin.bar +
   coord_polar(theta = "y")
 ```
 
-![](images/pie1)
+![](images/pie1.png)
 
-
-
+![](images/ring1.png)
 
 
 
