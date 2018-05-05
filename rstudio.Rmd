@@ -767,6 +767,7 @@ wt.cyl.am +
 
 ```{r eval=FALSE}
 p <- ggplot(mtcars, aes(x = wt, y = hp, col = am)) + geom_point() + geom_smooth()
+# limits to set the aesthetic limit, expand is to ensure the data is placed some distance away from axes
 p + scale_x_continuous(limits = c(3, 6), expand = c(0, 0))
 # Add coord_cartesian(): the proper way to zoom in
 p + coord_cartesian(xlim = c(3, 6))
@@ -775,6 +776,57 @@ p + coord_cartesian(xlim = c(3, 6))
 ![](images/scale.png)
 
 ![](images/scale2.png)
+
+```{r eval=FALSE}
+# Complete basic scatter plot function
+base.plot <- ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, col = Species)) +
+               geom_jitter() +
+               geom_smooth(method = "lm", se = FALSE)
+base.plot
+# Fix aspect ratio (1:1) of base.plot
+base.plot + coord_equal(ratio = 1)
+base.plot + coord_equal(ratio = 2)
+base.plot + coord_equal(ratio = 3)
+```
+
+![](images/scale3.png)
+
+![](images/scale4.png)
+
+![](images/scale5.png)
+
+![](images/scale6.png)
+
+```{r eval=FALSE}
+wide.bar <- ggplot(mtcars, aes(x = 1, fill = cyl)) +
+              geom_bar()
+# Convert wide.bar to pie chart
+wide.bar +
+  coord_polar(theta = "y")
+# Create stacked bar plot: thin.bar
+thin.bar <- ggplot(mtcars, aes(x = 1, fill = cyl)) +
+              geom_bar(width = 0.1) +
+              scale_x_continuous(limits = c(0.5, 1.5))
+# Convert thin.bar to "ring" type pie chart
+thin.bar + 
+  coord_polar(theta = "y")
+```
+
+![](images/pie1)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
