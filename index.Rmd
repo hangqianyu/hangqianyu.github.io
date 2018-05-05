@@ -29,7 +29,7 @@ document.write('<img src="' + imlocation + image[imagenumber] + '">');
 
 <div class = "row">
 <div class = "col-md-9"></div><div class = "col-md-3" align="right">*updated `r paste0(format(Sys.Date(), '%Y-%m-%d'),"*")`</div></div>
-<br/><br/><br/>
+
 --------
 
 # Biography
