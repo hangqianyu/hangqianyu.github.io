@@ -393,8 +393,12 @@ div.tocify {
 
 <p><img src="images/rstudio.png" width="80%" style="display: block; margin: auto;" /></p>
 <hr />
-<div id="basic-programming-notes-and-queries" class="section level1">
-<h1>Basic programming notes and queries</h1>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>R is a language and environment for statistical computing and graphics. R provides a wide variety of statistical (linear and nonlinear modelling, classical statistical tests, time-series analysis, classification, clustering, …) and graphical techniques, and is highly extensible. One of R’s strengths is the ease with which well-designed publication-quality plots can be produced, including mathematical symbols and formulae where needed. The most important thing to me is it is open source and free software. While i prefer R Studio which is open source and enterprise-ready profession software for R. I think it is much more easier to use R Studio than R (You might think so as well). To begin with, there are some basic programming notes you need to remember. Let’s get it started!</p>
+</div>
+<div id="basic-programming-notes" class="section level1">
+<h1>Basic programming notes</h1>
 <pre class="r"><code>args(sd) # Useful trick for inspecting the arguments of sd() function in a quick way
 
 Or help(sd) # works well as well
@@ -404,7 +408,7 @@ install.packages(&quot;package name&quot;) # To install a package
 library(package name) # To select this package
 
 download.file(url, destfile, ...) # in system package</code></pre>
-<p>To convert the capital letter to lower case, use function “tolower”. vise versa, use toupper() is the opposite. Inspect our workspace with dir(). To summarize a vector, use summary() to obtain it. To traverse over a set of data like a list or vector, and calling the specified function for each item, use lapply(X, FUN, …). FUN means the function to be applied to each element of x. X is a vector or list or expression object.</p>
+<p>To convert the capital letter to lower case, use function <code>tolower()</code>. vise versa, <code>toupper()</code> is the opposite. Inspect our workspace with <code>dir()</code>. To summarize a vector, use <code>summary()</code> to obtain it. To traverse over a set of data like a list or vector, and calling the specified function for each item, use <code>lapply(X, FUN, ...)</code>. <code>FUN</code> means the function to be applied to each element of x. X is a vector or list or expression object.</p>
 <p>Relational operators</p>
 <pre><code>== - Equality
 != - Inequality
