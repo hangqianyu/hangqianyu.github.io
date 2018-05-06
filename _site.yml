@@ -13,7 +13,8 @@ navbar:
       menu: 
         - text: "R Studio"
           href: rstudio.html
-        
+        - text: "R Markdown"
+          href: rmarkdown.html
   right:
     - text: "NC State"
       menu:

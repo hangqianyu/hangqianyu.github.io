@@ -4,8 +4,8 @@ author:  "[Qianyu Hang](https://github.com/hangqianyu) at NC State University"
 date: '`r format(Sys.Date(), "%a %b %d, %Y")`'
 output:
   html_document:
-    fig_height: 3
-    fig_width: 1
+    fig_height: 2
+    fig_width: 2
     toc: yes
     toc_float: yes
 ---
