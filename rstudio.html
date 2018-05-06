@@ -984,6 +984,36 @@ thin.bar &lt;- ggplot(mtcars, aes(x = 1, fill = cyl)) +
 thin.bar + 
   coord_polar(theta = &quot;y&quot;)</code></pre>
 <p><img src="images/ring1.png" width="50%" /><img src="images/ring2.png" width="50%" /></p>
+<pre class="r"><code># Basic scatter plot
+p &lt;- ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point()
+p +
+  facet_grid(am ~ .)
+# 2 - Separate columns according to column cylinders, cyl
+p +
+  facet_grid(. ~ cyl)
+# 3 - Separate by both columns and rows 
+p +
+  facet_grid(am ~ cyl)</code></pre>
+<p><img src="images/facet_grid1.png" width="50%" /><img src="images/facet_grid2.png" width="50%" /><img src="images/facet_grid3.png" width="50%" /></p>
+<p><strong>For many variables</strong></p>
+<pre class="r"><code># Code to create the cyl_am col and myCol vector
+mtcars$cyl_am &lt;- paste(mtcars$cyl, mtcars$am, sep = &quot;_&quot;)
+myCol &lt;- rbind(brewer.pal(9, &quot;Blues&quot;)[c(3,6,8)],
+               brewer.pal(9, &quot;Reds&quot;)[c(3,6,8)])
+ggplot(mtcars, aes(x = wt, y = mpg, col = cyl_am, size = disp)) +
+  geom_point() +
+  scale_color_manual(values = myCol) +
+  facet_grid(gear ~ vs)</code></pre>
+<p><img src="images/another1.png" width="70%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code># Facet rows accoding to vore which is pretty hard to read, right?
+p +
+  facet_grid(vore ~ .)
+# Specify scale and space arguments to free up rows
+p +
+  facet_grid(vore ~ ., scale = &quot;free_y&quot;, space = &quot;free_y&quot;)</code></pre>
+<p><img src="images/free_y1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="images/free_y2.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 
 
