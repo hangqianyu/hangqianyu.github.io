@@ -9,8 +9,10 @@ output:
     toc: yes
     toc_float: yes
 ---
-
-![](images/rmarkdown.png)
+```{r echo=FALSE, message=FALSE, out.width="50%", fig.align='center'}
+library(knitr)
+include_graphics("images/rmarkdown.png")
+```
 
 --------
 # Datacamp - For R beginners
@@ -36,6 +38,5 @@ Another thing i wanna mention is color! You will definitely think about color wh
 Still learning, but refered a website [R markdown and Knitr](http://www.xueqing.tv/cms/article/101).
 
 All right, i will go back learning coding, see you next time when i have something new to tell. Hope you enjoy!
-
 
 

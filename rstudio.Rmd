@@ -9,9 +9,15 @@ output:
     toc: yes
     toc_float: yes
 ---
-![](images/rstudio.png)
+
+```{r echo=FALSE, message=FALSE, out.width="80%", fig.align='center'}
+library(knitr)
+include_graphics("images/rstudio.png")
+```
+
 ----------
-### Basic programming notes and queries
+
+# Basic programming notes and queries
 ```{r eval=FALSE}
 args(sd) # Useful trick for inspecting the arguments of sd() function in a quick way
 
@@ -72,7 +78,7 @@ round() Round the values to 0 decimal places by default. Try out ?round in the c
 Please refer to [Detailed explanation](https://www.r-bloggers.com/r-accessors-explained/)
 
 ****************
-### Read flat files/excel files, i.e., table/csv/txt/xls/xlsx files
+# Read flat/excel files
 There are several ways to do it. Basically, for "utils" package which is already existed in system library, it is east to read a table using read.table() function as below: 
 ```{r eval=FALSE}
 read.table("states.csv", header = TRUE/FALSE, sep = ",", stringsASFactors = FALSE)
@@ -126,7 +132,7 @@ For example, lapply(getSheets(loadWorkbook(".xlsx file")), readWorksheet, object
 ```
 
 ****************
-### connecting to a database
+# connecting to a database
 The first step to import data from a SQL database is creating a connection to it. We might need different packages depending on the database you want to connect to. All of these packages do this in a uniform way, as specified in the "DBI" or "RMySQL" package. If the MySQL database is a remote database hosted on a server, you'll also have to specify the following arguments in dbConnect(): dbname, host, port, user and password. For example,
 ```{r eval=FALSE}
 con <- dbConnect(RMySQL::MySQL(), 
@@ -175,10 +181,8 @@ For "jsonlite" package, In the simplest setting, fromJSON() can convert characte
 ```{r eval=FALSE}
 # wine_json is a JSON
 wine_json <- '{"name":"Chateau Migraine", "year":1997, "alcohol_pct":12.4, "color":"red", "awarded":false}'
-
 # Convert wine_json into a list: wine
 wine <- fromJSON(wine_json)
-
 # Print structure of wine
 str(wine)
 ```
@@ -186,7 +190,6 @@ str(wine)
 We can also get a data frame by naming the columns:
 ```{r eval=FALSE}
 json2 <- '{"a": [1, 2, 3], "b": [4, 5, 6]}' # a contains 1, 2, 3; b contains 4, 5, 6
-
 fromJSON(json2)
 ```
 
@@ -196,7 +199,7 @@ toJSON(x, ...) # x is the object to be encoded
 ```
 
 ****************
-### Import data from statistical softwares (like SAS, STATA, SPSS) into R
+# Import data from statistical softwares (like SAS, STATA, SPSS) into R
 Two packages can be useful to do this. One is "haven", the other is "foreign" package. "haven" can deal with data from SAS, STATA and SPSS. For "haven" package 
 ```{r eval=FALSE}
 read_sas() # to import SAS data
@@ -222,7 +225,7 @@ as.factor() # to convert lable as a factor
 For "foreign" package, it offers a simple function to import and read STATA data: read.dta(). The arguments you will use most often are convert.dates, convert.factors, missing.type and convert.underscore, besides object. It's all about correctly converting STATA data to standard R data structures. Where foreign provided read.dta() to read Stata data, there's also read.spss() to read SPSS data files. To get a data frame, make sure to set to.data.frame = TRUE inside read.spss(). 
 
 ****************
-### Cleaning data
+# Cleaning and tidying data
 Understanding the structure of your data.
 
 First, view its class by class(); Second, view its dimensions by dim(). Third, look at column names by names(). Fourth, to summarize data by summary(). Like str() function, we use the dplyr package to view structure of object as well.
@@ -233,7 +236,7 @@ glimpse(object)
 View the top (top six rows) by head(object, n = ...) function, n means how many rows you wanna show in R. While tail(object, n = ...) is to show the last six rows (by default) you wanna print out. 
 
 ****************
-### Visualizing your data
+## Visualizing your data
 ```{r eval=FALSE}
 hist(object) # to view histogram plot of a single variable
 
@@ -266,7 +269,7 @@ my_df[, -4]     # Omit fourth column of my_df
 ```
 
 ****************
-### Type conversions
+## Type conversions
 It is often necessary to change, or coerce, the way that variables in a dataset are stored. This could be because of the way they were read into R (with read.csv(), for example) or perhaps the function you are using to analyze the data requires variables to be coded a certain way. Only certain coercions are allowed, but the rules for what works are generally pretty intuitive. For example, trying to convert a character string to a number gives an error: as.numeric("some text"). There are a few less intuitive results. For example, under the hood, the logical values TRUE and FALSE are coded as 1 and 0, respectively. Therefore, as.logical(1) returns TRUE and as.numeric(TRUE) returns 1.
 
 ```{r eval=FALSE}
@@ -285,7 +288,7 @@ As you saw in the video, these functions combine the letters y, m, d, h, m, s, w
     . ymd_hms()
     . ...just ?ymd or ?ymd_hms, you will find out which function you want.
 
-### String manipulation ("stringr" package)
+## String manipulation ("stringr" package)
 There are four key functions in stringr for cleaning data:
 
     -str_trim() - Trim leading and trailing white space
@@ -315,7 +318,7 @@ str_replace(string, pattern, replacement) # replacement: a character vector of r
 ```
 
 ****************
-### Finding and dealing with missing values
+## Finding and dealing with missing values
 As you've seen, missing values in R should be represented by NA, but unfortunately you will not always be so lucky. Before you can deal with missing values, you have to find them in the data. If missing values are properly coded as NA, the is.na() function will help you find them. Otherwise, if your dataset is too big to just look at the whole thing, you may need to try searching for some of the usual suspects like "", "#N/A", etc. You can also use the summary() and table() functions to turn up unexpected values in your data. 
 
 ```{r eval=FALSE}
@@ -336,12 +339,12 @@ complete.cases(object, ...) # to see which rows have no missing values
 na.omit(object, ...) # to remove all rows with any missing values
 ```
 
-### Identifying outliers and obvious errors
+## Identifying outliers and obvious errors
 summary() and hist() are most useful functions to identify outliers. Another useful way of looking at strange values is with boxplots boxplot(). Simply put, boxplots draw a box around the middle 50% of values for a given variable, with a bolded horizontal line drawn at the median. Values that fall far from the bulk of the data points (i.e. outliers) are denoted by open circles. 
 
 There are a number of stylistic conventions in the R language. Depending on who you ask, these conventions may vary. Because the period (.) has special meaning in certain situations, we generally recommend using underscores (_) to separate words in variable names. We also prefer all lowercase letters so that no one has to remember which letters are uppercase or lowercase.
 
-### dplyr package
+## dplyr package
 a **tbl** (pronounced tibble) is just a special kind of data.frame. They make your data easier to look at, but also easier to work with. On top of this, it is straightforward to derive a tbl from a data.frame structure using **tbl_df()**.
 
 Notes: Modifying data with lookup tables. Please refer to [Nice R Code](https://nicercode.github.io/). 
@@ -375,7 +378,7 @@ The droplevels() function removes unused levels of factor variables from your da
 
 load data by data() function in dplyr package. use group_by() function to [group indexes together](https://blog.csdn.net/qq_28219759/article/details/52963773).
 
-### Sampling from dataset
+## Sampling from dataset
 **Simple random sample in R**
 ```{r eval=FALSE}
 # Simple random sample
@@ -421,7 +424,7 @@ prop.table(tab, 2)  # Conditional on columns, make column add to 1
 ```
 
 *****************
-### `ggplot2` Visualization
+# `ggplot2` Visualization
 * Limitations of base plot functions
   - Plot does not get redrawn
   - Plot is drawn as an image
@@ -447,7 +450,10 @@ prop.table(tab, 2)  # Conditional on columns, make column add to 1
   - linetype, line dash pattern
   - labels, text on a plot or axes
   - shape, shape
-![](images/shape.png)
+
+```{r echo=FALSE, message=FALSE, out.width="60%", fig.align='center'}
+include_graphics("images/shape.png")
+```
 
 ```{r echo=FALSE}
 read.csv("data/ggplot_aesthetics.csv")
@@ -496,7 +502,9 @@ cyl.am +
 
 **Explaination to the code above:**  `scale_x_discrete()` takes as its only argument the x-axis label: "Cylinders". `scale_y_continuous()` takes as its only argument the y-axis label: "Number". `scale_fill_manual()` fixes the legend. The first argument is the title of the legend: "Transmission". Next, values and labels are set to predefined values for you. These are the colors and the labels in the legend. The result of above code will be like this:
 
-![](images/bar1.png)
+```{r echo=FALSE, message=FALSE, out.width="75%", fig.align='center'}
+include_graphics("images/bar1.png")
+```
 
 ------------------
 To make a univariable plot with `ggplot2`, we can set y = o in aesthetics. So far you've focused on scatter plots since they are intuitive, easily understood and very common. A major consideration in any scatter plot is dealing with overplotting. You'll encounter this topic again in the geometries layer, but you can already make some adjustments here.
@@ -519,7 +527,9 @@ geom_point(size = 4, shape = 1, alpha = 0.6)
 
 The plot will be like:
 
-![](images/overplotting.png)
+```{r echo=FALSE, message=FALSE, out.width="75%", fig.align='center'}
+include_graphics("images/overplotting.png")
+```
 
 **37 Geometries in ggplot2**
 
@@ -570,15 +580,21 @@ posn_d <- position_dodge(width = 0.2)
 ggplot(mtcars, aes(x = cyl, fill = am)) +
   geom_bar(position = posn_d, alpha = 0.6)
 ```
+
 Result would be like:
-![](images/bar2.png)
+
+```{r echo=FALSE, message=FALSE, out.width="75%", fig.align='center'}
+include_graphics("images/bar2.png")
+```
 
 ```{r eval=FALSE}
 ggplot(mtcars, aes(mpg, col = cyl)) +
   geom_freqpoly(binwidth = 1, position = "identity")
 ```
 
-![](images/freqpoly.png)
+```{r echo=FALSE, message=FALSE, out.width="75%", fig.align='center'}
+include_graphics("images/freqpoly.png")
+```
 
 ```{r eval=FALSE}
 # Add the recess periods
@@ -589,7 +605,9 @@ ggplot(economics, aes(x = date, y = unemploy/pop)) +
   geom_line()
 ```
 
-![](images/line1.png)
+```{r echo=FALSE, message=FALSE, out.width="75%", fig.align='center'}
+include_graphics("images/line1.png")
+```
 
 ```{r eval=FALSE}
 # Make it easy to read
@@ -598,7 +616,9 @@ ggplot(ChickWeight, aes(x = Time, y = weight, col = Diet)) +
   geom_smooth(lwd = 2, se = FALSE)
 ```
 
-![](images/line2.png)
+```{r echo=FALSE, message=FALSE, out.width="75%", fig.align='center'}
+include_graphics("images/line2.png")
+```
 
 While `qplot()` can do some easy plots like that:
 ```{r eval=FALSE}
@@ -606,7 +626,9 @@ While `qplot()` can do some easy plots like that:
 qplot(factor(cyl), factor(vs), data = mtcars, geom = "jitter")
 ```
 
-![](images/qplot1.png)
+```{r echo=FALSE, message=FALSE, out.width="75%", fig.align='center'}
+include_graphics("images/qplot1.png")
+```
 
 ```{r eval=FALSE}
 # "True" dot plot, with geom_dotplot():
@@ -614,17 +636,17 @@ ggplot(mtcars, aes(cyl, wt, fill = am)) +
   geom_dotplot(binaxis = "y", stackdir = "center")
 ```
 
-![](images/dotplot1.png)
+```{r echo=FALSE, message=FALSE, out.width="75%", fig.align='center'}
+include_graphics("images/dotplot1.png")
+```
 
 ```{r eval=FALSE}
 # add facet_grid() layer
 ggplot(titanic, aes(x = Pclass, fill = Sex)) +
   geom_bar(position = "dodge") +
   facet_grid(. ~ Survived)
-
 # Define an object for position jitterdodge, to use below
 posn.jd <- position_jitterdodge(0.5, 0, 0.6)
-
 # but use the position object defined above
 ggplot(titanic, aes(x = Pclass, y = Age, color = Sex)) +
   geom_point(size = 3, alpha = 0.5, position = posn.jd) +
@@ -633,13 +655,15 @@ ggplot(titanic, aes(x = Pclass, y = Age, color = Sex)) +
 
 Two figures are compared: 
 
-![](images/bar3.png)
+```{r echo=FALSE, message=FALSE, out.width="50%"}
+include_graphics(list.files("images/", pattern = "jitter", full.names = TRUE))
+```
 
-![](images/jitter1.png)
+# Advanced plotting with `ggplot2`
 
-### Advanced plotting with `ggplot2`
-
-![](images/stat_functions.png)
+```{r echo=FALSE, message=FALSE, out.width="75%", fig.align='center'}
+include_graphics("images/stat_functions.png")
+```
 
 ```{r eval=FALSE}
 ggplot(mtcars, aes(x = wt, y = mpg, col = factor(cyl))) +
@@ -653,9 +677,9 @@ ggplot(mtcars, aes(x = wt, y = mpg, col = factor(cyl))) +
   stat_smooth(method = "lm", se = FALSE, aes(group = 1))
 ```
 
-![](images/smooth1.png)
-
-![](images/smooth2.png)
+```{r echo=FALSE, message=FALSE, out.width="50%"}
+include_graphics(list.files("images/", pattern = "smooth", full.names = TRUE))
+```
 
 In the previous exercise we used `se = FALSE` in `stat_smooth()` to remove the 95% Confidence Interval. Here we'll consider another argument, `span`, used in LOESS smoothing, and we'll take a look at a nice scenario of properly mapping different models.
 ```{r eval=FALSE}
@@ -686,11 +710,9 @@ ggplot(mtcars, aes(x = wt, y = mpg, col = factor(cyl))) +
   scale_color_manual("Cylinders", values = myColors)
 ```
 
-![](images/smooth3.png)
-
-![](images/smooth4.png)
-
-![](images/smooth5.png)
+```{r echo=FALSE, message=FALSE, out.width="50%"}
+include_graphics(list.files("images/", pattern = "multi", full.names = TRUE))
+```
 
 Focus on the color because `scale_color_brewer` on default have a maximum 9 for palette Blues.
 ```{r eval=FALSE}
@@ -704,9 +726,9 @@ ggplot(Vocab, aes(x = education, y = vocabulary, col = year, group = factor(year
   scale_color_gradientn(colors = brewer.pal(9, "YlOrRd"))
 ```
 
-![](images/color1.png)
-
-![](images/color2.png)
+```{r echo=FALSE, message=FALSE, out.width="50%"}
+include_graphics(list.files("images/", pattern = "color", full.names = TRUE))
+```
 
 Another useful stat function is `stat_sum()`. This function calculates the total number of overlapping observations and is another good alternative to overplotting.
 ```{r eval=FALSE}
@@ -722,9 +744,9 @@ p +
   scale_size(range = c(1, 10))
 ```
 
-![](images/stat_sum1.png)
-
-![](images/stat_sum2.png)
+```{r echo=FALSE, message=FALSE, out.width="50%"}
+include_graphics(list.files("images/", pattern = "stat_sum", full.names = TRUE))
+```
 
 ```{r eval=FALSE}
 library(ggplot2)
@@ -755,13 +777,9 @@ wt.cyl.am +
                position = posn.d, fun.args = list(mult = 1), width = 0.1)
 ```
 
-![](images/summary1.png)
-
-![](images/summary2.png)
-
-![](images/summary3.png)
-
-![](images/summary4.png)
+```{r echo=FALSE, message=FALSE, out.width="50%"}
+include_graphics(list.files("images/", pattern = "summary", full.names = TRUE))
+```
 
 ```{r eval=FALSE}
 # Add three stat_summary calls to wt.cyl.am
@@ -776,7 +794,9 @@ wt.cyl.am +
                col = "black", shape = "X")
 ```
 
-![](images/summary5.png)
+```{r echo=FALSE, message=FALSE, out.width="75%", fig.align='center'}
+include_graphics("images/another.png")
+```
 
 ```{r eval=FALSE}
 p <- ggplot(mtcars, aes(x = wt, y = hp, col = am)) + geom_point() + geom_smooth()
@@ -786,9 +806,9 @@ p + scale_x_continuous(limits = c(3, 6), expand = c(0, 0))
 p + coord_cartesian(xlim = c(3, 6))
 ```
 
-![](images/scale.png)
-
-![](images/scale2.png)
+```{r echo=FALSE, message=FALSE, out.width="50%"}
+include_graphics(list.files("images/", pattern = "point", full.names = TRUE))
+```
 
 ```{r eval=FALSE}
 # Complete basic scatter plot function
@@ -802,13 +822,9 @@ base.plot + coord_equal(ratio = 2)
 base.plot + coord_equal(ratio = 3)
 ```
 
-![](images/scale3.png)
-
-![](images/scale4.png)
-
-![](images/scale5.png)
-
-![](images/scale6.png)
+```{r echo=FALSE, message=FALSE, out.width="50%"}
+include_graphics(list.files("images/", pattern = "scale", full.names = TRUE))
+```
 
 ```{r eval=FALSE}
 wide.bar <- ggplot(mtcars, aes(x = 1, fill = cyl)) +
@@ -825,9 +841,9 @@ thin.bar +
   coord_polar(theta = "y")
 ```
 
-![](images/pie1.png)
-
-![](images/ring1.png)
+```{r echo=FALSE, message=FALSE, out.width="50%"}
+include_graphics(list.files("images/", pattern = "ring", full.names = TRUE))
+```
 
 
 
