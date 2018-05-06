@@ -391,12 +391,11 @@ div.tocify {
 </div>
 
 
-<pre><code>## Warning: package &#39;knitr&#39; was built under R version 3.4.4</code></pre>
 <p><img src="images/rmarkdown.png" width="50%" style="display: block; margin: auto;" /></p>
 <hr />
 <div id="datacamp---for-r-beginners" class="section level1">
 <h1>Datacamp - For R beginners</h1>
-<p>I am not good at codeing all my life!!! NEVER! But I benefited a lot from courses in <a href="https://www.datacamp.com/home">Datacamp</a> which is recommended by Dr. Nelson and Dr. Birgand. So go there and enjoy your R Studio-ing if you are interested (maybe not for free though :-D)!</p>
+<p>I am not good at codeing all my life!!! NEVER! But I benefited a lot from courses in <a href="https://www.datacamp.com/home">Datacamp</a> which is recommended by Dr. Nelson and Dr. Birgand. So go there and enjoy your R Studio-ing if you are interested (maybe not for free though :-D)! Tips for</p>
 </div>
 <div id="optimize-figures-output" class="section level1">
 <h1>Optimize figures output</h1>
@@ -422,6 +421,11 @@ div.tocify {
 <div id="make-a-nice-report" class="section level1">
 <h1>Make a nice report</h1>
 <p>Still learning, but refered a website <a href="http://www.xueqing.tv/cms/article/101">R markdown and Knitr</a>.</p>
+<p><strong>My experience till now</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>Always do not use system code of rmarkdown to import images, otherwise your rmarkdown will suddenly break down one day. I encounted this problem recently. I, at first, thought it might be because i used wrong codes making it die. Then I checked all codes letter by letter which seems right though. And then i realized i imported a lot of images in Rmd files using <code>![image](img/path)</code> system code which must be too heavy for a “small” package. Like i recommended before, <a href="https://www.zevross.com/blog/2017/06/19/tips-and-tricks-for-working-with-images-and-figures-in-r-markdown-documents/">list of tips and tricks for working with images in R markdown document</a> solved the problem and made images nicer! I used <code>include_graphics</code> function in <code>knitr</code> package for local downloaded images. For figures produced by R, you will need to choose another way to make it.</p></li>
+<li><p>If you save your Rmd files in Google Drive, you might want to pause sync when you are working with Rmd files. Otherwise the error might frequently pop up when you try to make a change in the file. Just do not forget resuming Google Drive when you are done (I did once).</p></li>
+</ol>
 <p>All right, i will go back learning coding, see you next time when i have something new to tell. Hope you enjoy!</p>
 </div>
 
