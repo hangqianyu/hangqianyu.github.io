@@ -1019,6 +1019,17 @@ p +
   facet_grid(vore ~ ., scale = &quot;free_y&quot;, space = &quot;free_y&quot;)</code></pre>
 <p><img src="images/free_y1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p><img src="images/free_y2.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>Let’s look at an example first. How to transfer from left to right image?</p>
+<p><img src="images/theme1.png" width="50%" /><img src="images/theme2.png" width="50%" /></p>
+<p>We can add <code>theme</code> element to original plot:</p>
+<pre class="r"><code>myPink &lt;- &quot;#FEE0D2&quot;
+# Theme to remove all rectangles
+no_panels &lt;- theme(rect = element_blank())
+# Remove plot panels and legend and add a border, z is orginal figure
+z +
+  no_panels +
+  theme(plot.background = element_rect(fill = myPink, color = &quot;black&quot;, size = 3))</code></pre>
+<p>Next, you will think about removing grid lines in the figure. For each of the arguments that specify lines, use <code>element_line()</code></p>
 </div>
 
 

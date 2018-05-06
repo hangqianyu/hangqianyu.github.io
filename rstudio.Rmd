@@ -901,6 +901,28 @@ include_graphics("images/free_y1.png")
 include_graphics("images/free_y2.png")
 ```
 
+Let's look at an example first. How to transfer from left to right image?
+
+```{r echo=FALSE, message=FALSE, out.width="50%"}
+include_graphics(list.files("images/", pattern = "theme", full.names = TRUE))
+```
+
+We can add `theme` element to original plot:
+```{r eval=FALSE}
+myPink <- "#FEE0D2"
+# Theme to remove all rectangles
+no_panels <- theme(rect = element_blank())
+# Remove plot panels and legend and add a border, z is orginal figure
+z +
+  no_panels +
+  theme(plot.background = element_rect(fill = myPink, color = "black", size = 3))
+```
+
+Next, you will think about removing grid lines in the figure. For each of the arguments that specify lines, use `element_line()`
+
+
+
+
 
 
 
