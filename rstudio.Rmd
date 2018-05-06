@@ -1,11 +1,13 @@
 ---
 title: "Data analysis in R Studio"
 author:  "[Qianyu Hang](https://github.com/hangqianyu) at NC State University"
+date: '`r format(Sys.Date(), "%a %b %d, %Y")`'
 output:
   html_document:
-    toc: true
-    toc_float: true
-    fig_width: 0.1
+    fig_height: 3
+    fig_width: 1
+    toc: yes
+    toc_float: yes
 ---
 ![](images/rstudio.png)
 ----------
@@ -252,7 +254,7 @@ seperate(data, col, into) # data: a data frame; col: bare name of column to sepe
 unite(data, col, ..., sep = "...") # is the opposite of seperate() function. data: a data frame; col: bare name of new column; ...: bare names of columns to unite (don't need a c() function, just use comma), sep: seperator used between tow joined columns
 ```
 
-For more information about `tydyr` package, please refer to [here](https://www.cnblogs.com/nxld/p/6060533.html)
+For more information about `tidyr` package, please refer to [here](https://www.cnblogs.com/nxld/p/6060533.html)
 
 * Removing redundant info
 ```{r eval=FALSE}
@@ -266,6 +268,7 @@ my_df[, -4]     # Omit fourth column of my_df
 ****************
 ### Type conversions
 It is often necessary to change, or coerce, the way that variables in a dataset are stored. This could be because of the way they were read into R (with read.csv(), for example) or perhaps the function you are using to analyze the data requires variables to be coded a certain way. Only certain coercions are allowed, but the rules for what works are generally pretty intuitive. For example, trying to convert a character string to a number gives an error: as.numeric("some text"). There are a few less intuitive results. For example, under the hood, the logical values TRUE and FALSE are coded as 1 and 0, respectively. Therefore, as.logical(1) returns TRUE and as.numeric(TRUE) returns 1.
+
 ```{r eval=FALSE}
 as.character(...)
 as.factor(...)
@@ -291,17 +294,20 @@ There are four key functions in stringr for cleaning data:
     -str_replace() - Find and replace a pattern
 
 One common issue that comes up when cleaning data is the need to remove leading and/or trailing white space. The str_trim() function from stringr makes it easy to do this while leaving intact the part of the string that you actually want.
+
 ```{r eval=FALSE}
 str_trim("   this is a test     ") # it would print out "this is a test". very easy, huh?
 ```
 
 A similar issue is when you need to pad strings to make them a certain number of characters wide. One example is if you had a bunch of employee ID numbers, some of which begin with one or more zeros. When reading these data in, you find that the leading zeros have been dropped somewhere along the way (probably because the variable was thought to be numeric and in that case, leading zeros would be unnecessary.)
+
 ```{r eval=FALSE}
 str_pad("24493", width = 7, side = "left", pad = "0")
 [1] "0024493"
 ```
 
 The stringr package provides two functions that are very useful for finding and/or replacing strings: str_detect() and str_replace(). Like all functions in stringr, the first argument of each is the string of interest. The second argument of each is the pattern of interest. In the case of str_detect(), this is the pattern we are searching for. In the case of str_replace(), this is the pattern we want to replace. Finally, str_replace() has a third argument, which is the string to replace with.
+
 ```{r eval=FALSE}
 str_detect(string, pattern) # string: input string; pattern: pattern to look for.
 
@@ -311,6 +317,7 @@ str_replace(string, pattern, replacement) # replacement: a character vector of r
 ****************
 ### Finding and dealing with missing values
 As you've seen, missing values in R should be represented by NA, but unfortunately you will not always be so lucky. Before you can deal with missing values, you have to find them in the data. If missing values are properly coded as NA, the is.na() function will help you find them. Otherwise, if your dataset is too big to just look at the whole thing, you may need to try searching for some of the usual suspects like "", "#N/A", etc. You can also use the summary() and table() functions to turn up unexpected values in your data. 
+
 ```{r eval=FALSE}
 is.na(x) # an R object to be tested.
 
@@ -322,6 +329,7 @@ which(is.na(x)) # to find indices of missing values. very useful to replace data
 ```
 
 Missing values can be a rather complex subject, but here we'll only look at the simple case where you are simply interested in normalizing and/or removing all missing values from your data. For more information on why this is not always the best strategy, search online for "missing not at random."
+
 ```{r eval=FALSE}
 complete.cases(object, ...) # to see which rows have no missing values
 
@@ -339,6 +347,7 @@ a **tbl** (pronounced tibble) is just a special kind of data.frame. They make yo
 Notes: Modifying data with lookup tables. Please refer to [Nice R Code](https://nicercode.github.io/). 
 
 The dplyr package contains five key data manipulation functions, also called verbs:
+
 ```{r eval=FALSE}
 select(df, var1, var2...) # which returns a subset of the columns,
 filter(tbl, logical test) # that is able to return a subset of the rows,
@@ -348,6 +357,7 @@ summarise() # which reduces each group to a single row by calculating aggregate 
 ```
 
 Anyhow, dplyr comes with a set of helper functions that can help you select groups of variables inside a select() call:
+
 ```{r eval=FALSE}
 starts_with("X") # every name that starts with "X",
 ends_with("X") # every name that ends with "X",
@@ -483,7 +493,9 @@ cyl.am +
                     values = val,
                     labels = lab)
 ```
+
 **Explaination to the code above:**  `scale_x_discrete()` takes as its only argument the x-axis label: "Cylinders". `scale_y_continuous()` takes as its only argument the y-axis label: "Number". `scale_fill_manual()` fixes the legend. The first argument is the title of the legend: "Transmission". Next, values and labels are set to predefined values for you. These are the colors and the labels in the legend. The result of above code will be like this:
+
 ![](images/bar1.png)
 
 ------------------
@@ -506,6 +518,7 @@ geom_point(size = 4, shape = 1, alpha = 0.6)
 ```
 
 The plot will be like:
+
 ![](images/overplotting.png)
 
 **37 Geometries in ggplot2**
@@ -595,7 +608,6 @@ qplot(factor(cyl), factor(vs), data = mtcars, geom = "jitter")
 
 ![](images/qplot1.png)
 
-For "true" dot plot with `geom_dotplot()`:
 ```{r eval=FALSE}
 # "True" dot plot, with geom_dotplot():
 ggplot(mtcars, aes(cyl, wt, fill = am)) +
@@ -625,7 +637,6 @@ Two figures are compared:
 
 ![](images/jitter1.png)
 
------------------
 ### Advanced plotting with `ggplot2`
 
 ![](images/stat_functions.png)
@@ -642,7 +653,7 @@ ggplot(mtcars, aes(x = wt, y = mpg, col = factor(cyl))) +
   stat_smooth(method = "lm", se = FALSE, aes(group = 1))
 ```
 
-![](images/smooth1.png) 
+![](images/smooth1.png)
 
 ![](images/smooth2.png)
 
@@ -674,6 +685,7 @@ ggplot(mtcars, aes(x = wt, y = mpg, col = factor(cyl))) +
               se = FALSE, span = 0.7) +
   scale_color_manual("Cylinders", values = myColors)
 ```
+
 ![](images/smooth3.png)
 
 ![](images/smooth4.png)
@@ -746,6 +758,7 @@ wt.cyl.am +
 ![](images/summary1.png)
 
 ![](images/summary2.png)
+
 ![](images/summary3.png)
 
 ![](images/summary4.png)
@@ -815,20 +828,6 @@ thin.bar +
 ![](images/pie1.png)
 
 ![](images/ring1.png)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
