@@ -748,7 +748,7 @@ cyl.am +
                     values = val,
                     labels = lab)</code></pre>
 <p><strong>Explaination to the code above:</strong> <code>scale_x_discrete()</code> takes as its only argument the x-axis label: “Cylinders”. <code>scale_y_continuous()</code> takes as its only argument the y-axis label: “Number”. <code>scale_fill_manual()</code> fixes the legend. The first argument is the title of the legend: “Transmission”. Next, values and labels are set to predefined values for you. These are the colors and the labels in the legend. The result of above code will be like this:</p>
-<p><img src="images/bar1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="images/bar1.png" width="70%" style="display: block; margin: auto;" /></p>
 <hr />
 <p>To make a univariable plot with <code>ggplot2</code>, we can set y = o in aesthetics. So far you’ve focused on scatter plots since they are intuitive, easily understood and very common. A major consideration in any scatter plot is dealing with overplotting. You’ll encounter this topic again in the geometries layer, but you can already make some adjustments here.</p>
 <ul>
@@ -767,7 +767,7 @@ cyl.am +
 geom_point(size = 4, shape = 1, alpha = 0.6)
 # shape = 1 will change points to hollow points which is good, alpha can improve the overplotting</code></pre>
 <p>The plot will be like:</p>
-<p><img src="images/overplotting.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="images/overplotting.png" width="70%" style="display: block; margin: auto;" /></p>
 <p><strong>37 Geometries in ggplot2</strong></p>
 <ul>
 <li>abline (scatter plot)</li>
@@ -818,30 +818,30 @@ posn_d &lt;- position_dodge(width = 0.2)
 ggplot(mtcars, aes(x = cyl, fill = am)) +
   geom_bar(position = posn_d, alpha = 0.6)</code></pre>
 <p>Result would be like:</p>
-<p><img src="images/bar2.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="images/bar2.png" width="70%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>ggplot(mtcars, aes(mpg, col = cyl)) +
   geom_freqpoly(binwidth = 1, position = &quot;identity&quot;)</code></pre>
-<p><img src="images/freqpoly.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="images/freqpoly.png" width="70%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code># Add the recess periods
 ggplot(economics, aes(x = date, y = unemploy/pop)) +
   geom_rect(data = recess,
          aes(xmin = begin, xmax = end, ymin = -Inf, ymax = +Inf),
          inherit.aes = FALSE, fill = &quot;red&quot;, alpha = 0.2) +
   geom_line()</code></pre>
-<p><img src="images/line1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="images/line1.png" width="70%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code># Make it easy to read
 ggplot(ChickWeight, aes(x = Time, y = weight, col = Diet)) +
   geom_line(aes(group = Chick), alpha = 0.3) +
   geom_smooth(lwd = 2, se = FALSE)</code></pre>
-<p><img src="images/line2.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="images/line2.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>While <code>qplot()</code> can do some easy plots like that:</p>
 <pre class="r"><code># qplot() with geom set to jitter manually
 qplot(factor(cyl), factor(vs), data = mtcars, geom = &quot;jitter&quot;)</code></pre>
-<p><img src="images/qplot1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="images/qplot1.png" width="70%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code># &quot;True&quot; dot plot, with geom_dotplot():
 ggplot(mtcars, aes(cyl, wt, fill = am)) +
   geom_dotplot(binaxis = &quot;y&quot;, stackdir = &quot;center&quot;)</code></pre>
-<p><img src="images/dotplot1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="images/dotplot1.png" width="70%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code># add facet_grid() layer
 ggplot(titanic, aes(x = Pclass, fill = Sex)) +
   geom_bar(position = &quot;dodge&quot;) +
@@ -857,7 +857,7 @@ ggplot(titanic, aes(x = Pclass, y = Age, color = Sex)) +
 </div>
 <div id="advanced-plotting-with-ggplot2" class="section level1">
 <h1>Advanced plotting with <code>ggplot2</code></h1>
-<p><img src="images/stat_functions.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="images/stat_functions.png" width="70%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>ggplot(mtcars, aes(x = wt, y = mpg, col = factor(cyl))) +
   geom_point() +
   stat_smooth(method = &quot;lm&quot;, se = FALSE)
@@ -954,7 +954,7 @@ wt.cyl.am +
   stat_summary(geom = &quot;point&quot;, fun.y = median,
                position = posn.d, size = 3,
                col = &quot;black&quot;, shape = &quot;X&quot;)</code></pre>
-<p><img src="images/another.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="images/another.png" width="70%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>p &lt;- ggplot(mtcars, aes(x = wt, y = hp, col = am)) + geom_point() + geom_smooth()
 # limits to set the aesthetic limit, expand is to ensure the data is placed some distance away from axes
 p + scale_x_continuous(limits = c(3, 6), expand = c(0, 0))

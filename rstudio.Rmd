@@ -502,7 +502,7 @@ cyl.am +
 
 **Explaination to the code above:**  `scale_x_discrete()` takes as its only argument the x-axis label: "Cylinders". `scale_y_continuous()` takes as its only argument the y-axis label: "Number". `scale_fill_manual()` fixes the legend. The first argument is the title of the legend: "Transmission". Next, values and labels are set to predefined values for you. These are the colors and the labels in the legend. The result of above code will be like this:
 
-```{r echo=FALSE, message=FALSE, out.width="75%", fig.align='center'}
+```{r echo=FALSE, message=FALSE, out.width="70%", fig.align='center'}
 include_graphics("images/bar1.png")
 ```
 
@@ -527,7 +527,7 @@ geom_point(size = 4, shape = 1, alpha = 0.6)
 
 The plot will be like:
 
-```{r echo=FALSE, message=FALSE, out.width="75%", fig.align='center'}
+```{r echo=FALSE, message=FALSE, out.width="70%", fig.align='center'}
 include_graphics("images/overplotting.png")
 ```
 
@@ -583,7 +583,7 @@ ggplot(mtcars, aes(x = cyl, fill = am)) +
 
 Result would be like:
 
-```{r echo=FALSE, message=FALSE, out.width="75%", fig.align='center'}
+```{r echo=FALSE, message=FALSE, out.width="70%", fig.align='center'}
 include_graphics("images/bar2.png")
 ```
 
@@ -592,7 +592,7 @@ ggplot(mtcars, aes(mpg, col = cyl)) +
   geom_freqpoly(binwidth = 1, position = "identity")
 ```
 
-```{r echo=FALSE, message=FALSE, out.width="75%", fig.align='center'}
+```{r echo=FALSE, message=FALSE, out.width="70%", fig.align='center'}
 include_graphics("images/freqpoly.png")
 ```
 
@@ -605,7 +605,7 @@ ggplot(economics, aes(x = date, y = unemploy/pop)) +
   geom_line()
 ```
 
-```{r echo=FALSE, message=FALSE, out.width="75%", fig.align='center'}
+```{r echo=FALSE, message=FALSE, out.width="70%", fig.align='center'}
 include_graphics("images/line1.png")
 ```
 
@@ -616,7 +616,7 @@ ggplot(ChickWeight, aes(x = Time, y = weight, col = Diet)) +
   geom_smooth(lwd = 2, se = FALSE)
 ```
 
-```{r echo=FALSE, message=FALSE, out.width="75%", fig.align='center'}
+```{r echo=FALSE, message=FALSE, out.width="70%", fig.align='center'}
 include_graphics("images/line2.png")
 ```
 
@@ -626,7 +626,7 @@ While `qplot()` can do some easy plots like that:
 qplot(factor(cyl), factor(vs), data = mtcars, geom = "jitter")
 ```
 
-```{r echo=FALSE, message=FALSE, out.width="75%", fig.align='center'}
+```{r echo=FALSE, message=FALSE, out.width="70%", fig.align='center'}
 include_graphics("images/qplot1.png")
 ```
 
@@ -636,7 +636,7 @@ ggplot(mtcars, aes(cyl, wt, fill = am)) +
   geom_dotplot(binaxis = "y", stackdir = "center")
 ```
 
-```{r echo=FALSE, message=FALSE, out.width="75%", fig.align='center'}
+```{r echo=FALSE, message=FALSE, out.width="70%", fig.align='center'}
 include_graphics("images/dotplot1.png")
 ```
 
@@ -661,7 +661,7 @@ include_graphics(list.files("images/", pattern = "jitter", full.names = TRUE))
 
 # Advanced plotting with `ggplot2`
 
-```{r echo=FALSE, message=FALSE, out.width="75%", fig.align='center'}
+```{r echo=FALSE, message=FALSE, out.width="70%", fig.align='center'}
 include_graphics("images/stat_functions.png")
 ```
 
@@ -794,7 +794,7 @@ wt.cyl.am +
                col = "black", shape = "X")
 ```
 
-```{r echo=FALSE, message=FALSE, out.width="75%", fig.align='center'}
+```{r echo=FALSE, message=FALSE, out.width="70%", fig.align='center'}
 include_graphics("images/another.png")
 ```
 
