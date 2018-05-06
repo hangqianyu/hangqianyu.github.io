@@ -901,12 +901,14 @@ include_graphics("images/free_y1.png")
 include_graphics("images/free_y2.png")
 ```
 
+# Themes layer
 Let's look at an example first. How to transfer from left to right image?
 
 ```{r echo=FALSE, message=FALSE, out.width="50%"}
 include_graphics(list.files("images/", pattern = "theme", full.names = TRUE))
 ```
 
+## Rectangle
 We can add `theme` element to original plot:
 ```{r eval=FALSE}
 myPink <- "#FEE0D2"
@@ -918,7 +920,119 @@ z +
   theme(plot.background = element_rect(fill = myPink, color = "black", size = 3))
 ```
 
-Next, you will think about removing grid lines in the figure. For each of the arguments that specify lines, use `element_line()`
+## Line
+Next, you will think about removing grid lines in the previous figure. For each of the arguments that specify lines, use `element_line()` to create red axes and tick marks.
+
+```{r eval=FALSE}
+# z is previous figure code
+z + 
+  theme(panel.grid = element_blank(),
+        axis.line = element_line(color = "red"),
+        axis.ticks = element_line(color = "red"))
+```
+
+```{r echo=FALSE, message=FALSE, out.width="70%", fig.align='center'}
+include_graphics("images/another2.png")
+```
+
+## Text
+Now, we can make the text on your plot prettier and easier to spot. You can do this through the `element_text()` function and appropriate arguments inside the `theme()` function. The plot you've created previously is available as `z`.
+
+```{r eval=FALSE}
+z +
+  theme(strip.text = element_text(size = 16, color = myRed),
+        axis.title = element_text(color = myRed, hjust = 0, face = "italic"),
+        axis.text = element_text(color = "black"))
+```
+
+## Legend
+The themes layer also allows you to specify the appearance and location of legends. Previous code is available as z.
+```{r eval=FALSE}
+# Move legend by position
+z +
+  theme(legend.position = c(0.85, 0.85))
+# Change direction
+z +
+  theme(legend.direction = "horizontal")
+# Change location by name
+z +
+  theme(legend.position = "bottom")
+# Remove legend entirely
+z +
+  theme(legend.position = "none")
+```
+
+```{r echo=FALSE, message=FALSE, out.width="50%"}
+include_graphics(list.files("images/", pattern = "legend", full.names = TRUE))
+```
+
+## Positions
+The different rectangles of your plot have spacing between them. There's spacing between the facets, between the axis labels and the plot rectangle, between the plot rectangle and the entire panel background, etc. The last plot you created in the previous exercise, without a legend, is available as `z`.
+
+```{r eval=FALSE}
+# Increase spacing between facets
+library(grid)
+z + theme(panel.spacing.x = unit(2, "cm"))
+# Adjust the plot margin
+z + theme(panel.spacing.x = unit(2, "cm"), plot.margin = unit(c(1,2,1,1), "cm"))
+```
+
+```{r echo=FALSE, message=FALSE, out.width="50%"}
+include_graphics(list.files("images/", pattern = "panel_spacing", full.names = TRUE))
+```
+
+## Recycling Themes
+If you are making many plots and wanna keep consistency in style, you might wanna apply specific theme everywhere because building your themes every time from scratch can become a pain and unnecessarily bloat your scripts. theme_update() updates the default theme used by ggplot2. The arguments for theme_update() are the same as for theme(). When you call theme_update() and assign it to an object (e.g. called old), that object stores the current default theme, and the arguments update the default theme. If you want to restore the previous default theme, you can get it back by using theme_update() again. In the following exercises, we'll practice different ways of managing, updating and saving themes.
+
+```{r eval=FALSE}
+# Update the theme as default theme
+old <- theme_update(panel.background = element_blank(),
+             legend.key = element_blank(),
+             legend.background = element_blank(),
+             strip.background = element_blank(),
+             plot.background = element_rect(fill = myPink, color = "black", size = 3),
+             panel.grid = element_blank(),
+             axis.line = element_line(color = "red"),
+             axis.ticks = element_line(color = "red"),
+             strip.text = element_text(size = 16, color = myRed),
+             axis.title.y = element_text(color = myRed, hjust = 0, face = "italic"),
+             axis.title.x = element_text(color = myRed, hjust = 0, face = "italic"),
+             axis.text = element_text(color = "black"),
+             legend.position = "none")
+
+# 3 - Display the plot z2 - new default theme used
+z2
+# 4 - Restore the old default theme
+theme_set(old)
+```
+
+```{r echo=FALSE, message=FALSE, out.width="70%", fig.align='center'}
+include_graphics("images/legend4.png")
+```
+
+## Exploring ggthemes
+Here is a nice website you can refer to, [All your figure are belong to us](https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/). The author almost made a list of all whay you need in his/her website. 
+
+```{r eval=FALSE}
+library(ggthemes)
+z2
+# Apply theme_tufte(), plot additional modifications
+custom_theme <- theme_tufte() +
+  theme(legend.position = c(0.9, 0.9),
+        legend.title = element_text(face = "italic", size = 12),
+        axis.title = element_text(face = "bold", size = 14))
+
+# Draw the customized plot
+z2 + custom_theme
+# Use theme_set to set custom theme as default
+theme_set(custom_theme)
+```
+
+```{r echo=FALSE, message=FALSE, out.width="50%"}
+include_graphics(list.files("images/", pattern = "element_text", full.names = TRUE))
+```
+
+
 
 
 

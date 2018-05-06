@@ -1019,8 +1019,13 @@ p +
   facet_grid(vore ~ ., scale = &quot;free_y&quot;, space = &quot;free_y&quot;)</code></pre>
 <p><img src="images/free_y1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p><img src="images/free_y2.png" width="70%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="themes-layer" class="section level1">
+<h1>Themes layer</h1>
 <p>Let’s look at an example first. How to transfer from left to right image?</p>
 <p><img src="images/theme1.png" width="50%" /><img src="images/theme2.png" width="50%" /></p>
+<div id="rectangle" class="section level2">
+<h2>Rectangle</h2>
 <p>We can add <code>theme</code> element to original plot:</p>
 <pre class="r"><code>myPink &lt;- &quot;#FEE0D2&quot;
 # Theme to remove all rectangles
@@ -1029,7 +1034,93 @@ no_panels &lt;- theme(rect = element_blank())
 z +
   no_panels +
   theme(plot.background = element_rect(fill = myPink, color = &quot;black&quot;, size = 3))</code></pre>
-<p>Next, you will think about removing grid lines in the figure. For each of the arguments that specify lines, use <code>element_line()</code></p>
+</div>
+<div id="line" class="section level2">
+<h2>Line</h2>
+<p>Next, you will think about removing grid lines in the previous figure. For each of the arguments that specify lines, use <code>element_line()</code> to create red axes and tick marks.</p>
+<pre class="r"><code># z is previous figure code
+z + 
+  theme(panel.grid = element_blank(),
+        axis.line = element_line(color = &quot;red&quot;),
+        axis.ticks = element_line(color = &quot;red&quot;))</code></pre>
+<p><img src="images/another2.png" width="70%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="text" class="section level2">
+<h2>Text</h2>
+<p>Now, we can make the text on your plot prettier and easier to spot. You can do this through the <code>element_text()</code> function and appropriate arguments inside the <code>theme()</code> function. The plot you’ve created previously is available as <code>z</code>.</p>
+<pre class="r"><code>z +
+  theme(strip.text = element_text(size = 16, color = myRed),
+        axis.title = element_text(color = myRed, hjust = 0, face = &quot;italic&quot;),
+        axis.text = element_text(color = &quot;black&quot;))</code></pre>
+</div>
+<div id="legend" class="section level2">
+<h2>Legend</h2>
+<p>The themes layer also allows you to specify the appearance and location of legends. Previous code is available as z.</p>
+<pre class="r"><code># Move legend by position
+z +
+  theme(legend.position = c(0.85, 0.85))
+# Change direction
+z +
+  theme(legend.direction = &quot;horizontal&quot;)
+# Change location by name
+z +
+  theme(legend.position = &quot;bottom&quot;)
+# Remove legend entirely
+z +
+  theme(legend.position = &quot;none&quot;)</code></pre>
+<p><img src="images/legend1.png" width="50%" /><img src="images/legend2.png" width="50%" /><img src="images/legend3.png" width="50%" /><img src="images/legend4.png" width="50%" /></p>
+</div>
+<div id="positions" class="section level2">
+<h2>Positions</h2>
+<p>The different rectangles of your plot have spacing between them. There’s spacing between the facets, between the axis labels and the plot rectangle, between the plot rectangle and the entire panel background, etc. The last plot you created in the previous exercise, without a legend, is available as <code>z</code>.</p>
+<pre class="r"><code># Increase spacing between facets
+library(grid)
+z + theme(panel.spacing.x = unit(2, &quot;cm&quot;))
+# Adjust the plot margin
+z + theme(panel.spacing.x = unit(2, &quot;cm&quot;), plot.margin = unit(c(1,2,1,1), &quot;cm&quot;))</code></pre>
+<p><img src="images/panel_spacing1.png" width="50%" /><img src="images/panel_spacing2.png" width="50%" /></p>
+</div>
+<div id="recycling-themes" class="section level2">
+<h2>Recycling Themes</h2>
+<p>If you are making many plots and wanna keep consistency in style, you might wanna apply specific theme everywhere because building your themes every time from scratch can become a pain and unnecessarily bloat your scripts. theme_update() updates the default theme used by ggplot2. The arguments for theme_update() are the same as for theme(). When you call theme_update() and assign it to an object (e.g. called old), that object stores the current default theme, and the arguments update the default theme. If you want to restore the previous default theme, you can get it back by using theme_update() again. In the following exercises, we’ll practice different ways of managing, updating and saving themes.</p>
+<pre class="r"><code># Update the theme as default theme
+old &lt;- theme_update(panel.background = element_blank(),
+             legend.key = element_blank(),
+             legend.background = element_blank(),
+             strip.background = element_blank(),
+             plot.background = element_rect(fill = myPink, color = &quot;black&quot;, size = 3),
+             panel.grid = element_blank(),
+             axis.line = element_line(color = &quot;red&quot;),
+             axis.ticks = element_line(color = &quot;red&quot;),
+             strip.text = element_text(size = 16, color = myRed),
+             axis.title.y = element_text(color = myRed, hjust = 0, face = &quot;italic&quot;),
+             axis.title.x = element_text(color = myRed, hjust = 0, face = &quot;italic&quot;),
+             axis.text = element_text(color = &quot;black&quot;),
+             legend.position = &quot;none&quot;)
+
+# 3 - Display the plot z2 - new default theme used
+z2
+# 4 - Restore the old default theme
+theme_set(old)</code></pre>
+<p><img src="images/legend4.png" width="70%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="exploring-ggthemes" class="section level2">
+<h2>Exploring ggthemes</h2>
+<p>Here is a nice website you can refer to, <a href="https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/">All your figure are belong to us</a>. The author almost made a list of all whay you need in his/her website.</p>
+<pre class="r"><code>library(ggthemes)
+z2
+# Apply theme_tufte(), plot additional modifications
+custom_theme &lt;- theme_tufte() +
+  theme(legend.position = c(0.9, 0.9),
+        legend.title = element_text(face = &quot;italic&quot;, size = 12),
+        axis.title = element_text(face = &quot;bold&quot;, size = 14))
+
+# Draw the customized plot
+z2 + custom_theme
+# Use theme_set to set custom theme as default
+theme_set(custom_theme)</code></pre>
+<p><img src="images/element_text1.png" width="50%" /><img src="images/element_text2.png" width="50%" /></p>
+</div>
 </div>
 
 
