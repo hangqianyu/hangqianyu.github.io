@@ -17,9 +17,7 @@ output:
 
 * The poem i personally like:
 
-The Road Not Taken
-
-*Robert Frost*
+**The Road Not Taken** - by *Robert Frost*
 
 Two roads diverged in a yellow wood,
 

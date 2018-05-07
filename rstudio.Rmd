@@ -19,7 +19,7 @@ include_graphics("images/rstudio.png")
 # Introduction
 R is a language and environment for statistical computing and graphics. R provides a wide variety of statistical (linear and nonlinear modelling, classical statistical tests, time-series analysis, classification, clustering, …) and graphical techniques, and is highly extensible. One of R’s strengths is the ease with which well-designed publication-quality plots can be produced, including mathematical symbols and formulae where needed. The most important thing to me is it is open source and free software. While i prefer R Studio which is open source and enterprise-ready profession software for R. I think it is much more easier to use R Studio than R (You might think so as well).
 
-I am not good at codeing all my life!!! NEVER! But I benefited a lot from courses in [Datacamp](https://www.datacamp.com/home) which is recommended by Dr. Nelson and Dr. Birgand. So go there and enjoy your R Studio-ing if you are interested (maybe not for free though :-D)! At first, you will find it is very annoying to use codes and remember which function makes this and which function makes that (if not, you might be nature-born data analyst). But for now, although i am not good at it, i really enjoy coding and R Studio-ing after grasping some basic R and R Markdown knowledge. To begin with, there are some basic programming notes you need to remember. Let's get it started!
+I am not good at codeing all my life!!! NEVER! But I benefited a lot from courses in [Datacamp](https://www.datacamp.com/home) which is recommended by Dr. Nelson and Dr. Birgand. So go there and enjoy your R Studio-ing if you are interested (maybe not for free though :-D)! At first, you will find it is very annoying to use codes and remember which function makes this and which function makes that (if not, you might be nature-born data analyst). But for now, although i am not good at it, i really enjoy coding and R Studio-ing after grasping some basic R and R Markdown knowledge. Here, i combined experience from [DataCamp](https://www.datacamp.com/home) and myself to help you master it easier. To begin with, there are some basic programming notes you need to remember. Let's get it started!
 
 # Basic programming notes
 ```{r eval=FALSE}
@@ -1424,6 +1424,153 @@ ggplot(movies_small, aes(x = rating, y = votes)) +
   scale_y_log10() # transform the y scale
 ```
 
+```{r eval=FALSE}
+ggplot(diamonds, aes(x = carat, y = price, col = color)) +
+  geom_point(alpha = 0.5, size = 0.5, shape = 16) +
+  scale_x_log10(expression(log[10](Carat)), limits = c(0.1,10)) +
+  scale_y_log10(expression(log[10](Price)), limits = c(100,100000)) + # Transform both axes to log10 scales using the aforementioned scale functions
+  scale_color_brewer(palette = "YlOrRd") +
+  coord_equal() +
+  theme_classic()
+```
+
+```{r echo=FALSE, message=FALSE, out.width="70%", fig.align='center'}
+include_graphics("images/another12.png")
+```
+
+Converse point plot to smooth plot:
+
+```{r eval=FALSE}
+# Add smooth layer and facet the plot
+ggplot(diamonds, aes(x = carat, y = price, col = color)) +
+  stat_smooth(method = "lm") +
+  scale_x_log10(expression(log[10](Carat)), limits = c(0.1,10)) +
+  scale_y_log10(expression(log[10](Price)), limits = c(100,100000)) +
+  scale_color_brewer(palette = "YlOrRd") +
+  coord_equal() +
+  theme_classic()
+```
+
+```{r echo=FALSE, message=FALSE, out.width="70%", fig.align='center'}
+include_graphics("images/another13.png")
+```
+
+```{r eval=FALSE}
+d <- ggplot(movies_small, aes(x = rating, y = votes)) +
+  geom_point() +
+  geom_boxplot() +
+  stat_summary(fun.data = "mean_cl_normal",
+               geom = "crossbar",
+               width = 0.2,
+               col = "red")
+# Untransformed plot
+d
+# the transformation happens before calculating the statistics
+d + scale_y_log10() 
+# the transformation happens after calculating the statistics
+d + coord_trans(y = "log10")
+```
+
+```{r echo=FALSE, message=FALSE, out.width="50%"}
+include_graphics(list.files("images/", pattern = "cl_image", full.names = TRUE))
+```
+
+If you only have continuous variables, you can convert them into ordinal variables using any of the following functions:
+
+* `cut_interval(x, n)` makes `n` groups from vector `x` with equal range.
+* `cut_number(x, n)` makes `n` groups from vector `x` with (approximately) equal numbers of observations.
+* `cut_width(x, width)` makes groups of width width from vector `x`.
+
+This is useful when you want to summarize a complex scatter plot like the one shown in the plot1. 
+
+```{r echo=FALSE, message=FALSE, out.width="50%"}
+include_graphics(list.files("images/", pattern = "geom_boxplot", full.names = TRUE))
+```
+
+# Density Plots
+The following default parameters are used (you can specify these arguments both in `density()` as well as `geom_density()`):
+
+* `bw = "nrd0"`, telling R which rule to use to choose an appropriate bandwidth.
+* `kernel = "gaussian"`, telling R to use the Gaussian kernel.
+
+You could have a good understanding through [ggplot2 Quick Reference: geom_rug](http://sape.inf.usi.ch/quick-reference/ggplot2/geom_rug).
+```{r eval=FALSE}
+# Calculating density: d
+d <- density(test_data$norm)
+# Use which.max() to calculate mode and specify x
+mode <- d$x[which.max(d$y)]
+# Finish the ggplot call
+ggplot(test_data, aes(x = norm)) +
+  geom_rug() +
+  geom_density() +
+  geom_vline(xintercept = mode, col = "red")
+```
+
+```{r echo=FALSE, message=FALSE, out.width="70%", fig.align='center'}
+include_graphics("images/another14.png")
+```
+
+Now that you know how to create a empirical and theoretical density plot, we should compare them in a plot then.
+
+```{r eval=FALSE}
+fun_args <- list(mean = mean(test_data$norm), sd = sd(test_data$norm))
+ggplot(test_data, aes(x = norm)) +
+  geom_histogram(aes(y = ..density..)) +
+  geom_density(col = "red") + # empirical
+  stat_function(fun = dnorm, args = fun_args, col = "blue") # theoretical
+```
+
+```{r echo=FALSE, message=FALSE, out.width="70%", fig.align='center'}
+include_graphics("images/another15.png")
+```
+
+## Adjusting density plots
+There are three parameters that you may be tempted to adjust in a density plot:
+
+* bw - the smoothing bandwidth to be used, see ?density for details
+* adjust - adjustment of the bandwidth, see density for details
+* kernel - kernel used for density estimation, defined as
+  - "g" = gaussian
+  - "r" = rectangular
+  - "t" = triangular
+  - "e" = epanechnikov
+  - "b" = biweight
+  - "c" = cosine
+  - "o" = optcosine
+
+you'll use a dataset containing only four points, `small_data`, so that you can see how these three arguments affect the shape of the density plot.
+
+```{r eval=FALSE}
+# Get the default bandwith
+get_bw <- density(small_data$x)$bw
+# Basic plotting object
+p <- ggplot(small_data, aes(x = x)) +
+  geom_rug() +
+  coord_cartesian(ylim = c(0,0.5))
+# Create three plots
+p + geom_density()
+p + geom_density(adjust = 0.25)
+p + geom_density(bw = 0.25 * get_bw)
+# Create two plots
+p + geom_density(kernel = "r")
+p + geom_density(kernel = "e")
+```
+
+```{r echo=FALSE, message=FALSE, out.width="50%"}
+include_graphics(list.files("images/", pattern = "empirical", full.names = TRUE))
+```
+
+A drawback of showing a box plot per group, is that you don't have any indication of the sample size, `n`, in each group, that went into making the plot. One way of dealing with this is to use a variable width for the box, which reflects differences in `n`. Here is an example:
+
+```{r}
+ggplot(diamonds, aes(x = cut, y = price, col = color)) +
+  geom_boxplot(varwidth = T) +
+  facet_grid(. ~ color)
+```
+
+```{r echo=FALSE, message=FALSE, out.width="70%", fig.align='center'}
+include_graphics("images/another16.png")
+```
 
 
 
@@ -1454,3 +1601,20 @@ ggplot(movies_small, aes(x = rating, y = votes)) +
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+# References
+[DataCamp](https://www.datacamp.com/home)
+[Tips for working with images](https://www.zevross.com/blog/2017/06/19/tips-and-tricks-for-working-with-images-and-figures-in-r-markdown-documents/)
+[R for Data Science](http://r4ds.had.co.nz/tidy-data.html)
+ .....
