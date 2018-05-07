@@ -1663,8 +1663,20 @@ ggplot(faithful, aes(x = waiting, y = eruptions)) +
 ```
 
 # For Large Data
+```{r eval=FALSE}
+# pairs
+pairs(iris[1:4])
+# chart.Correlation
+library(PerformanceAnalytics)
+chart.Correlation(iris[1:4])
+# ggpairs
+library(GGally)
+ggpairs(mtcars_fact[1:3])
+```
 
-
+```{r echo=FALSE, message=FALSE, out.width="50%"}
+include_graphics(list.files("images/", pattern = "correlation", full.names = TRUE))
+```
 
 
 

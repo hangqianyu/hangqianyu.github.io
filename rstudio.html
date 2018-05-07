@@ -1601,6 +1601,15 @@ ggplot(faithful, aes(x = waiting, y = eruptions)) +
 </div>
 <div id="for-large-data" class="section level1">
 <h1>For Large Data</h1>
+<pre class="r"><code># pairs
+pairs(iris[1:4])
+# chart.Correlation
+library(PerformanceAnalytics)
+chart.Correlation(iris[1:4])
+# ggpairs
+library(GGally)
+ggpairs(mtcars_fact[1:3])</code></pre>
+<p><img src="images/correlation1.png" width="50%" /><img src="images/correlation2.png" width="50%" /><img src="images/correlation3.png" width="50%" /></p>
 </div>
 <div id="references" class="section level1">
 <h1>References</h1>
