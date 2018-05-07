@@ -1,6 +1,6 @@
 ---
 title: "Biogeochemistry and Ecological Engineering"
-author:  "[Qianyu Hang](https://github.com/hangqianyu) (杭前宇) at NC State University"
+author:  "[Qianyu Hang](https://github.com/hangqianyu) at NC State University"
 date: '`r format(Sys.Date(), "%a %b %d, %Y")`'
 output:
   html_document:
