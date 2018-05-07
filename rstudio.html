@@ -1518,12 +1518,39 @@ p + geom_density(kernel = &quot;e&quot;)</code></pre>
   geom_boxplot(varwidth = T) +
   facet_grid(. ~ color)</code></pre>
 <p><img src="rstudio_files/figure-html/unnamed-chunk-147-1.png" width="768" /></p>
-<p><img src="images/another16.png" width="70%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code># Individual densities
+ggplot(mammals[mammals$vore == &quot;Insectivore&quot;, ], aes(x = sleep_total, fill = vore)) +
+  geom_density(col = NA, alpha = 0.35) +
+  scale_x_continuous(limits = c(0, 24)) +
+  coord_cartesian(ylim = c(0, 0.3))
+
+# With faceting
+ggplot(mammals, aes(x = sleep_total, fill = vore)) +
+  geom_density(col = NA, alpha = 0.35) +
+  scale_x_continuous(limits = c(0, 24)) +
+  coord_cartesian(ylim = c(0, 0.3)) +
+  facet_wrap( ~ vore, nrow = 2)
+
+# Note that by default, the x ranges fill the scale
+ggplot(mammals, aes(x = sleep_total, fill = vore)) +
+  geom_density(col = NA, alpha = 0.35) +
+  scale_x_continuous(limits = c(0, 24)) +
+  coord_cartesian(ylim = c(0, 0.3))
+
+# Trim each density plot individually
+ggplot(mammals, aes(x = sleep_total, fill = vore)) +
+  geom_density(col = NA, alpha = 0.35, trim = TRUE) +
+  scale_x_continuous(limits=c(0,24)) +
+  coord_cartesian(ylim = c(0, 0.3))</code></pre>
+<p><img src="images/mammals1.png" width="50%" /><img src="images/mammals2.png" width="50%" /><img src="images/mammals3.png" width="50%" /><img src="images/mammals4.png" width="50%" /></p>
 </div>
 </div>
 <div id="references" class="section level1">
 <h1>References</h1>
-<p><a href="https://www.datacamp.com/home">DataCamp</a> <a href="https://www.zevross.com/blog/2017/06/19/tips-and-tricks-for-working-with-images-and-figures-in-r-markdown-documents/">Tips for working with images</a> <a href="http://r4ds.had.co.nz/tidy-data.html">R for Data Science</a> …..</p>
+<p><a href="https://www.datacamp.com/home">DataCamp</a></p>
+<p><a href="https://www.zevross.com/blog/2017/06/19/tips-and-tricks-for-working-with-images-and-figures-in-r-markdown-documents/">Tips for working with images</a></p>
+<p><a href="http://r4ds.had.co.nz/tidy-data.html">R for Data Science</a></p>
+<p>…..</p>
 </div>
 
 

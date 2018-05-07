@@ -1568,10 +1568,36 @@ ggplot(diamonds, aes(x = cut, y = price, col = color)) +
   facet_grid(. ~ color)
 ```
 
-```{r echo=FALSE, message=FALSE, out.width="70%", fig.align='center'}
-include_graphics("images/another16.png")
+```{r eval=FALSE}
+# Individual densities
+ggplot(mammals[mammals$vore == "Insectivore", ], aes(x = sleep_total, fill = vore)) +
+  geom_density(col = NA, alpha = 0.35) +
+  scale_x_continuous(limits = c(0, 24)) +
+  coord_cartesian(ylim = c(0, 0.3))
+
+# With faceting
+ggplot(mammals, aes(x = sleep_total, fill = vore)) +
+  geom_density(col = NA, alpha = 0.35) +
+  scale_x_continuous(limits = c(0, 24)) +
+  coord_cartesian(ylim = c(0, 0.3)) +
+  facet_wrap( ~ vore, nrow = 2)
+
+# Note that by default, the x ranges fill the scale
+ggplot(mammals, aes(x = sleep_total, fill = vore)) +
+  geom_density(col = NA, alpha = 0.35) +
+  scale_x_continuous(limits = c(0, 24)) +
+  coord_cartesian(ylim = c(0, 0.3))
+
+# Trim each density plot individually
+ggplot(mammals, aes(x = sleep_total, fill = vore)) +
+  geom_density(col = NA, alpha = 0.35, trim = TRUE) +
+  scale_x_continuous(limits=c(0,24)) +
+  coord_cartesian(ylim = c(0, 0.3))
 ```
 
+```{r echo=FALSE, message=FALSE, out.width="50%"}
+include_graphics(list.files("images/", pattern = "mammals", full.names = TRUE))
+```
 
 
 
@@ -1615,6 +1641,9 @@ include_graphics("images/another16.png")
 
 # References
 [DataCamp](https://www.datacamp.com/home)
+
 [Tips for working with images](https://www.zevross.com/blog/2017/06/19/tips-and-tricks-for-working-with-images-and-figures-in-r-markdown-documents/)
+
 [R for Data Science](http://r4ds.had.co.nz/tidy-data.html)
+
  .....
