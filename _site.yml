@@ -9,14 +9,14 @@ navbar:
           href: stream.html
         - text: "Research Questions"
           href: questions.html  
-    - text: "CV"
-      href: cv.html
     - text: "Tutorial"
       menu: 
         - text: "R Studio"
           href: rstudio.html
         - text: "R Markdown"
           href: rmarkdown.html
+    - text: "CV"
+      href: cv.html
   right:
     - text: "NC State"
       menu:
