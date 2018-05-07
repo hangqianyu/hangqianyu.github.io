@@ -9,6 +9,7 @@ output:
     toc: yes
     toc_float: yes
 ---
+
 ```{r echo=FALSE, message=FALSE, out.width="50%", fig.align='center'}
 library(knitr)
 include_graphics("images/rmarkdown.png")

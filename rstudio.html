@@ -287,6 +287,9 @@ div.tocify {
     <li>
       <a href="stream.html">Stream Restoration</a>
     </li>
+    <li>
+      <a href="questions.html">Research Questions</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -386,7 +389,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Data analysis in R Studio</h1>
 <h4 class="author"><em><a href="https://github.com/hangqianyu">Qianyu Hang</a> at NC State University</em></h4>
-<h4 class="date"><em>Sun May 06, 2018</em></h4>
+<h4 class="date"><em>Mon May 07, 2018</em></h4>
 
 </div>
 
@@ -1188,6 +1191,214 @@ ggplot(mtcars, aes(x = factor(1), fill = am)) +
   coord_polar(theta = &quot;y&quot;) + # Coordinates
   theme_void()</code></pre>
 <p><img src="images/pie1.png" width="50%" /><img src="images/pie2.png" width="50%" /><img src="images/pie3.png" width="50%" /><img src="images/pie4.png" width="50%" /></p>
+<p>The trick is to use a parallel coordinates plot. Each variable is plotted on its own parallel axis. Individual observations are connected with lines, colored according to a variable of interest. This is a surprisingly useful visualization since we can combine many variables, even if they are on entirely different scales.</p>
+<p><strong>A word of caution though</strong>: typically it is very taboo to draw lines in this way. It’s the reason why we don’t draw lines across levels of a nominal variable - the order, and thus the slope of the line, is meaningless. Parallel plots are a (very useful) exception to the rule! But to be honest, i do not know much about this plot. To me, it is too complicated and meaningless when you first see it. It says it is an excellent example of an exploratory plot. In case i will explore it in the future, i will record it here.</p>
+<pre class="r"><code># Parallel coordinates plot using GGally
+library(GGally)
+# All columns except am
+group_by_am &lt;- 9
+my_names_am &lt;- (1:11)[-group_by_am]
+# Basic parallel plot - each variable plotted as a z-score transformation
+ggparcoord(mtcars, my_names_am, groupColumn = group_by_am, alpha = 0.8)</code></pre>
+<p><img src="images/another4.png" width="70%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="plot-matrix" class="section level1">
+<h1>Plot Matrix</h1>
+<p>Another great example is a plot matrix. <code>GGally::ggpairs(mtcars2)</code> will produce the plot of a selection of the <code>mtcars</code> dataset, <code>mtcars2</code>.</p>
+<p><img src="images/matrix1.png" width="50%" /><img src="images/matrix2.png" width="50%" /></p>
+</div>
+<div id="heat-maps" class="section level1">
+<h1>Heat Maps</h1>
+<p>Just for exploratory thinking of your data, not good for publication though.</p>
+<pre class="r"><code># Create color palette
+myColors &lt;- brewer.pal(9, &quot;Reds&quot;)
+# Build the heat map using geom_tile
+ggplot(barley, aes(x = year, y = variety, fill = yield)) +
+  geom_tile() + # Geom layer
+  facet_wrap( ~ site, ncol = 1) + # ensure there is just one column
+  scale_fill_gradientn(colors = myColors) # Adjust colors</code></pre>
+<p><img src="images/another5.png" width="70%" style="display: block; margin: auto;" /></p>
+<div id="heat-maps-alternatives" class="section level2">
+<h2>Heat maps alternatives</h2>
+<p>There are several alternatives to heat maps. The best choice really depends on the data and the story you want to tell with this data.</p>
+<pre class="r"><code># Line plot; check group argument meaning
+ggplot(barley, aes(x = year, y = yield, col = variety, group = variety))  + 
+  geom_line() + 
+  facet_wrap( ~ site, nrow = 1)</code></pre>
+<p><img src="images/another6.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>You can use dodged error bars or you can use overlapping transparent ribbons. We’ll try to recreate the second option, the transparent ribbons here.</p>
+<pre class="r"><code># Create overlapping ribbon plot from scratch
+ggplot(barley, aes(x = year, y = yield, col = site, fill = site, group = site)) +
+  stat_summary(fun.y = mean, geom = &quot;line&quot;) +
+  stat_summary(fun.data = mean_sdl, fun.args = list(mult = 1), geom = &quot;ribbon&quot;, col = NA, alpha = 0.1)</code></pre>
+<p><img src="images/another7.png" width="70%" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="case-study" class="section level1">
+<h1>Case Study</h1>
+<pre class="r"><code># Age colored by BMI, binwidth = 1
+ggplot(adult, aes (x = SRAGE_P, fill= factor(RBMI))) + 
+  geom_histogram(binwidth = 1)</code></pre>
+<p><img src="images/another8.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>When we introduced histograms we focused on univariate data, which is exactly what we’ve been doing here. However, when we want to explore distributions further there is much more we can do. For example, there are density and frequency plots.</p>
+<pre class="r"><code># The color scale used in the plot
+BMI_fill &lt;- scale_fill_brewer(&quot;BMI Category&quot;, palette = &quot;Reds&quot;)
+# Theme to fix category display in faceted plot
+fix_strips &lt;- theme(strip.text.y = element_text(angle = 0, hjust = 0, vjust = 0.1, size = 14),
+                    strip.background = element_blank(),
+                    legend.position = &quot;none&quot;)
+# Histogram, add BMI_fill and customizations
+ggplot(adult, aes (x = SRAGE_P, fill= factor(RBMI))) + 
+  geom_histogram(binwidth = 1) +
+  fix_strips +
+  BMI_fill +
+  facet_grid(RBMI ~ .) +
+  theme_classic()</code></pre>
+<p><img src="images/another9.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>In the previous exercise we looked at different ways of showing the absolute count of multiple histograms. This is fine, but density would be a more useful measure if we wanted to see how the frequency of one variable changes across another.</p>
+<pre class="r"><code># Plot 1 - Count histogram
+ggplot(adult, aes (x = SRAGE_P, fill= factor(RBMI))) +
+  geom_histogram(binwidth = 1) +
+  BMI_fill
+# Plot 2 - Density histogram
+ggplot(adult, aes (x = SRAGE_P, fill= factor(RBMI))) + 
+  geom_histogram(aes(y = ..density..), binwidth = 1) +
+  BMI_fill
+# Plot 3 - Faceted count histogram
+ggplot(adult, aes (x = SRAGE_P, fill= factor(RBMI))) +
+  geom_histogram(binwidth = 1) +
+  BMI_fill + 
+  facet_grid(RBMI ~ .)
+# Plot 4 - Faceted density histogram
+ggplot(adult, aes (x = SRAGE_P, fill= factor(RBMI))) + 
+  geom_histogram(aes(y = ..density..), binwidth = 1) +
+  BMI_fill +
+  facet_grid(RBMI ~ .)
+# Plot 5 - Density histogram with position = &quot;fill&quot;
+ggplot(adult, aes (x = SRAGE_P, fill= factor(RBMI))) + 
+  geom_histogram(aes(y = ..density..), binwidth = 1, position = &quot;fill&quot;) +
+  BMI_fill
+# Plot 6 - The accurate histogram
+ggplot(adult, aes (x = SRAGE_P, fill= factor(RBMI))) + 
+  geom_histogram(aes(y = ..count../sum(..count..)), binwidth = 1, position = &quot;fill&quot;) +
+  BMI_fill</code></pre>
+<p><img src="images/density1.png" width="50%" /><img src="images/density2.png" width="50%" /><img src="images/density3.png" width="50%" /><img src="images/density4.png" width="50%" /><img src="images/density5.png" width="50%" /><img src="images/density6.png" width="50%" /></p>
+<pre class="r"><code># An attempt to facet the accurate frequency histogram from before (failed)
+ggplot(adult, aes (x = SRAGE_P, fill= factor(RBMI))) +
+  geom_histogram(aes(y = ..count../sum(..count..)), binwidth = 1, position = &quot;fill&quot;) +
+  BMI_fill +
+  facet_grid(RBMI ~ .)
+
+# Create DF with table()
+DF &lt;- table(adult$RBMI, adult$SRAGE_P)
+# Use apply on DF to get frequency of each group
+DF_freq &lt;- apply(DF, 2, function(x) x/sum(x)) # 2 means 2 columns
+# Load reshape2 and use melt on DF to create DF_melted
+library(reshape2)
+DF_melted &lt;- melt(DF_freq)
+# Change names of DF_melted
+names(DF_melted) &lt;- c(&quot;FILL&quot;, &quot;X&quot;, &quot;value&quot;)
+# Add code to make this a faceted plot
+ggplot(DF_melted, aes(x = X, y = value, fill = FILL)) +
+  geom_col(position = &quot;stack&quot;) + # we can use geom_col instead of geom_bar(stat = &quot;identity&quot;)
+  BMI_fill + 
+  facet_grid(FILL ~ .) # Facets</code></pre>
+<p><img src="images/stack1.png" width="50%" /><img src="images/stack2.png" width="50%" /></p>
+<div id="mosaic-plots-useful" class="section level2">
+<h2>Mosaic Plots (Useful)</h2>
+<p>You may have already realized that bars are simply rectangles, but we don’t have easy access to the xmin and xmax aesthetics, but in geom_rect() we do! Likewise, we also have access to ymin and ymax.</p>
+<pre class="r"><code># The initial contingency table
+DF &lt;- as.data.frame.matrix(table(adult$SRAGE_P, adult$RBMI))
+# Create groupSum, xmax and xmin columns
+DF$groupSum &lt;- rowSums(DF)
+DF$xmax &lt;- cumsum(DF$groupSum)
+DF$xmin &lt;- DF$xmax - DF$groupSum
+# The groupSum column needs to be removed; don&#39;t remove this line
+DF$groupSum &lt;- NULL
+# Copy row names to variable X
+DF$X &lt;- row.names(DF)
+# Melt the dataset
+library(reshape2)
+DF_melted &lt;- melt(DF, id.vars = c(&quot;X&quot;, &quot;xmin&quot;, &quot;xmax&quot;), variable.name = &quot;FILL&quot;)
+# dplyr call to calculate ymin and ymax - don&#39;t change
+library(dplyr)
+DF_melted &lt;- DF_melted %&gt;%
+  group_by(X) %&gt;%
+  mutate(ymax = cumsum(value/sum(value)),
+         ymin = ymax - value/sum(value))
+# Plot rectangles - don&#39;t change
+library(ggthemes)
+ggplot(DF_melted, aes(ymin = ymin,
+                 ymax = ymax,
+                 xmin = xmin,
+                 xmax = xmax,
+                 fill = FILL)) +
+  geom_rect(colour = &quot;white&quot;) +
+  scale_x_continuous(expand = c(0,0)) +
+  scale_y_continuous(expand = c(0,0)) +
+  BMI_fill +
+  theme_tufte()</code></pre>
+<p><img src="images/another10.png" width="70%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code># Perform chi.sq test (RBMI and SRAGE_P)
+results &lt;- chisq.test(table(adult$RBMI, adult$SRAGE_P))
+# Melt results$residuals and store as resid
+resid &lt;- melt(results$residuals)
+# Change names of resid
+names(resid) &lt;- c(&quot;FILL&quot;, &quot;X&quot;, &quot;residual&quot;)
+# merge the two datasets:
+DF_all &lt;- merge(DF_melted, resid)
+# Update plot command
+library(ggthemes)
+ggplot(DF_all, aes(ymin = ymin,
+                   ymax = ymax,
+                   xmin = xmin,
+                   xmax = xmax,
+                   fill = residual)) +
+  geom_rect() +
+  scale_fill_gradient2() +
+  scale_x_continuous(expand = c(0,0)) +
+  scale_y_continuous(expand = c(0,0)) +
+  theme_tufte()</code></pre>
+<p><img src="images/another11.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>Since we’re not coloring according to BMI, we have to add group (and x axis) labels manually. The first two commands show how we got the the four positions for the y axis labels. First, we got the position of the maximum xmax values, i.e. at the very right end, stored as index. We want to calculate the half difference between each pair of ymax and ymin (e.g. (ymax - ymin)/2) at these index positions, then add this value to the ymin value. These positions are stored in the variable yposn.</p>
+<pre class="r"><code># Position for labels on y axis (don&#39;t change)
+index &lt;- DF_all$xmax == max(DF_all$xmax)
+DF_all$yposn &lt;- DF_all$ymin[index] + (DF_all$ymax[index] - DF_all$ymin[index])/2
+# Plot 1: geom_text for BMI (i.e. the fill axis)
+p1 &lt;- p %+% DF_all + 
+  geom_text(aes(x = max(xmax), 
+               y = yposn,
+               label = FILL),
+            size = 3, hjust = 1,
+            show.legend  = FALSE)
+p1
+
+# Plot 2: Position for labels on x axis
+DF_all$xposn &lt;- DF_all$xmin + (DF_all$xmax - DF_all$xmin)/2
+# geom_text for ages (i.e. the x axis)
+p1 %+% DF_all + 
+  geom_text(aes(x = xposn, label = x),
+            y = 1, angle = 90,
+            size = 3, hjust = 1,
+            show.legend = FALSE)</code></pre>
+<p><img src="images/mark1.png" width="50%" /><img src="images/mark2.png" width="50%" /><img src="images/rmarkdown.png" width="50%" /></p>
+<p>Notice that the function, <code>mosaicGG()</code>, takes multiple arguments, such as the data frame of interest and the variables that you want to create the mosaic plot for. None of the arguments have default values, so you’ll have to specify all three if you want the mosaicGG() function to work.</p>
+<pre class="r"><code># Load all packages
+library(ggplot2)
+library(reshape2)
+library(dplyr)
+library(ggthemes)
+# BMI described by age (as previously seen)
+mosaicGG(adult, X = &quot;SRAGE_P&quot;, FILL = &quot;RBMI&quot;)
+# Poverty described by age
+mosaicGG(adult, X = &quot;SRAGE_P&quot;, FILL = &quot;POVLL&quot;)
+# mtcars: am described by cyl
+mosaicGG(mtcars, &quot;cyl&quot;, &quot;am&quot;)
+# Vocab: vocabulary described by education
+library(carData)
+mosaicGG(Vocab, &quot;education&quot;, &quot;vocabulary&quot;)</code></pre>
+<p><img src="images/mosaic1.png" width="50%" /><img src="images/mosaic2.png" width="50%" /><img src="images/mosaic3.png" width="50%" /><img src="images/mosaic4.png" width="50%" /></p>
+</div>
 </div>
 
 

@@ -1,0 +1,20 @@
+---
+title: "Thoughts through literature reading"
+author:  "[Qianyu Hang](https://github.com/hangqianyu) at NC State University"
+date: '`r format(Sys.Date(), "%a %b %d, %Y")`'
+output:
+  html_document:
+    out_height: 0.1
+    out_width: 0.1
+    toc: yes
+    toc_float: yes
+---
+
+```{r echo=FALSE, message=FALSE, out.width="100%", fig.align='center'}
+library(knitr)
+include_graphics("images/questions.jpg")
+```
+
+-------------
+Some thoughts through literature reading.
+

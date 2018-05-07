@@ -7,6 +7,8 @@ navbar:
       menu: 
         - text: "Stream Restoration"
           href: stream.html
+        - text: "Research Questions"
+          href: questions.html  
     - text: "CV"
       href: cv.html
     - text: "Tutorial"
