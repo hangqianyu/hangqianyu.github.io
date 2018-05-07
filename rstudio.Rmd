@@ -1678,6 +1678,121 @@ ggpairs(mtcars_fact[1:3])
 include_graphics(list.files("images/", pattern = "correlation", full.names = TRUE))
 ```
 
+```{r eval=FALSE}
+library(ggplot2)
+library(reshape2)
+cor_list <- function(x) {
+  L <- M <- cor(x)
+  
+  M[lower.tri(M, diag = TRUE)] <- NA
+  M <- melt(M)
+  names(M)[3] <- "points"
+  
+  L[upper.tri(L, diag = TRUE)] <- NA
+  L <- melt(L)
+  names(L)[3] <- "labels"
+  
+  merge(M, L)
+}
+# Calculate xx with cor_list
+library(dplyr)
+xx <- iris %>%
+  group_by(Species) %>%
+  do(cor_list(.[1:4])) 
+# Finish the plot
+ggplot(xx, aes(x = Var1, y = Var2)) +
+  geom_point(aes(col = points, size = abs(points)), shape = 16) +
+  geom_text(aes(col = labels,  size = abs(labels), label = round(labels, 2))) +
+  scale_size(range = c(0, 6)) +
+  scale_color_gradient("r", limits = c(-1, 1)) +
+  scale_y_discrete("", limits = rev(levels(xx$Var1))) +
+  scale_x_discrete("") +
+  guides(size = FALSE) +
+  geom_abline(slope = -1, intercept = nlevels(xx$Var1) + 1) +
+  coord_fixed() +
+  facet_grid(. ~ Species) +
+  theme(axis.text.y = element_text(angle = 45, hjust = 1),
+        axis.text.x = element_text(angle = 45, hjust = 1),
+        strip.background = element_blank())
+```
+
+```{r echo=FALSE, message=FALSE, out.width="70%", fig.align='center'}
+include_graphics("images/another16.png")
+```
+
+## Ternary or Triangle Plot
+
+```{r eval=FALSE}
+# Add an ID column from the row.names
+africa_sample$ID <- row.names(africa_sample)
+# Gather africa_sample
+library(tidyr)
+africa_sample_tidy <- gather(africa_sample, key, value, -ID)
+head(africa_sample_tidy)
+# Finish the ggplot command
+ggplot(africa_sample_tidy, aes(x = factor(ID), y = value, fill = key)) +
+  geom_col() +
+  coord_flip()
+```
+
+```{r echo=FALSE, message=FALSE, out.width="70%", fig.align='center'}
+include_graphics("images/another17.png")
+```
+
+```{r eval=FALSE}
+# Load ggtern
+library(ggtern)
+
+# Build ternary plot
+ggtern(africa, aes(x = Sand, y = Silt, z = Clay)) +
+  geom_point(shape = 16, alpha = 0.2)
+```
+
+```{r echo=FALSE, message=FALSE, out.width="70%", fig.align='center'}
+include_graphics("images/another18.png")
+```
+
+**Adjust ternary plots**
+
+Ternary plots have been around for a while in R; you could achieve the same thing with the vcd package authored by Michael Friendly. If you just need a quick and dirty ternary plot, that may suit you just fine. However, since ggtern is built on ggplot2, you can take advantage of all the tools available therein.
+
+```{r eval=FALSE}
+# Contour plot
+ggtern(africa, aes(x = Sand, y = Silt, z = Clay)) +
+  geom_density_tern()
+# Density olot which i prefer
+ggtern(africa, aes(x = Sand, y = Silt, z = Clay)) +
+  stat_density_tern(geom = "polygon", aes(fill = ..level.., alpha = ..level..)) +
+  guides(fill = FALSE)
+```
+
+```{r echo=FALSE, message=FALSE, out.width="50%"}
+include_graphics(list.files("images/", pattern = "ternary", full.names = TRUE))
+```
+
+# Build the network
+# Merge edges and vertices
+mmnet <- merge(madmen$edges, madmen$vertices,
+               by.x = "Name1", by.y = "label",
+               all = TRUE)
+# Finish the ggplot command
+ggplot(data = mmnet, aes(from_id = Name1, to_id = Name2)) +
+  geom_net(aes(col = Gender), size = 6, linewidth = 1, labelon = TRUE, fontsize = 3, labelcolour = "black")
+
+```{r eval=FALSE}
+# Merge edges and vertices
+mmnet <- merge(madmen$edges, madmen$vertices,
+               by.x = "Name1", by.y = "label",
+               all = TRUE)
+
+# Finish the ggplot command
+ggplot(data = mmnet, aes(from_id = Name1, to_id = Name2)) +
+  geom_net(aes(col = Gender), size = 6, linewidth = 1, labelon = TRUE, fontsize = 3, labelcolour = "black")
+```
+
+```{r echo=FALSE, message=FALSE, out.width="70%", fig.align='center'}
+include_graphics("images/another19.png")
+```
 
 
 
