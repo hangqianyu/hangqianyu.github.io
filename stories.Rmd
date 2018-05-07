@@ -10,13 +10,14 @@ output:
 
 ------------
 
-The insightful saying i personally like:
+* The insightful saying i personally like:
 
 **"Not everything that counts can be counted and not everything that's counted truly counts"**  - By Albert Einstein
+<br/><br/><br/>
 
-**The poem i personally like:**
+* The poem i personally like:
 
-### *The Road Not Taken*
+The Road Not Taken
 
 *Robert Frost*
 
