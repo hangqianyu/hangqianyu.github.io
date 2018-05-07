@@ -1381,7 +1381,7 @@ p1 %+% DF_all +
 ```
 
 ```{r echo=FALSE, message=FALSE, out.width="50%"}
-include_graphics(list.files("images/", pattern = "mark", full.names = TRUE))
+include_graphics(list.files("images/", pattern = "plot", full.names = TRUE))
 ```
 
 Notice that the function, `mosaicGG()`, takes multiple arguments, such as the data frame of interest and the variables that you want to create the mosaic plot for. None of the arguments have default values, so you'll have to specify all three if you want the mosaicGG() function to work.
