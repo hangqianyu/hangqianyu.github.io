@@ -4,7 +4,7 @@ author:  "[Qianyu Hang](https://github.com/hangqianyu) at NC State University"
 date: '`r format(Sys.Date(), "%a %b %d, %Y")`'
 output:
   html_document:
-    fig_width: 0.5
+    out_width: 0.5
 ---
 
 <script type="text/javascript"><!--
