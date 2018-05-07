@@ -4,8 +4,7 @@ author:  "[Qianyu Hang](https://github.com/hangqianyu) at NC State University"
 date: '`r format(Sys.Date(), "%a %b %d, %Y")`'
 output:
   html_document:
-    fig_height: 2
-    fig_width: 2
+    fig_width: 8
     toc: yes
     toc_float: yes
 ---
@@ -1406,6 +1405,46 @@ mosaicGG(Vocab, "education", "vocabulary")
 ```{r echo=FALSE, message=FALSE, out.width="50%"}
 include_graphics(list.files("images/", pattern = "mosaic", full.names = TRUE))
 ```
+
+```{r message=FALSE}
+# Create movies_small
+library(ggplot2movies)# movies data is in this package
+library(ggplot2)
+library(Hmisc)
+set.seed(123)
+movies_small <- movies[sample(nrow(movies), 1000), ] # a random sample of 1000 observations from the larger movies dataset
+movies_small$rating <- factor(round(movies_small$rating))
+# Build a scatter plot with mean and 95% CI
+ggplot(movies_small, aes(x = rating, y = votes)) +
+  geom_point() +
+  stat_summary(fun.data = "mean_cl_normal",  # depicts the mean and the 95% CI
+               geom = "crossbar",
+               width = 0.2,
+               col = "red") +
+  scale_y_log10() # transform the y scale
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

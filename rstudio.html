@@ -1398,6 +1398,22 @@ mosaicGG(mtcars, &quot;cyl&quot;, &quot;am&quot;)
 library(carData)
 mosaicGG(Vocab, &quot;education&quot;, &quot;vocabulary&quot;)</code></pre>
 <p><img src="images/mosaic1.png" width="50%" /><img src="images/mosaic2.png" width="50%" /><img src="images/mosaic3.png" width="50%" /><img src="images/mosaic4.png" width="50%" /></p>
+<pre class="r"><code># Create movies_small
+library(ggplot2movies)# movies data is in this package
+library(ggplot2)
+library(Hmisc)
+set.seed(123)
+movies_small &lt;- movies[sample(nrow(movies), 1000), ] # a random sample of 1000 observations from the larger movies dataset
+movies_small$rating &lt;- factor(round(movies_small$rating))
+# Build a scatter plot with mean and 95% CI
+ggplot(movies_small, aes(x = rating, y = votes)) +
+  geom_point() +
+  stat_summary(fun.data = &quot;mean_cl_normal&quot;,  # depicts the mean and the 95% CI
+               geom = &quot;crossbar&quot;,
+               width = 0.2,
+               col = &quot;red&quot;) +
+  scale_y_log10() # transform the y scale</code></pre>
+<p><img src="rstudio_files/figure-html/unnamed-chunk-133-1.png" width="768" /></p>
 </div>
 </div>
 
