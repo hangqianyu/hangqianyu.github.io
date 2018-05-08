@@ -432,6 +432,7 @@ prop.table(tab, 2)  # Conditional on columns, make column add to 1
 ```
 
 *****************
+
 # Intro to Statistics with R
 ## Binwidth
 

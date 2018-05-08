@@ -389,7 +389,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Data analysis in R Studio</h1>
 <h4 class="author"><em><a href="https://github.com/hangqianyu">Qianyu Hang</a> at NC State University</em></h4>
-<h4 class="date"><em>Mon May 07, 2018</em></h4>
+<h4 class="date"><em>Tue May 08, 2018</em></h4>
 
 </div>
 
@@ -795,60 +795,63 @@ round() Round the values to 0 decimal places by default. Try out ?round in the c
 <td><code>r tab &lt;- table(comics$align, comics$gender) options(scipen = 999, digits = 3) # Print fewer digits prop.table(tab)     # Joint proportions prop.table(tab, 2)  # Conditional on columns, make column add to 1</code></td>
 </tr>
 <tr class="odd">
-<td>***************** # Intro to Statistics with R ## Binwidth</td>
+<td>*****************</td>
 </tr>
 <tr class="even">
+<td># Intro to Statistics with R ## Binwidth</td>
+</tr>
+<tr class="odd">
 <td><code>r # Create hist of horsepwr with binwidth of 3 cars %&gt;% ggplot(aes(horsepwr)) + geom_histogram(binwidth = 3) + ggtitle(&quot;binwidth = 3&quot;) # Create hist of horsepwr with binwidth of 30 cars %&gt;% ggplot(aes(horsepwr)) + geom_histogram(binwidth = 30) + ggtitle(&quot;binwidth = 30&quot;) # Create hist of horsepwr with binwidth of 60 cars %&gt;% ggplot(aes(horsepwr)) + geom_histogram(binwidth = 60) + ggtitle(&quot;binwidth = 60&quot;)</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><img src="images/binwidth1.png" width="50%" /><img src="images/binwidth2.png" width="50%" /><img src="images/binwidth3.png" width="50%" /></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td># <code>ggplot2</code> Visualization An awesome website was recommended to you <a href="http://ggplot2.tidyverse.org/index.html">ggplot2</a></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>* Limitations of base plot functions - Plot does not get redrawn - Plot is drawn as an image - Need to manually add legend - No unified framework for plotting</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>* All Grammatical Elements: - Data, the dataset being plotted - Aesthetics, the scales onto which we map our data - Geometries, the visual elements used for our data - Facets, plotting small multiples - Statistics, representations of our data to aid understanding - Coordinates, the space on which the data will be plotted - Themes, all non-data ink</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>* Typical Aesthetics - x, X axis position - y, y axis position - colour, colour of dots, outlines of other shapes - fill, fill colour - size, diameter of points, thickness of lines - alpha, transparency - linetype, line dash pattern - labels, text on a plot or axes - shape, shape</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><img src="images/shape.png" width="60%" style="display: block; margin: auto;" /></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>##   Aesthetic                              Description ## 1         x                          X axis position ## 2         y                          Y axis position ## 3    colour Colour of dots, outlines of other shapes ## 4      fill                              Fill colour ## 5      size   Diameter of points, thickness of lines ## 6     alpha                             Transparency ## 7  linetype                        Line dash pattern ## 8    labels                   Text on a plot or axes ## 9     shape                                    Shape</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>r ggplot(mtcars, aes(x = cyl, y = mpg, col = disp, size = disp, shape = categorical column, shape = 1, size = 4)) + geom_point(alpha = 0.4, position = &quot;jitter&quot;) + # alpha means the transparency of discrete points, 0-1, jitter expands the points more evenly, or you can just use geom_jitter() geom_smooth(aes(group = 1), method = &quot;lm&quot;, se = FALSE) # if you do not want any error shading, you can set se = FALSE, lm means lineal model method in scatter plot, group = 1 tells ggplot to draw a single linear model through all the points in different colors.</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Note that you can also call <code>aes()</code> within the <code>geom_point()</code> function. Which shape to use? The default geom_point() uses shape = 19 (a solid circle with an outline the same colour as the inside). Good alternatives are shape = 1 (hollow) and shape = 16 (solid, no outline). These all use the col aesthetic (don’t forget to set alpha for solid points). A really nice alternative is shape = 21 which allows you to use both fill for the inside and col for the outline! This is a great little trick for when you want to map two aesthetics to a dot.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>r ggplot(mtcars, aes(x = wt, y = mpg, fill = cyl, col = am, shape = 21, size = 4, label = cyl)) + geom_point(alpha = 0.6) + geom_text()</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>This time you’ll use these arguments to set attributes of the plot, not aesthetics. However, there are some pitfalls you’ll have to watch out for: these attributes can overwrite the aesthetics of your plot! <strong>A word about shapes:</strong> In the exercise “All about aesthetics, part 2”, you saw that shape = 21 results in a point that has a fill and an outline. Shapes in R can have a value from 1-25. Shapes 1-20 can only accept a color aesthetic, but shapes 21-25 have both a color and a fill aesthetic.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>r ggplot(mtcars, aes(x=wt, y=mpg, col=cyl)) + geom_point(col = my_color) # The col setting in geom_point can overwrite the aesthetics of plot</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong>A word about hexadecimal colours</strong>: Hexadecimal, literally “related to 16”, is a base-16 alphanumeric counting system. Individual values come from the ranges 0-9 and A-F. This means there are 256 possible two-digit values (i.e. 00 - FF). Hexadecimal colours use this system to specify a six-digit code for Red, Green and Blue values (“#RRGGBB”) of a colour (i.e. Pure blue: “#0000FF”, black: “#000000”, white: “#FFFFFF”). R can accept hex codes as valid colours.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>r ggplot(mtcars, aes(x = wt, y = mpg, fill = cyl)) + geom_text(rownames(mtcars), col = &quot;red&quot;) # Remember specify characters with quotation makrs</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>r val = c(&quot;#E41A1C&quot;, &quot;#377EB8&quot;) lab = c(&quot;Manual&quot;, &quot;Automatic&quot;) cyl.am + geom_bar(position = &quot;dodge&quot;) + scale_x_discrete(&quot;Cylinders&quot;) + scale_y_continuous(&quot;Number&quot;) + scale_fill_manual(&quot;Transmission&quot;, values = val, labels = lab)</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong>Explaination to the code above:</strong> <code>scale_x_discrete()</code> takes as its only argument the x-axis label: “Cylinders”. <code>scale_y_continuous()</code> takes as its only argument the y-axis label: “Number”. <code>scale_fill_manual()</code> fixes the legend. The first argument is the title of the legend: “Transmission”. Next, values and labels are set to predefined values for you. These are the colors and the labels in the legend. The result of above code will be like this:</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><img src="images/bar1.png" width="70%" style="display: block; margin: auto;" /></td>
 </tr>
 </tbody>
