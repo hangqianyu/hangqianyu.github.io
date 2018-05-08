@@ -433,7 +433,29 @@ prop.table(tab, 2)  # Conditional on columns, make column add to 1
 
 *****************
 # Intro to Statistics with R
+## Binwidth
 
+```{r eval=FALSE}
+# Create hist of horsepwr with binwidth of 3
+cars %>%
+  ggplot(aes(horsepwr)) +
+  geom_histogram(binwidth = 3) +
+  ggtitle("binwidth = 3")
+# Create hist of horsepwr with binwidth of 30
+cars %>% 
+  ggplot(aes(horsepwr)) +
+  geom_histogram(binwidth = 30) +
+  ggtitle("binwidth = 30")
+# Create hist of horsepwr with binwidth of 60
+cars %>%
+  ggplot(aes(horsepwr)) +
+  geom_histogram(binwidth = 60) +
+  ggtitle("binwidth = 60")
+```
+
+```{r echo=FALSE, message=FALSE, out.width="50%"}
+include_graphics(list.files("images/", pattern = "binwidth", full.names = TRUE))
+```
 
 # `ggplot2` Visualization
 An awesome website was recommended to you [ggplot2](http://ggplot2.tidyverse.org/index.html)
