@@ -82,6 +82,10 @@ round() Round the values to 0 decimal places by default. Try out ?round in the c
 Please refer to [Detailed explanation](https://www.r-bloggers.com/r-accessors-explained/)
 
 ****************
+# Operators
+For the meaning of operators in R, you would like to see [here](https://www.tutorialspoint.com/r/r_operators.htm).
+
+------
 # Read flat/excel files
 There are several ways to do it. Basically, for "utils" package which is already existed in system library, it is east to read a table using read.table() function as below: 
 ```{r eval=FALSE}
@@ -428,6 +432,9 @@ prop.table(tab, 2)  # Conditional on columns, make column add to 1
 ```
 
 *****************
+# Intro to Statistics with R
+
+
 # `ggplot2` Visualization
 An awesome website was recommended to you [ggplot2](http://ggplot2.tidyverse.org/index.html)
 
