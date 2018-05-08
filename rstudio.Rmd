@@ -19,7 +19,7 @@ include_graphics("images/rstudio.png")
 # Introduction
 R is a language and environment for statistical computing and graphics. R provides a wide variety of statistical (linear and nonlinear modelling, classical statistical tests, time-series analysis, classification, clustering, …) and graphical techniques, and is highly extensible. One of R’s strengths is the ease with which well-designed publication-quality plots can be produced, including mathematical symbols and formulae where needed. The most important thing to me is it is open source and free software. While i prefer R Studio which is open source and enterprise-ready profession software for R. I think it is much more easier to use R Studio than R (You might think so as well).
 
-I am not good at codeing all my life!!! NEVER! But I benefited a lot from courses in [Datacamp](https://www.datacamp.com/home) which is recommended by Dr. Nelson and Dr. Birgand. So go there and enjoy your R Studio-ing if you are interested (maybe not for free though :-D)! At first, you will find it is very annoying to use codes and remember which function makes this and which function makes that (if not, you might be nature-born data analyst). But for now, although i am not good at it, i really enjoy coding and R Studio-ing after grasping some basic R and R Markdown knowledge. Here, i combined experience from [DataCamp](https://www.datacamp.com/home) and myself to help you master it easier. To begin with, there are some basic programming notes you need to remember. Let's get it started!
+I am not good at codeing all my life!!! NEVER! But I benefited a lot from courses in [Datacamp](https://www.datacamp.com/home) which is recommended by Dr. Nelson and Dr. Birgand. So go there and enjoy your R Studio-ing if you are interested (maybe not for free though :-D)! At first, you will find it is very annoying to use codes and remember which function makes this and which function makes that (if not, you might be nature-born data analyst). But for now, although i am not good at it, i really enjoy coding and R Studio-ing after grasping some basic R and R Markdown knowledge. Here, i combined experience from [DataCamp](https://www.datacamp.com/home) and myself to help you master it easier. To begin with, there are some basic programming notes you need to remember. You might want to jump right into data visualization portion, but data analysts usually spend around 80% of their time cleaning and tidying data, and only 20% of time plotting. So, let's get it started!
 
 # Basic programming notes
 ```{r eval=FALSE}
@@ -1794,11 +1794,94 @@ ggplot(data = mmnet, aes(from_id = Name1, to_id = Name2)) +
 include_graphics("images/another19.png")
 ```
 
+**Adjusting the network**
 
+```{r eval=FALSE}
+# Node colors
+pink_and_blue <- c(female = "#FF69B4", male = "#0099ff")
+# Tweak the network plot
+ggplot(data = mmnet, aes(from_id = Name1, to_id = Name2)) +
+  geom_net(aes(col = Gender),
+           size = 6,
+           linewidth = 1,
+           labelon = TRUE,
+           fontsize = 3,
+           labelcolour = "black",
+           # Make the graph directed
+           directed = TRUE) +
+  # Add manual color scale         
+  scale_color_manual(values = pink_and_blue) +
+  # Set x-axis limits
+  xlim(-0.05, 1.05) +
+  # Set void theme
+  theme_void() # remove all background elements like axes and grid lines to make a clean network plot
+```
 
+```{r echo=FALSE, message=FALSE, out.width="70%", fig.align='center'}
+include_graphics("images/another20.png")
+```
 
+# Diagnostic Plots
+R has several plotting methods for specific objects. For example using `plot()` on the results of an `lm()` call results in four plots that give you insight into how well the assigned model fits the data.
 
+The `ggfortify` package is an all-purpose plot converter between base graphics and ggplot2 grid graphics. For now, just know that if you want to use the automatic output features in the context of `ggplot2`, they must first be converted to a ggplot object via `ggfortify`. This can be important at the superficial level, for consistency in appearance, but also at a deeper level, for later combining several plots in a single graphics device.
 
+```{r eval=FALSE}
+# Create linear model: res
+res <- lm(Volume ~ Girth, data = trees)
+# Plot res
+plot(res) # four figures seperated
+# Import ggfortify and use autoplot()
+library(ggfortify)
+library(ggplot2)
+autoplot(res, ncol = 2)
+```
+
+```{r echo=FALSE, message=FALSE, out.width="50%"}
+include_graphics(list.files("images/", pattern = "fitted", full.names = TRUE))
+```
+
+**ggfortify - time series
+```{r eval=FALSE}
+# Call plot() on Canada
+plot(Canada)
+# Call autoplot() on Canada
+autoplot(Canada)
+```
+
+```{r echo=FALSE, message=FALSE, out.width="50%"}
+include_graphics(list.files("images/", pattern = "canada", full.names = TRUE))
+```
+
+```{r eval=FALSE}
+# Autoplot + ggplot2 tweaking
+autoplot(eurodist) +
+  coord_fixed()
+# Autoplot of MDS
+autoplot(cmdscale(eurodist, eig = TRUE),
+         label = TRUE, 
+         label.size = 3, 
+         size = 0)
+```
+
+```{r echo=FALSE, message=FALSE, out.width="50%"}
+include_graphics(list.files("images/", pattern = "ggfortify", full.names = TRUE))
+```
+
+**Plotting K-means clustering**
+
+```{r eval=FALSE}
+# Perform clustering
+iris_k <- kmeans(iris[-5], 3)
+# Autplot: color according to cluster
+autoplot(iris_k, data = iris, frame = TRUE)
+# Autoplot: above, plus shape according to species
+autoplot(iris_k, data = iris, frame = TRUE, shape = 'Species')
+```
+
+```{r echo=FALSE, message=FALSE, out.width="50%"}
+include_graphics(list.files("images/", pattern = "cluster", full.names = TRUE))
+```
 
 
 

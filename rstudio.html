@@ -399,7 +399,7 @@ div.tocify {
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
 <p>R is a language and environment for statistical computing and graphics. R provides a wide variety of statistical (linear and nonlinear modelling, classical statistical tests, time-series analysis, classification, clustering, …) and graphical techniques, and is highly extensible. One of R’s strengths is the ease with which well-designed publication-quality plots can be produced, including mathematical symbols and formulae where needed. The most important thing to me is it is open source and free software. While i prefer R Studio which is open source and enterprise-ready profession software for R. I think it is much more easier to use R Studio than R (You might think so as well).</p>
-<p>I am not good at codeing all my life!!! NEVER! But I benefited a lot from courses in <a href="https://www.datacamp.com/home">Datacamp</a> which is recommended by Dr. Nelson and Dr. Birgand. So go there and enjoy your R Studio-ing if you are interested (maybe not for free though :-D)! At first, you will find it is very annoying to use codes and remember which function makes this and which function makes that (if not, you might be nature-born data analyst). But for now, although i am not good at it, i really enjoy coding and R Studio-ing after grasping some basic R and R Markdown knowledge. Here, i combined experience from <a href="https://www.datacamp.com/home">DataCamp</a> and myself to help you master it easier. To begin with, there are some basic programming notes you need to remember. Let’s get it started!</p>
+<p>I am not good at codeing all my life!!! NEVER! But I benefited a lot from courses in <a href="https://www.datacamp.com/home">Datacamp</a> which is recommended by Dr. Nelson and Dr. Birgand. So go there and enjoy your R Studio-ing if you are interested (maybe not for free though :-D)! At first, you will find it is very annoying to use codes and remember which function makes this and which function makes that (if not, you might be nature-born data analyst). But for now, although i am not good at it, i really enjoy coding and R Studio-ing after grasping some basic R and R Markdown knowledge. Here, i combined experience from <a href="https://www.datacamp.com/home">DataCamp</a> and myself to help you master it easier. To begin with, there are some basic programming notes you need to remember. You might want to jump right into data visualization portion, but data analysts usually spend around 80% of their time cleaning and tidying data, and only 20% of time plotting. So, let’s get it started!</p>
 </div>
 <div id="basic-programming-notes" class="section level1">
 <h1>Basic programming notes</h1>
@@ -1693,6 +1693,63 @@ mmnet &lt;- merge(madmen$edges, madmen$vertices,
 ggplot(data = mmnet, aes(from_id = Name1, to_id = Name2)) +
   geom_net(aes(col = Gender), size = 6, linewidth = 1, labelon = TRUE, fontsize = 3, labelcolour = &quot;black&quot;)</code></pre>
 <p><img src="images/another19.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><strong>Adjusting the network</strong></p>
+<pre class="r"><code># Node colors
+pink_and_blue &lt;- c(female = &quot;#FF69B4&quot;, male = &quot;#0099ff&quot;)
+# Tweak the network plot
+ggplot(data = mmnet, aes(from_id = Name1, to_id = Name2)) +
+  geom_net(aes(col = Gender),
+           size = 6,
+           linewidth = 1,
+           labelon = TRUE,
+           fontsize = 3,
+           labelcolour = &quot;black&quot;,
+           # Make the graph directed
+           directed = TRUE) +
+  # Add manual color scale         
+  scale_color_manual(values = pink_and_blue) +
+  # Set x-axis limits
+  xlim(-0.05, 1.05) +
+  # Set void theme
+  theme_void() # remove all background elements like axes and grid lines to make a clean network plot</code></pre>
+<p><img src="images/another20.png" width="70%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="diagnostic-plots" class="section level1">
+<h1>Diagnostic Plots</h1>
+<p>R has several plotting methods for specific objects. For example using <code>plot()</code> on the results of an <code>lm()</code> call results in four plots that give you insight into how well the assigned model fits the data.</p>
+<p>The <code>ggfortify</code> package is an all-purpose plot converter between base graphics and ggplot2 grid graphics. For now, just know that if you want to use the automatic output features in the context of <code>ggplot2</code>, they must first be converted to a ggplot object via <code>ggfortify</code>. This can be important at the superficial level, for consistency in appearance, but also at a deeper level, for later combining several plots in a single graphics device.</p>
+<pre class="r"><code># Create linear model: res
+res &lt;- lm(Volume ~ Girth, data = trees)
+# Plot res
+plot(res) # four figures seperated
+# Import ggfortify and use autoplot()
+library(ggfortify)
+library(ggplot2)
+autoplot(res, ncol = 2)</code></pre>
+<p><img src="images/fitted1.png" width="50%" /><img src="images/fitted2.png" width="50%" /><img src="images/fitted3.png" width="50%" /><img src="images/fitted4.png" width="50%" /><img src="images/fitted5.png" width="50%" /></p>
+<p>**ggfortify - time series</p>
+<pre class="r"><code># Call plot() on Canada
+plot(Canada)
+# Call autoplot() on Canada
+autoplot(Canada)</code></pre>
+<p><img src="images/canada1.png" width="50%" /><img src="images/canada2.png" width="50%" /></p>
+<pre class="r"><code># Autoplot + ggplot2 tweaking
+autoplot(eurodist) +
+  coord_fixed()
+# Autoplot of MDS
+autoplot(cmdscale(eurodist, eig = TRUE),
+         label = TRUE, 
+         label.size = 3, 
+         size = 0)</code></pre>
+<p><img src="images/ggfortify1.png" width="50%" /><img src="images/ggfortify2.png" width="50%" /></p>
+<p><strong>Plotting K-means clustering</strong></p>
+<pre class="r"><code># Perform clustering
+iris_k &lt;- kmeans(iris[-5], 3)
+# Autplot: color according to cluster
+autoplot(iris_k, data = iris, frame = TRUE)
+# Autoplot: above, plus shape according to species
+autoplot(iris_k, data = iris, frame = TRUE, shape = &#39;Species&#39;)</code></pre>
+<p><img src="images/cluster1.png" width="50%" /><img src="images/cluster2.png" width="50%" /></p>
 </div>
 <div id="references" class="section level1">
 <h1>References</h1>
