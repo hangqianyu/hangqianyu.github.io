@@ -447,415 +447,345 @@ round() Round the values to 0 decimal places by default. Try out ?round in the c
 <div id="operators" class="section level1">
 <h1>Operators</h1>
 <p>For the meaning of operators in R, you would like to see <a href="https://www.tutorialspoint.com/r/r_operators.htm">here</a>.</p>
-<table style="width:8%;">
-<colgroup>
-<col width="8%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td># Read flat/excel files There are several ways to do it. Basically, for “utils” package which is already existed in system library, it is east to read a table using read.table() function as below:</td>
-</tr>
-<tr class="even">
-<td>```r read.table(“states.csv”, header = TRUE/FALSE, sep = “,”, stringsASFactors = FALSE)</td>
-</tr>
-<tr class="odd">
-<td>read.csv(“states.csv”, stringsASFactors = TRUE/FALSE) # To read a csv file ``` Likewise, in the “readr” package, just use functions below:</td>
-</tr>
-<tr class="even">
-<td>```r read_csv(object, col_names = TRUE) # would be enough to import csv files</td>
-</tr>
-<tr class="odd">
-<td>read_tsv(object) # to load txt files</td>
-</tr>
-<tr class="even">
-<td>read_delim(object, delim = “”, col_names = …) # function which is the main function of the “readr” package. StringsASFactors do not need to be specified in all three functions as “utils” package required</td>
-</tr>
-<tr class="odd">
-<td>Extra important arguments: through skip and n_max arguments, you can control which part of your flat file you’re actually importing into R. skip specifies the number of lines you’re ignoring in the flat file before actually starting to import data. n_max specifies the number of lines you’re actually importing. ```</td>
-</tr>
-<tr class="even">
-<td>For “data.table” package, function to import data is fread() function which is extremely perfect for lazy people. Despite the different seperators, freed() can easily read csv files without adding sep = “,/.” or delim = “,/.”.</td>
-</tr>
-<tr class="odd">
-<td>For “readxl” package, there are two main functions that useed for importing excel sheets into R.</td>
-</tr>
-<tr class="even">
-<td>```r One is excel_sheets() # to list different sheets</td>
-</tr>
-<tr class="odd">
-<td>the other one is read_excel() # to actually import data into R. To explain the arguments in detail, see below:</td>
-</tr>
-<tr class="even">
-<td>read_excel(path, sheet = 1, col_names = TRUE (by default), col_types = numeric/date/NULL, skip = 0/1/2…) # to specify what excel you wanna import. If you selected Null as col_types, then that column will not be shown in final printout. ```</td>
-</tr>
-<tr class="odd">
-<td>For “gdata” package, we can utilize</td>
-</tr>
-<tr class="even">
-<td><code>r read.xls(&quot;.xls&quot;, sheet = 1/2/3... or &quot;sheet name&quot;) # to import a xls file into R</code></td>
-</tr>
-<tr class="odd">
-<td>For “XLConnect” Package, it bridges between Exccel and R. works with xls and xlsx files. Remember to use “lapply” to read all sheets automatically. XLConnect package can make it able to edit excel files from inside R, whose functions are shown below.</td>
-</tr>
-<tr class="even">
-<td>```r loadWorkbook(filename…) # To build a connection between R and xlsx files</td>
-</tr>
-<tr class="odd">
-<td>createSheet(object, “sheet name”) # To create a new sheet in excel files</td>
-</tr>
-<tr class="even">
-<td>readWorksheet(object, sheet = 1/2/3…, startCol = 1/2/3…, endCol = 1/2/3…) # To import selected columns to R</td>
-</tr>
-<tr class="odd">
-<td>writeWorksheet(object, data, sheet, …) # load new data into new sheet created</td>
-</tr>
-<tr class="even">
-<td>saveWorkbook(object, file) # save the new sheet with a file name renameSheet(object, sheet, newName) # rename a sheet</td>
-</tr>
-<tr class="odd">
-<td>removeSheet(object, sheet) # remove sheets getSheets(object) # to list all sheets in R</td>
-</tr>
-<tr class="even">
-<td>For example, lapply(getSheets(loadWorkbook(“.xlsx file”)), readWorksheet, object = “.xlsx file”) ```</td>
-</tr>
-<tr class="odd">
-<td>**************** # connecting to a database The first step to import data from a SQL database is creating a connection to it. We might need different packages depending on the database you want to connect to. All of these packages do this in a uniform way, as specified in the “DBI” or “RMySQL” package. If the MySQL database is a remote database hosted on a server, you’ll also have to specify the following arguments in dbConnect(): dbname, host, port, user and password. For example,</td>
-</tr>
-<tr class="even">
-<td>```r con &lt;- dbConnect(RMySQL::MySQL(), dbname = “tweater”, host = “courses.csrrinzqubik.us-east-1.rds.amazonaws.com”, port = 3306, user = “student”, password = “datacamp”)</td>
-</tr>
-<tr class="odd">
-<td>* I do not really know what the hell is going on with database connection. Just a note for future use. ```</td>
-</tr>
-<tr class="even">
-<td>List and import tables in the database:</td>
-</tr>
-<tr class="odd">
-<td>```r dbListTables(DBIConnection object as produced by “dbConnect” function) # list all tables in the database</td>
-</tr>
-<tr class="even">
-<td>dbReadTable(object, “column/table name”) # to tell R that which data you wanna import</td>
-</tr>
-<tr class="odd">
-<td>dbDisconnect(object) # is polite to disconnect the databases after you are done ```</td>
-</tr>
-<tr class="even">
-<td>In your life as a data scientist, you’ll often be working with huge databases that contain tables with millions of rows. If you want to do some analyses on this data, it’s possible that you only need a fraction of this data. In this case, it’s a good idea to send SQL queries to your database, and only import the data you actually need into R. dbGetQuery() is what you need. As usual, you first pass the connection object to it. The second argument is an SQL query in the form of a character string. This example selects the age variable from the people dataset where gender equals “male”:</td>
-</tr>
-<tr class="odd">
-<td><code>r dbGetQuery(con, &quot;SELECT age, name FROM people WHERE gender = or &gt; or &lt; 'male' AND ... &gt; ...&quot;)</code></td>
-</tr>
-<tr class="even">
-<td>**************** ### Import data from the web Pay attention to <a href="http://" class="uri">http://</a> and <a href="https://" class="uri">https://</a>. There is, however, a safer alternative to HTTP, namely HTTPS, which stands for HypterText Transfer Protocol Secure. Just remember this: HTTPS is relatively safe, HTTP is not. We can use the standard importing functions with <a href="https://" class="uri">https://</a> connections since R version 3.2.2</td>
-</tr>
-<tr class="odd">
-<td>you can read excel files on the web using the read_excel package by first downloading the file with the download.file() function. There’s more: with download.file() you can download any kind of file from the web, using HTTP and HTTPS: images, executable files, but also .RData files. An RData file is very efficient format to store R data. You can load data from an RData file using the load() function, but this function does not accept a URL string as an argument.</td>
-</tr>
-<tr class="even">
-<td><code>r load(file, envir = parent.frame(), verbose = FALSE) # file: a readable connection or a character string giving the name of the file to load; envir: the environment where the data should be loaded; verbose: should item names be printed during loading?</code></td>
-</tr>
-<tr class="odd">
-<td>Downloading a file from the Internet means sending a GET request and receiving the file you asked for. Internally, all the previously discussed functions use a GET request to download files. “httr” package provides a convenient function, GET() to execute this GET request. The result is a response object, that provides easy access to the status code, content-type and, of course, the actual content. You can extract the content from the request using the content() function. At the time of writing, there are three ways to retrieve this content: as a raw object, as a character vector, or an R object, such as a list. If you don’t tell content() how to retrieve the content through the as argument, it’ll try its best to figure out which type is most appropriate based on the content-type.</td>
-</tr>
-<tr class="even">
-<td>```r download.file(object, “file name”)</td>
-</tr>
-<tr class="odd">
-<td>GET()</td>
-</tr>
-<tr class="even">
-<td>content() ```</td>
-</tr>
-<tr class="odd">
-<td>For “jsonlite” package, In the simplest setting, fromJSON() can convert character strings that represent JSON data into a nicely structured R list. Let’s take a look at an example,</td>
-</tr>
-<tr class="even">
-<td><code>r # wine_json is a JSON wine_json &lt;- '{&quot;name&quot;:&quot;Chateau Migraine&quot;, &quot;year&quot;:1997, &quot;alcohol_pct&quot;:12.4, &quot;color&quot;:&quot;red&quot;, &quot;awarded&quot;:false}' # Convert wine_json into a list: wine wine &lt;- fromJSON(wine_json) # Print structure of wine str(wine)</code></td>
-</tr>
-<tr class="odd">
-<td>We can also get a data frame by naming the columns:</td>
-</tr>
-<tr class="even">
-<td><code>r json2 &lt;- '{&quot;a&quot;: [1, 2, 3], &quot;b&quot;: [4, 5, 6]}' # a contains 1, 2, 3; b contains 4, 5, 6 fromJSON(json2)</code></td>
-</tr>
-<tr class="odd">
-<td>Apart from converting JSON to R with fromJSON(), you can also use toJSON() to convert R data to a JSON format. In its most basic use, you simply pass this function an R object to convert to a JSON. The result is an R object of the class json, which is basically a character string representing that JSON.</td>
-</tr>
-<tr class="even">
-<td><code>r toJSON(x, ...) # x is the object to be encoded</code></td>
-</tr>
-<tr class="odd">
-<td>**************** # Import data from statistical softwares (like SAS, STATA, SPSS) into R Two packages can be useful to do this. One is “haven”, the other is “foreign” package. “haven” can deal with data from SAS, STATA and SPSS. For “haven” package</td>
-</tr>
-<tr class="even">
-<td>```r read_sas() # to import SAS data</td>
-</tr>
-<tr class="odd">
-<td>read_dta() read_stata() # to import STATA data (dta or stata files)</td>
-</tr>
-<tr class="even">
-<td>read_spss() read_por() read_sav() # to import SPSS data (por or sav files) ```</td>
-</tr>
-<tr class="odd">
-<td>Subset example:</td>
-</tr>
-<tr class="even">
-<td><code>r subset(traits, Extroversion &gt; 40 &amp; Agreeableness &gt; 40) # Use &amp; to stand for &quot;and&quot;.</code></td>
-</tr>
-<tr class="odd">
-<td>You learned how to import a data file using the command read_sav(). With SPSS data files, it can also happen that some of the variables you import have the labelled class. This is done to keep all the labelling information that was originally present in the .sav and .por files. It’s advised to coerce (or change) these variables to factors or other standard R classes.</td>
-</tr>
-<tr class="even">
-<td><code>r as.factor() # to convert lable as a factor</code></td>
-</tr>
-<tr class="odd">
-<td>For “foreign” package, it offers a simple function to import and read STATA data: read.dta(). The arguments you will use most often are convert.dates, convert.factors, missing.type and convert.underscore, besides object. It’s all about correctly converting STATA data to standard R data structures. Where foreign provided read.dta() to read Stata data, there’s also read.spss() to read SPSS data files. To get a data frame, make sure to set to.data.frame = TRUE inside read.spss().</td>
-</tr>
-<tr class="even">
-<td>**************** # Cleaning and tidying data Understanding the structure of your data.</td>
-</tr>
-<tr class="odd">
-<td>First, view its class by class(); Second, view its dimensions by dim(). Third, look at column names by names(). Fourth, to summarize data by summary(). Like str() function, we use the dplyr package to view structure of object as well.</td>
-</tr>
-<tr class="even">
-<td><code>r glimpse(object)</code></td>
-</tr>
-<tr class="odd">
-<td>View the top (top six rows) by head(object, n = …) function, n means how many rows you wanna show in R. While tail(object, n = …) is to show the last six rows (by default) you wanna print out.</td>
-</tr>
-<tr class="even">
-<td>**************** ## Visualizing your data</td>
-</tr>
-<tr class="odd">
-<td>```r hist(object) # to view histogram plot of a single variable</td>
-</tr>
-<tr class="even">
-<td>plot(x, y) # to view plot of two variables ```</td>
-</tr>
-<tr class="odd">
-<td>Principles of tidy data: observations as rows, variables/attributes as columns. Remember that column headers are values, not variable names.</td>
-</tr>
-<tr class="even">
-<td>For “tydyr” package,</td>
-</tr>
-<tr class="odd">
-<td>```r gather(data, key, value, -…) # data: a data frame; key: bare name of new key column; value: bare name of new value column or changed column in other words; -…: bare names of columns to not gather or change mbta4 &lt;- gather(mbta3, “month”, “thou_riders”, -mode) # example</td>
-</tr>
-<tr class="even">
-<td>spread(data, key, value) # is the opposite of gather() function. key: bare name of column containing keys; value: bare name of column containing values</td>
-</tr>
-<tr class="odd">
-<td>seperate(data, col, into) # data: a data frame; col: bare name of column to seperate; into: character vector of new column names (probably use a c() function to form a vector)</td>
-</tr>
-<tr class="even">
-<td>unite(data, col, …, sep = “…”) # is the opposite of seperate() function. data: a data frame; col: bare name of new column; …: bare names of columns to unite (don’t need a c() function, just use comma), sep: seperator used between tow joined columns ```</td>
-</tr>
-<tr class="odd">
-<td>For more information about <code>tidyr</code> package, please refer to <a href="https://www.cnblogs.com/nxld/p/6060533.html">here</a></td>
-</tr>
-<tr class="even">
-<td>* Removing redundant info</td>
-</tr>
-<tr class="odd">
-<td>```r my_df[1:5, ] # First 5 rows of my_df my_df[, 4] # Fourth column of my_df</td>
-</tr>
-<tr class="even">
-<td>my_df[-(1:5), ] # Omit first 5 rows of my_df my_df[, -4] # Omit fourth column of my_df ```</td>
-</tr>
-<tr class="odd">
-<td>**************** ## Type conversions It is often necessary to change, or coerce, the way that variables in a dataset are stored. This could be because of the way they were read into R (with read.csv(), for example) or perhaps the function you are using to analyze the data requires variables to be coded a certain way. Only certain coercions are allowed, but the rules for what works are generally pretty intuitive. For example, trying to convert a character string to a number gives an error: as.numeric(“some text”). There are a few less intuitive results. For example, under the hood, the logical values TRUE and FALSE are coded as 1 and 0, respectively. Therefore, as.logical(1) returns TRUE and as.numeric(TRUE) returns 1.</td>
-</tr>
-<tr class="even">
-<td><code>r as.character(...) as.factor(...) as.integer(...) as.numeric(...) as.logical(...)</code></td>
-</tr>
-<tr class="odd">
-<td>Dates can be a challenge to work with in any programming language, but thanks to the lubridate package, working with dates in R isn’t so bad. Since this course is about cleaning data, we only cover the most basic functions from lubridate to help us standardize the format of dates and times in our data.</td>
-</tr>
-<tr class="even">
-<td>As you saw in the video, these functions combine the letters y, m, d, h, m, s, which stand for year, month, day, hour, minute, and second, respectively. The order of the letters in the function should match the order of the date/time you are attempting to read in, although not all combinations are valid. Notice that the functions are “smart” in that they are capable of parsing multiple formats.</td>
-</tr>
-<tr class="odd">
-<td>. ymd() . ymd_hms() . …just ?ymd or ?ymd_hms, you will find out which function you want.</td>
-</tr>
-<tr class="even">
-<td>## String manipulation (“stringr” package) There are four key functions in stringr for cleaning data:</td>
-</tr>
-<tr class="odd">
-<td>-str_trim() - Trim leading and trailing white space -str_pad - Pad with additional characters -str_detect() - Detect a pattern -str_replace() - Find and replace a pattern</td>
-</tr>
-<tr class="even">
-<td>One common issue that comes up when cleaning data is the need to remove leading and/or trailing white space. The str_trim() function from stringr makes it easy to do this while leaving intact the part of the string that you actually want.</td>
-</tr>
-<tr class="odd">
-<td><code>r str_trim(&quot;   this is a test     &quot;) # it would print out &quot;this is a test&quot;. very easy, huh?</code></td>
-</tr>
-<tr class="even">
-<td>A similar issue is when you need to pad strings to make them a certain number of characters wide. One example is if you had a bunch of employee ID numbers, some of which begin with one or more zeros. When reading these data in, you find that the leading zeros have been dropped somewhere along the way (probably because the variable was thought to be numeric and in that case, leading zeros would be unnecessary.)</td>
-</tr>
-<tr class="odd">
-<td><code>r str_pad(&quot;24493&quot;, width = 7, side = &quot;left&quot;, pad = &quot;0&quot;) [1] &quot;0024493&quot;</code></td>
-</tr>
-<tr class="even">
-<td>The stringr package provides two functions that are very useful for finding and/or replacing strings: str_detect() and str_replace(). Like all functions in stringr, the first argument of each is the string of interest. The second argument of each is the pattern of interest. In the case of str_detect(), this is the pattern we are searching for. In the case of str_replace(), this is the pattern we want to replace. Finally, str_replace() has a third argument, which is the string to replace with.</td>
-</tr>
-<tr class="odd">
-<td>```r str_detect(string, pattern) # string: input string; pattern: pattern to look for.</td>
-</tr>
-<tr class="even">
-<td>str_replace(string, pattern, replacement) # replacement: a character vector of replacements. ```</td>
-</tr>
-<tr class="odd">
-<td>**************** ## Finding and dealing with missing values As you’ve seen, missing values in R should be represented by NA, but unfortunately you will not always be so lucky. Before you can deal with missing values, you have to find them in the data. If missing values are properly coded as NA, the is.na() function will help you find them. Otherwise, if your dataset is too big to just look at the whole thing, you may need to try searching for some of the usual suspects like “”, “#N/A”, etc. You can also use the summary() and table() functions to turn up unexpected values in your data.</td>
-</tr>
-<tr class="even">
-<td>```r is.na(x) # an R object to be tested.</td>
-</tr>
-<tr class="odd">
-<td>any(is.na(x)) # to identify whether there is any NA in the dataset.</td>
-</tr>
-<tr class="even">
-<td>sum(is.na(x)) # to count number of TRUEs</td>
-</tr>
-<tr class="odd">
-<td>which(is.na(x)) # to find indices of missing values. very useful to replace data in the dataset ```</td>
-</tr>
-<tr class="even">
-<td>Missing values can be a rather complex subject, but here we’ll only look at the simple case where you are simply interested in normalizing and/or removing all missing values from your data. For more information on why this is not always the best strategy, search online for “missing not at random.”</td>
-</tr>
-<tr class="odd">
-<td>```r complete.cases(object, …) # to see which rows have no missing values</td>
-</tr>
-<tr class="even">
-<td>na.omit(object, …) # to remove all rows with any missing values ```</td>
-</tr>
-<tr class="odd">
-<td>## Identifying outliers and obvious errors summary() and hist() are most useful functions to identify outliers. Another useful way of looking at strange values is with boxplots boxplot(). Simply put, boxplots draw a box around the middle 50% of values for a given variable, with a bolded horizontal line drawn at the median. Values that fall far from the bulk of the data points (i.e. outliers) are denoted by open circles.</td>
-</tr>
-<tr class="even">
-<td>There are a number of stylistic conventions in the R language. Depending on who you ask, these conventions may vary. Because the period (.) has special meaning in certain situations, we generally recommend using underscores (_) to separate words in variable names. We also prefer all lowercase letters so that no one has to remember which letters are uppercase or lowercase.</td>
-</tr>
-<tr class="odd">
-<td>## dplyr package a <strong>tbl</strong> (pronounced tibble) is just a special kind of data.frame. They make your data easier to look at, but also easier to work with. On top of this, it is straightforward to derive a tbl from a data.frame structure using <strong>tbl_df()</strong>.</td>
-</tr>
-<tr class="even">
-<td>Notes: Modifying data with lookup tables. Please refer to <a href="https://nicercode.github.io/">Nice R Code</a>.</td>
-</tr>
-<tr class="odd">
-<td>The dplyr package contains five key data manipulation functions, also called verbs:</td>
-</tr>
-<tr class="even">
-<td><code>r select(df, var1, var2...) # which returns a subset of the columns, filter(tbl, logical test) # that is able to return a subset of the rows, arrange(tbl, column name) # that reorders the rows according to single or multiple variables, mutate(tbl, new column name = r expression that calculate the new variable) # used to add columns from existing data, not establish a completely new, for example, if you have length, width and height variables, you can add a volume variable in the tbl by length * width * height. summarise() # which reduces each group to a single row by calculating aggregate measures.</code></td>
-</tr>
-<tr class="odd">
-<td>Anyhow, dplyr comes with a set of helper functions that can help you select groups of variables inside a select() call:</td>
-</tr>
-<tr class="even">
-<td><code>r starts_with(&quot;X&quot;) # every name that starts with &quot;X&quot;, ends_with(&quot;X&quot;) # every name that ends with &quot;X&quot;, contains(&quot;X&quot;) # every name that contains &quot;X&quot;, matches(&quot;X&quot;) # every name that matches &quot;X&quot;, where &quot;X&quot; can be a regular expression, num_range(&quot;x&quot;, 1:5) # the variables named x01, x02, x03, x04 and x05, one_of(x) # every name that appears in x, which should be a character vector.</code></td>
-</tr>
-<tr class="odd">
-<td><strong>Pay attention here</strong>: When you refer to columns directly inside select(), you don’t use quotes. If you use the helper functions, you do use quotes.</td>
-</tr>
-<tr class="even">
-<td>With lapply(), you could use <code>[[</code> to select specific elements from your list. The same thing is true for sapply()! Once you know about vapply(), there’s really no reason to use sapply() anymore. If the output that lapply() would generate can be simplified to an array, you’ll want to use vapply() to do this securely. If simplification is not possible, simply stick to lapply().</td>
-</tr>
-<tr class="odd">
-<td>The droplevels() function removes unused levels of factor variables from your dataset. As you saw in the video, it’s often useful to determine which levels are unused (i.e. contain zero values) with the table() function.</td>
-</tr>
-<tr class="even">
-<td>load data by data() function in dplyr package. use group_by() function to <a href="https://blog.csdn.net/qq_28219759/article/details/52963773">group indexes together</a>.</td>
-</tr>
-<tr class="odd">
-<td>## Sampling from dataset <strong>Simple random sample in R</strong></td>
-</tr>
-<tr class="even">
-<td>```r # Simple random sample states_srs &lt;- us_regions %&gt;% sample_n(8)</td>
-</tr>
-<tr class="odd">
-<td># Count states by region states_srs %&gt;% group_by(region) %&gt;% count() ```</td>
-</tr>
-<tr class="even">
-<td><strong>Stratufied sample in R</strong></td>
-</tr>
-<tr class="odd">
-<td>```r # Stratified sample states_str &lt;- us_regions %&gt;% group_by(region) %&gt;% sample_n(2)</td>
-</tr>
-<tr class="even">
-<td># Count states by region states_str %&gt;% group_by(region) %&gt;% count() ```</td>
-</tr>
-<tr class="odd">
-<td><strong>Principles of experimental design</strong> Control: compare treatment of interest to a control group Randomize: randomly assign subjects to treatments Replicate: collect a sufficiently large sample within a study, or replicate the entire study Block: account for the potential effect of confounding variables - group subjects into blocks based on these variables - randomize within each block to treatment groups</td>
-</tr>
-<tr class="even">
-<td>The difference between numerical and categorical type is show at <a href="https://www.zhihu.com/question/41484616?sort=created">here</a></td>
-</tr>
-<tr class="odd">
-<td><strong>Conditional proportions</strong> The following code generates tables of joint and conditional proportions, respectively:</td>
-</tr>
-<tr class="even">
-<td><code>r tab &lt;- table(comics$align, comics$gender) options(scipen = 999, digits = 3) # Print fewer digits prop.table(tab)     # Joint proportions prop.table(tab, 2)  # Conditional on columns, make column add to 1</code></td>
-</tr>
-<tr class="odd">
-<td>*****************</td>
-</tr>
-<tr class="even">
-<td># Intro to Statistics with R ## Binwidth</td>
-</tr>
-<tr class="odd">
-<td><code>r # Create hist of horsepwr with binwidth of 3 cars %&gt;% ggplot(aes(horsepwr)) + geom_histogram(binwidth = 3) + ggtitle(&quot;binwidth = 3&quot;) # Create hist of horsepwr with binwidth of 30 cars %&gt;% ggplot(aes(horsepwr)) + geom_histogram(binwidth = 30) + ggtitle(&quot;binwidth = 30&quot;) # Create hist of horsepwr with binwidth of 60 cars %&gt;% ggplot(aes(horsepwr)) + geom_histogram(binwidth = 60) + ggtitle(&quot;binwidth = 60&quot;)</code></td>
-</tr>
-<tr class="even">
-<td><img src="images/binwidth1.png" width="50%" /><img src="images/binwidth2.png" width="50%" /><img src="images/binwidth3.png" width="50%" /></td>
-</tr>
-<tr class="odd">
-<td># <code>ggplot2</code> Visualization An awesome website was recommended to you <a href="http://ggplot2.tidyverse.org/index.html">ggplot2</a></td>
-</tr>
-<tr class="even">
-<td>* Limitations of base plot functions - Plot does not get redrawn - Plot is drawn as an image - Need to manually add legend - No unified framework for plotting</td>
-</tr>
-<tr class="odd">
-<td>* All Grammatical Elements: - Data, the dataset being plotted - Aesthetics, the scales onto which we map our data - Geometries, the visual elements used for our data - Facets, plotting small multiples - Statistics, representations of our data to aid understanding - Coordinates, the space on which the data will be plotted - Themes, all non-data ink</td>
-</tr>
-<tr class="even">
-<td>* Typical Aesthetics - x, X axis position - y, y axis position - colour, colour of dots, outlines of other shapes - fill, fill colour - size, diameter of points, thickness of lines - alpha, transparency - linetype, line dash pattern - labels, text on a plot or axes - shape, shape</td>
-</tr>
-<tr class="odd">
-<td><img src="images/shape.png" width="60%" style="display: block; margin: auto;" /></td>
-</tr>
-<tr class="even">
-<td><code>##   Aesthetic                              Description ## 1         x                          X axis position ## 2         y                          Y axis position ## 3    colour Colour of dots, outlines of other shapes ## 4      fill                              Fill colour ## 5      size   Diameter of points, thickness of lines ## 6     alpha                             Transparency ## 7  linetype                        Line dash pattern ## 8    labels                   Text on a plot or axes ## 9     shape                                    Shape</code></td>
-</tr>
-<tr class="odd">
-<td><code>r ggplot(mtcars, aes(x = cyl, y = mpg, col = disp, size = disp, shape = categorical column, shape = 1, size = 4)) + geom_point(alpha = 0.4, position = &quot;jitter&quot;) + # alpha means the transparency of discrete points, 0-1, jitter expands the points more evenly, or you can just use geom_jitter() geom_smooth(aes(group = 1), method = &quot;lm&quot;, se = FALSE) # if you do not want any error shading, you can set se = FALSE, lm means lineal model method in scatter plot, group = 1 tells ggplot to draw a single linear model through all the points in different colors.</code></td>
-</tr>
-<tr class="even">
-<td>Note that you can also call <code>aes()</code> within the <code>geom_point()</code> function. Which shape to use? The default geom_point() uses shape = 19 (a solid circle with an outline the same colour as the inside). Good alternatives are shape = 1 (hollow) and shape = 16 (solid, no outline). These all use the col aesthetic (don’t forget to set alpha for solid points). A really nice alternative is shape = 21 which allows you to use both fill for the inside and col for the outline! This is a great little trick for when you want to map two aesthetics to a dot.</td>
-</tr>
-<tr class="odd">
-<td><code>r ggplot(mtcars, aes(x = wt, y = mpg, fill = cyl, col = am, shape = 21, size = 4, label = cyl)) + geom_point(alpha = 0.6) + geom_text()</code></td>
-</tr>
-<tr class="even">
-<td>This time you’ll use these arguments to set attributes of the plot, not aesthetics. However, there are some pitfalls you’ll have to watch out for: these attributes can overwrite the aesthetics of your plot! <strong>A word about shapes:</strong> In the exercise “All about aesthetics, part 2”, you saw that shape = 21 results in a point that has a fill and an outline. Shapes in R can have a value from 1-25. Shapes 1-20 can only accept a color aesthetic, but shapes 21-25 have both a color and a fill aesthetic.</td>
-</tr>
-<tr class="odd">
-<td><code>r ggplot(mtcars, aes(x=wt, y=mpg, col=cyl)) + geom_point(col = my_color) # The col setting in geom_point can overwrite the aesthetics of plot</code></td>
-</tr>
-<tr class="even">
-<td><strong>A word about hexadecimal colours</strong>: Hexadecimal, literally “related to 16”, is a base-16 alphanumeric counting system. Individual values come from the ranges 0-9 and A-F. This means there are 256 possible two-digit values (i.e. 00 - FF). Hexadecimal colours use this system to specify a six-digit code for Red, Green and Blue values (“#RRGGBB”) of a colour (i.e. Pure blue: “#0000FF”, black: “#000000”, white: “#FFFFFF”). R can accept hex codes as valid colours.</td>
-</tr>
-<tr class="odd">
-<td><code>r ggplot(mtcars, aes(x = wt, y = mpg, fill = cyl)) + geom_text(rownames(mtcars), col = &quot;red&quot;) # Remember specify characters with quotation makrs</code></td>
-</tr>
-<tr class="even">
-<td><code>r val = c(&quot;#E41A1C&quot;, &quot;#377EB8&quot;) lab = c(&quot;Manual&quot;, &quot;Automatic&quot;) cyl.am + geom_bar(position = &quot;dodge&quot;) + scale_x_discrete(&quot;Cylinders&quot;) + scale_y_continuous(&quot;Number&quot;) + scale_fill_manual(&quot;Transmission&quot;, values = val, labels = lab)</code></td>
-</tr>
-<tr class="odd">
-<td><strong>Explaination to the code above:</strong> <code>scale_x_discrete()</code> takes as its only argument the x-axis label: “Cylinders”. <code>scale_y_continuous()</code> takes as its only argument the y-axis label: “Number”. <code>scale_fill_manual()</code> fixes the legend. The first argument is the title of the legend: “Transmission”. Next, values and labels are set to predefined values for you. These are the colors and the labels in the legend. The result of above code will be like this:</td>
-</tr>
-<tr class="even">
-<td><img src="images/bar1.png" width="70%" style="display: block; margin: auto;" /></td>
-</tr>
-</tbody>
-</table>
+<hr />
+</div>
+<div id="read-flatexcel-files" class="section level1">
+<h1>Read flat/excel files</h1>
+<p>There are several ways to do it. Basically, for “utils” package which is already existed in system library, it is east to read a table using read.table() function as below:</p>
+<pre class="r"><code>read.table(&quot;states.csv&quot;, header = TRUE/FALSE, sep = &quot;,&quot;, stringsASFactors = FALSE)
+
+read.csv(&quot;states.csv&quot;, stringsASFactors = TRUE/FALSE) # To read a csv file</code></pre>
+<p>Likewise, in the “readr” package, just use functions below:</p>
+<pre class="r"><code>read_csv(object, col_names = TRUE) # would be enough to import csv files
+
+read_tsv(object) # to load txt files
+
+read_delim(object, delim = &quot;\t&quot;, col_names = ...) # function which is the main function of the &quot;readr&quot; package. StringsASFactors do not need to be specified in all three functions as &quot;utils&quot; package required
+
+Extra important arguments: through skip and n_max arguments, you can control which part of your flat file you&#39;re actually importing into R. skip specifies the number of lines you&#39;re ignoring in the flat file before actually starting to import data. n_max specifies the number of lines you&#39;re actually importing.</code></pre>
+<p>For “data.table” package, function to import data is fread() function which is extremely perfect for lazy people. Despite the different seperators, freed() can easily read csv files without adding sep = “,/.” or delim = “,/.”.</p>
+<p>For “readxl” package, there are two main functions that useed for importing excel sheets into R.</p>
+<pre class="r"><code>One is excel_sheets() # to list different sheets
+
+the other one is read_excel() # to actually import data into R. To explain the arguments in detail, see below:
+
+read_excel(path, sheet = 1, col_names = TRUE (by default), col_types = numeric/date/NULL, skip = 0/1/2...) # to specify what excel you wanna import. If you selected Null as col_types, then that column will not be shown in final printout.</code></pre>
+<p>For “gdata” package, we can utilize</p>
+<pre class="r"><code>read.xls(&quot;.xls&quot;, sheet = 1/2/3... or &quot;sheet name&quot;) # to import a xls file into R</code></pre>
+<p>For “XLConnect” Package, it bridges between Exccel and R. works with xls and xlsx files. Remember to use “lapply” to read all sheets automatically. XLConnect package can make it able to edit excel files from inside R, whose functions are shown below.</p>
+<pre class="r"><code>loadWorkbook(filename...) # To build a connection between R and xlsx files
+
+createSheet(object, &quot;sheet name&quot;) # To create a new sheet in excel files
+
+readWorksheet(object, sheet = 1/2/3..., startCol = 1/2/3..., endCol = 1/2/3...) # To import selected columns to R 
+
+writeWorksheet(object, data, sheet, ...) # load new data into new sheet created
+
+saveWorkbook(object, file) # save the new sheet with a file name
+renameSheet(object, sheet, newName) # rename a sheet
+
+removeSheet(object, sheet) # remove sheets
+getSheets(object) # to list all sheets in R
+
+For example, lapply(getSheets(loadWorkbook(&quot;.xlsx file&quot;)), readWorksheet, object = &quot;.xlsx file&quot;)</code></pre>
+<hr />
+</div>
+<div id="connecting-to-a-database" class="section level1">
+<h1>connecting to a database</h1>
+<p>The first step to import data from a SQL database is creating a connection to it. We might need different packages depending on the database you want to connect to. All of these packages do this in a uniform way, as specified in the “DBI” or “RMySQL” package. If the MySQL database is a remote database hosted on a server, you’ll also have to specify the following arguments in dbConnect(): dbname, host, port, user and password. For example,</p>
+<pre class="r"><code>con &lt;- dbConnect(RMySQL::MySQL(), 
+                 dbname = &quot;tweater&quot;, 
+                 host = &quot;courses.csrrinzqubik.us-east-1.rds.amazonaws.com&quot;, 
+                 port = 3306,
+                 user = &quot;student&quot;,
+                 password = &quot;datacamp&quot;)
+
+* I do not really know what the hell is going on with database connection. Just a note for future use.</code></pre>
+<p>List and import tables in the database:</p>
+<pre class="r"><code>dbListTables(DBIConnection object as produced by &quot;dbConnect&quot; function) # list all tables in the database
+
+dbReadTable(object, &quot;column/table name&quot;) # to tell R that which data you wanna import
+
+dbDisconnect(object) #  is polite to disconnect the databases after you are done</code></pre>
+<p>In your life as a data scientist, you’ll often be working with huge databases that contain tables with millions of rows. If you want to do some analyses on this data, it’s possible that you only need a fraction of this data. In this case, it’s a good idea to send SQL queries to your database, and only import the data you actually need into R. dbGetQuery() is what you need. As usual, you first pass the connection object to it. The second argument is an SQL query in the form of a character string. This example selects the age variable from the people dataset where gender equals “male”:</p>
+<pre class="r"><code>dbGetQuery(con, &quot;SELECT age, name FROM people WHERE gender = or &gt; or &lt; &#39;male&#39; AND ... &gt; ...&quot;)</code></pre>
+<hr />
+<div id="import-data-from-the-web" class="section level3">
+<h3>Import data from the web</h3>
+<p>Pay attention to <a href="http://" class="uri">http://</a> and <a href="https://" class="uri">https://</a>. There is, however, a safer alternative to HTTP, namely HTTPS, which stands for HypterText Transfer Protocol Secure. Just remember this: HTTPS is relatively safe, HTTP is not. We can use the standard importing functions with <a href="https://" class="uri">https://</a> connections since R version 3.2.2</p>
+<p>you can read excel files on the web using the read_excel package by first downloading the file with the download.file() function. There’s more: with download.file() you can download any kind of file from the web, using HTTP and HTTPS: images, executable files, but also .RData files. An RData file is very efficient format to store R data. You can load data from an RData file using the load() function, but this function does not accept a URL string as an argument.</p>
+<pre class="r"><code>load(file, envir = parent.frame(), verbose = FALSE) # file: a readable connection or a character string giving the name of the file to load; envir: the environment where the data should be loaded; verbose: should item names be printed during loading?</code></pre>
+<p>Downloading a file from the Internet means sending a GET request and receiving the file you asked for. Internally, all the previously discussed functions use a GET request to download files. “httr” package provides a convenient function, GET() to execute this GET request. The result is a response object, that provides easy access to the status code, content-type and, of course, the actual content. You can extract the content from the request using the content() function. At the time of writing, there are three ways to retrieve this content: as a raw object, as a character vector, or an R object, such as a list. If you don’t tell content() how to retrieve the content through the as argument, it’ll try its best to figure out which type is most appropriate based on the content-type.</p>
+<pre class="r"><code>download.file(object, &quot;file name&quot;)
+
+GET()
+
+content() </code></pre>
+<p>For “jsonlite” package, In the simplest setting, fromJSON() can convert character strings that represent JSON data into a nicely structured R list. Let’s take a look at an example,</p>
+<pre class="r"><code># wine_json is a JSON
+wine_json &lt;- &#39;{&quot;name&quot;:&quot;Chateau Migraine&quot;, &quot;year&quot;:1997, &quot;alcohol_pct&quot;:12.4, &quot;color&quot;:&quot;red&quot;, &quot;awarded&quot;:false}&#39;
+# Convert wine_json into a list: wine
+wine &lt;- fromJSON(wine_json)
+# Print structure of wine
+str(wine)</code></pre>
+<p>We can also get a data frame by naming the columns:</p>
+<pre class="r"><code>json2 &lt;- &#39;{&quot;a&quot;: [1, 2, 3], &quot;b&quot;: [4, 5, 6]}&#39; # a contains 1, 2, 3; b contains 4, 5, 6
+fromJSON(json2)</code></pre>
+<p>Apart from converting JSON to R with fromJSON(), you can also use toJSON() to convert R data to a JSON format. In its most basic use, you simply pass this function an R object to convert to a JSON. The result is an R object of the class json, which is basically a character string representing that JSON.</p>
+<pre class="r"><code>toJSON(x, ...) # x is the object to be encoded</code></pre>
+<hr />
+</div>
+</div>
+<div id="import-data-from-statistical-softwares-like-sas-stata-spss-into-r" class="section level1">
+<h1>Import data from statistical softwares (like SAS, STATA, SPSS) into R</h1>
+<p>Two packages can be useful to do this. One is “haven”, the other is “foreign” package. “haven” can deal with data from SAS, STATA and SPSS. For “haven” package</p>
+<pre class="r"><code>read_sas() # to import SAS data
+
+read_dta()
+read_stata() # to import STATA data (dta or stata files)
+
+read_spss()
+read_por()
+read_sav() # to import SPSS data (por or sav files)</code></pre>
+<p>Subset example:</p>
+<pre class="r"><code>subset(traits, Extroversion &gt; 40 &amp; Agreeableness &gt; 40) # Use &amp; to stand for &quot;and&quot;.</code></pre>
+<p>You learned how to import a data file using the command read_sav(). With SPSS data files, it can also happen that some of the variables you import have the labelled class. This is done to keep all the labelling information that was originally present in the .sav and .por files. It’s advised to coerce (or change) these variables to factors or other standard R classes.</p>
+<pre class="r"><code>as.factor() # to convert lable as a factor</code></pre>
+<p>For “foreign” package, it offers a simple function to import and read STATA data: read.dta(). The arguments you will use most often are convert.dates, convert.factors, missing.type and convert.underscore, besides object. It’s all about correctly converting STATA data to standard R data structures. Where foreign provided read.dta() to read Stata data, there’s also read.spss() to read SPSS data files. To get a data frame, make sure to set to.data.frame = TRUE inside read.spss().</p>
+<hr />
+</div>
+<div id="cleaning-and-tidying-data" class="section level1">
+<h1>Cleaning and tidying data</h1>
+<p>Understanding the structure of your data.</p>
+<p>First, view its class by class(); Second, view its dimensions by dim(). Third, look at column names by names(). Fourth, to summarize data by summary(). Like str() function, we use the dplyr package to view structure of object as well.</p>
+<pre class="r"><code>glimpse(object)</code></pre>
+<p>View the top (top six rows) by head(object, n = …) function, n means how many rows you wanna show in R. While tail(object, n = …) is to show the last six rows (by default) you wanna print out.</p>
+<hr />
+<div id="visualizing-your-data" class="section level2">
+<h2>Visualizing your data</h2>
+<pre class="r"><code>hist(object) # to view histogram plot of a single variable
+
+plot(x, y) # to view plot of two variables</code></pre>
+<p>Principles of tidy data: observations as rows, variables/attributes as columns. Remember that column headers are values, not variable names.</p>
+<p>For “tydyr” package,</p>
+<pre class="r"><code>gather(data, key, value, -...) # data: a data frame; key: bare name of new key column; value: bare name of new value column or changed column in other words; -...: bare names of columns to not gather or change
+mbta4 &lt;- gather(mbta3, &quot;month&quot;, &quot;thou_riders&quot;, -mode) # example
+
+spread(data, key, value) # is the opposite of gather() function. key: bare name of column containing keys; value: bare name of column containing values
+
+seperate(data, col, into) # data: a data frame; col: bare name of column to seperate; into: character vector of new column names (probably use a c() function to form a vector)
+
+unite(data, col, ..., sep = &quot;...&quot;) # is the opposite of seperate() function. data: a data frame; col: bare name of new column; ...: bare names of columns to unite (don&#39;t need a c() function, just use comma), sep: seperator used between tow joined columns</code></pre>
+<p>For more information about <code>tidyr</code> package, please refer to <a href="https://www.cnblogs.com/nxld/p/6060533.html">here</a></p>
+<ul>
+<li>Removing redundant info</li>
+</ul>
+<pre class="r"><code>my_df[1:5, ] # First 5 rows of my_df
+my_df[, 4]   # Fourth column of my_df
+
+my_df[-(1:5), ] # Omit first 5 rows of my_df
+my_df[, -4]     # Omit fourth column of my_df</code></pre>
+<hr />
+</div>
+<div id="type-conversions" class="section level2">
+<h2>Type conversions</h2>
+<p>It is often necessary to change, or coerce, the way that variables in a dataset are stored. This could be because of the way they were read into R (with read.csv(), for example) or perhaps the function you are using to analyze the data requires variables to be coded a certain way. Only certain coercions are allowed, but the rules for what works are generally pretty intuitive. For example, trying to convert a character string to a number gives an error: as.numeric(“some text”). There are a few less intuitive results. For example, under the hood, the logical values TRUE and FALSE are coded as 1 and 0, respectively. Therefore, as.logical(1) returns TRUE and as.numeric(TRUE) returns 1.</p>
+<pre class="r"><code>as.character(...)
+as.factor(...)
+as.integer(...)
+as.numeric(...)
+as.logical(...)</code></pre>
+<p>Dates can be a challenge to work with in any programming language, but thanks to the lubridate package, working with dates in R isn’t so bad. Since this course is about cleaning data, we only cover the most basic functions from lubridate to help us standardize the format of dates and times in our data.</p>
+<p>As you saw in the video, these functions combine the letters y, m, d, h, m, s, which stand for year, month, day, hour, minute, and second, respectively. The order of the letters in the function should match the order of the date/time you are attempting to read in, although not all combinations are valid. Notice that the functions are “smart” in that they are capable of parsing multiple formats.</p>
+<pre><code>. ymd()
+. ymd_hms()
+. ...just ?ymd or ?ymd_hms, you will find out which function you want.</code></pre>
+</div>
+<div id="string-manipulation-stringr-package" class="section level2">
+<h2>String manipulation (“stringr” package)</h2>
+<p>There are four key functions in stringr for cleaning data:</p>
+<pre><code>-str_trim() - Trim leading and trailing white space
+-str_pad - Pad with additional characters
+-str_detect() - Detect a pattern
+-str_replace() - Find and replace a pattern</code></pre>
+<p>One common issue that comes up when cleaning data is the need to remove leading and/or trailing white space. The str_trim() function from stringr makes it easy to do this while leaving intact the part of the string that you actually want.</p>
+<pre class="r"><code>str_trim(&quot;   this is a test     &quot;) # it would print out &quot;this is a test&quot;. very easy, huh?</code></pre>
+<p>A similar issue is when you need to pad strings to make them a certain number of characters wide. One example is if you had a bunch of employee ID numbers, some of which begin with one or more zeros. When reading these data in, you find that the leading zeros have been dropped somewhere along the way (probably because the variable was thought to be numeric and in that case, leading zeros would be unnecessary.)</p>
+<pre class="r"><code>str_pad(&quot;24493&quot;, width = 7, side = &quot;left&quot;, pad = &quot;0&quot;)
+[1] &quot;0024493&quot;</code></pre>
+<p>The stringr package provides two functions that are very useful for finding and/or replacing strings: str_detect() and str_replace(). Like all functions in stringr, the first argument of each is the string of interest. The second argument of each is the pattern of interest. In the case of str_detect(), this is the pattern we are searching for. In the case of str_replace(), this is the pattern we want to replace. Finally, str_replace() has a third argument, which is the string to replace with.</p>
+<pre class="r"><code>str_detect(string, pattern) # string: input string; pattern: pattern to look for.
+
+str_replace(string, pattern, replacement) # replacement: a character vector of replacements.</code></pre>
+<hr />
+</div>
+<div id="finding-and-dealing-with-missing-values" class="section level2">
+<h2>Finding and dealing with missing values</h2>
+<p>As you’ve seen, missing values in R should be represented by NA, but unfortunately you will not always be so lucky. Before you can deal with missing values, you have to find them in the data. If missing values are properly coded as NA, the is.na() function will help you find them. Otherwise, if your dataset is too big to just look at the whole thing, you may need to try searching for some of the usual suspects like “”, “#N/A”, etc. You can also use the summary() and table() functions to turn up unexpected values in your data.</p>
+<pre class="r"><code>is.na(x) # an R object to be tested.
+
+any(is.na(x)) # to identify whether there is any NA in the dataset.
+
+sum(is.na(x)) # to count number of TRUEs
+
+which(is.na(x)) # to find indices of missing values. very useful to replace data in the dataset</code></pre>
+<p>Missing values can be a rather complex subject, but here we’ll only look at the simple case where you are simply interested in normalizing and/or removing all missing values from your data. For more information on why this is not always the best strategy, search online for “missing not at random.”</p>
+<pre class="r"><code>complete.cases(object, ...) # to see which rows have no missing values
+
+na.omit(object, ...) # to remove all rows with any missing values</code></pre>
+</div>
+<div id="identifying-outliers-and-obvious-errors" class="section level2">
+<h2>Identifying outliers and obvious errors</h2>
+<p>summary() and hist() are most useful functions to identify outliers. Another useful way of looking at strange values is with boxplots boxplot(). Simply put, boxplots draw a box around the middle 50% of values for a given variable, with a bolded horizontal line drawn at the median. Values that fall far from the bulk of the data points (i.e. outliers) are denoted by open circles.</p>
+<p>There are a number of stylistic conventions in the R language. Depending on who you ask, these conventions may vary. Because the period (.) has special meaning in certain situations, we generally recommend using underscores (_) to separate words in variable names. We also prefer all lowercase letters so that no one has to remember which letters are uppercase or lowercase.</p>
+</div>
+<div id="dplyr-package" class="section level2">
+<h2>dplyr package</h2>
+<p>a <strong>tbl</strong> (pronounced tibble) is just a special kind of data.frame. They make your data easier to look at, but also easier to work with. On top of this, it is straightforward to derive a tbl from a data.frame structure using <strong>tbl_df()</strong>.</p>
+<p>Notes: Modifying data with lookup tables. Please refer to <a href="https://nicercode.github.io/">Nice R Code</a>.</p>
+<p>The dplyr package contains five key data manipulation functions, also called verbs:</p>
+<pre class="r"><code>select(df, var1, var2...) # which returns a subset of the columns,
+filter(tbl, logical test) # that is able to return a subset of the rows,
+arrange(tbl, column name) # that reorders the rows according to single or multiple variables,
+mutate(tbl, new column name = r expression that calculate the new variable) # used to add columns from existing data, not establish a completely new, for example, if you have length, width and height variables, you can add a volume variable in the tbl by length * width * height.
+summarise() # which reduces each group to a single row by calculating aggregate measures.</code></pre>
+<p>Anyhow, dplyr comes with a set of helper functions that can help you select groups of variables inside a select() call:</p>
+<pre class="r"><code>starts_with(&quot;X&quot;) # every name that starts with &quot;X&quot;,
+ends_with(&quot;X&quot;) # every name that ends with &quot;X&quot;,
+contains(&quot;X&quot;) # every name that contains &quot;X&quot;,
+matches(&quot;X&quot;) # every name that matches &quot;X&quot;, where &quot;X&quot; can be a regular expression,
+num_range(&quot;x&quot;, 1:5) # the variables named x01, x02, x03, x04 and x05,
+one_of(x) # every name that appears in x, which should be a character vector.</code></pre>
+<p><strong>Pay attention here</strong>: When you refer to columns directly inside select(), you don’t use quotes. If you use the helper functions, you do use quotes.</p>
+<p>With lapply(), you could use <code>[[</code> to select specific elements from your list. The same thing is true for sapply()! Once you know about vapply(), there’s really no reason to use sapply() anymore. If the output that lapply() would generate can be simplified to an array, you’ll want to use vapply() to do this securely. If simplification is not possible, simply stick to lapply().</p>
+<p>The droplevels() function removes unused levels of factor variables from your dataset. As you saw in the video, it’s often useful to determine which levels are unused (i.e. contain zero values) with the table() function.</p>
+<p>load data by data() function in dplyr package. use group_by() function to <a href="https://blog.csdn.net/qq_28219759/article/details/52963773">group indexes together</a>.</p>
+</div>
+<div id="sampling-from-dataset" class="section level2">
+<h2>Sampling from dataset</h2>
+<p><strong>Simple random sample in R</strong></p>
+<pre class="r"><code># Simple random sample
+states_srs &lt;- us_regions %&gt;%
+  sample_n(8)
+
+# Count states by region
+states_srs %&gt;%
+  group_by(region) %&gt;%
+  count()</code></pre>
+<p><strong>Stratufied sample in R</strong></p>
+<pre class="r"><code># Stratified sample
+states_str &lt;- us_regions %&gt;%
+  group_by(region) %&gt;%
+  sample_n(2)
+
+# Count states by region
+states_str %&gt;%
+  group_by(region) %&gt;%
+  count()</code></pre>
+<p><strong>Principles of experimental design</strong> Control: compare treatment of interest to a control group Randomize: randomly assign subjects to treatments Replicate: collect a sufficiently large sample within a study, or replicate the entire study Block: account for the potential effect of confounding variables - group subjects into blocks based on these variables - randomize within each block to treatment groups</p>
+<p>The difference between numerical and categorical type is show at <a href="https://www.zhihu.com/question/41484616?sort=created">here</a></p>
+<p><strong>Conditional proportions</strong> The following code generates tables of joint and conditional proportions, respectively:</p>
+<pre class="r"><code>tab &lt;- table(comics$align, comics$gender)
+options(scipen = 999, digits = 3) # Print fewer digits
+prop.table(tab)     # Joint proportions
+prop.table(tab, 2)  # Conditional on columns, make column add to 1</code></pre>
+<hr />
+</div>
+</div>
+<div id="intro-to-statistics-with-r" class="section level1">
+<h1>Intro to Statistics with R</h1>
+<div id="binwidth" class="section level2">
+<h2>Binwidth</h2>
+<pre class="r"><code># Create hist of horsepwr with binwidth of 3
+cars %&gt;%
+  ggplot(aes(horsepwr)) +
+  geom_histogram(binwidth = 3) +
+  ggtitle(&quot;binwidth = 3&quot;)
+# Create hist of horsepwr with binwidth of 30
+cars %&gt;% 
+  ggplot(aes(horsepwr)) +
+  geom_histogram(binwidth = 30) +
+  ggtitle(&quot;binwidth = 30&quot;)
+# Create hist of horsepwr with binwidth of 60
+cars %&gt;%
+  ggplot(aes(horsepwr)) +
+  geom_histogram(binwidth = 60) +
+  ggtitle(&quot;binwidth = 60&quot;)</code></pre>
+<p><img src="images/binwidth1.png" width="50%" /><img src="images/binwidth2.png" width="50%" /><img src="images/binwidth3.png" width="50%" /></p>
+</div>
+</div>
+<div id="ggplot2-visualization" class="section level1">
+<h1><code>ggplot2</code> Visualization</h1>
+<p>An awesome website was recommended to you <a href="http://ggplot2.tidyverse.org/index.html">ggplot2</a></p>
+<ul>
+<li>Limitations of base plot functions
+<ul>
+<li>Plot does not get redrawn</li>
+<li>Plot is drawn as an image</li>
+<li>Need to manually add legend</li>
+<li>No unified framework for plotting</li>
+</ul></li>
+<li>All Grammatical Elements:
+<ul>
+<li>Data, the dataset being plotted</li>
+<li>Aesthetics, the scales onto which we map our data</li>
+<li>Geometries, the visual elements used for our data</li>
+<li>Facets, plotting small multiples</li>
+<li>Statistics, representations of our data to aid understanding</li>
+<li>Coordinates, the space on which the data will be plotted</li>
+<li>Themes, all non-data ink</li>
+</ul></li>
+<li>Typical Aesthetics
+<ul>
+<li>x, X axis position</li>
+<li>y, y axis position</li>
+<li>colour, colour of dots, outlines of other shapes</li>
+<li>fill, fill colour</li>
+<li>size, diameter of points, thickness of lines</li>
+<li>alpha, transparency</li>
+<li>linetype, line dash pattern</li>
+<li>labels, text on a plot or axes</li>
+<li>shape, shape</li>
+</ul></li>
+</ul>
+<p><img src="images/shape.png" width="60%" style="display: block; margin: auto;" /></p>
+<pre><code>##   Aesthetic                              Description
+## 1         x                          X axis position
+## 2         y                          Y axis position
+## 3    colour Colour of dots, outlines of other shapes
+## 4      fill                              Fill colour
+## 5      size   Diameter of points, thickness of lines
+## 6     alpha                             Transparency
+## 7  linetype                        Line dash pattern
+## 8    labels                   Text on a plot or axes
+## 9     shape                                    Shape</code></pre>
+<pre class="r"><code>ggplot(mtcars, aes(x = cyl, y = mpg, col = disp, size = disp, shape = categorical column, shape = 1, size = 4)) + 
+  geom_point(alpha = 0.4, position = &quot;jitter&quot;) + # alpha means the transparency of discrete points, 0-1, jitter expands the points more evenly, or you can just use geom_jitter()
+  geom_smooth(aes(group = 1), method = &quot;lm&quot;, se = FALSE) # if you do not want any error shading, you can set se = FALSE, lm means lineal model method in scatter plot, group = 1 tells ggplot to draw a single linear model through all the points in different colors.</code></pre>
+<p>Note that you can also call <code>aes()</code> within the <code>geom_point()</code> function. Which shape to use? The default geom_point() uses shape = 19 (a solid circle with an outline the same colour as the inside). Good alternatives are shape = 1 (hollow) and shape = 16 (solid, no outline). These all use the col aesthetic (don’t forget to set alpha for solid points). A really nice alternative is shape = 21 which allows you to use both fill for the inside and col for the outline! This is a great little trick for when you want to map two aesthetics to a dot.</p>
+<pre class="r"><code>ggplot(mtcars, aes(x = wt, y = mpg, fill = cyl, col = am, shape = 21, size = 4, label = cyl)) +
+  geom_point(alpha = 0.6) +
+  geom_text()</code></pre>
+<p>This time you’ll use these arguments to set attributes of the plot, not aesthetics. However, there are some pitfalls you’ll have to watch out for: these attributes can overwrite the aesthetics of your plot! <strong>A word about shapes:</strong> In the exercise “All about aesthetics, part 2”, you saw that shape = 21 results in a point that has a fill and an outline. Shapes in R can have a value from 1-25. Shapes 1-20 can only accept a color aesthetic, but shapes 21-25 have both a color and a fill aesthetic.</p>
+<pre class="r"><code>ggplot(mtcars, aes(x=wt, y=mpg, col=cyl)) +
+geom_point(col = my_color)
+# The col setting in geom_point can overwrite the aesthetics of plot</code></pre>
+<p><strong>A word about hexadecimal colours</strong>: Hexadecimal, literally “related to 16”, is a base-16 alphanumeric counting system. Individual values come from the ranges 0-9 and A-F. This means there are 256 possible two-digit values (i.e. 00 - FF). Hexadecimal colours use this system to specify a six-digit code for Red, Green and Blue values (“#RRGGBB”) of a colour (i.e. Pure blue: “#0000FF”, black: “#000000”, white: “#FFFFFF”). R can accept hex codes as valid colours.</p>
+<pre class="r"><code>ggplot(mtcars, aes(x = wt, y = mpg, fill = cyl)) +
+geom_text(rownames(mtcars), col = &quot;red&quot;)
+# Remember specify characters with quotation makrs</code></pre>
+<pre class="r"><code>val = c(&quot;#E41A1C&quot;, &quot;#377EB8&quot;)
+lab = c(&quot;Manual&quot;, &quot;Automatic&quot;)
+cyl.am +
+  geom_bar(position = &quot;dodge&quot;) +
+  scale_x_discrete(&quot;Cylinders&quot;) + 
+  scale_y_continuous(&quot;Number&quot;) +
+  scale_fill_manual(&quot;Transmission&quot;, 
+                    values = val,
+                    labels = lab)</code></pre>
+<p><strong>Explaination to the code above:</strong> <code>scale_x_discrete()</code> takes as its only argument the x-axis label: “Cylinders”. <code>scale_y_continuous()</code> takes as its only argument the y-axis label: “Number”. <code>scale_fill_manual()</code> fixes the legend. The first argument is the title of the legend: “Transmission”. Next, values and labels are set to predefined values for you. These are the colors and the labels in the legend. The result of above code will be like this:</p>
+<p><img src="images/bar1.png" width="70%" style="display: block; margin: auto;" /></p>
+<hr />
 <p>To make a univariable plot with <code>ggplot2</code>, we can set y = o in aesthetics. So far you’ve focused on scatter plots since they are intuitive, easily understood and very common. A major consideration in any scatter plot is dealing with overplotting. You’ll encounter this topic again in the geometries layer, but you can already make some adjustments here.</p>
 <ul>
 <li>You’ll have to deal with overplotting when you have:

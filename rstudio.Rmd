@@ -81,19 +81,25 @@ round() Round the values to 0 decimal places by default. Try out ?round in the c
 **Differences between [, [[ and $**
 Please refer to [Detailed explanation](https://www.r-bloggers.com/r-accessors-explained/)
 
-****************
+-----------
+
 # Operators
+
 For the meaning of operators in R, you would like to see [here](https://www.tutorialspoint.com/r/r_operators.htm).
 
 ------
+
 # Read flat/excel files
 There are several ways to do it. Basically, for "utils" package which is already existed in system library, it is east to read a table using read.table() function as below: 
+
 ```{r eval=FALSE}
 read.table("states.csv", header = TRUE/FALSE, sep = ",", stringsASFactors = FALSE)
 
 read.csv("states.csv", stringsASFactors = TRUE/FALSE) # To read a csv file
 ```
+
 Likewise, in the "readr" package, just use functions below:
+
 ```{r eval=FALSE}
 read_csv(object, col_names = TRUE) # would be enough to import csv files
 
@@ -431,9 +437,10 @@ prop.table(tab)     # Joint proportions
 prop.table(tab, 2)  # Conditional on columns, make column add to 1
 ```
 
-*****************
+------
 
 # Intro to Statistics with R
+
 ## Binwidth
 
 ```{r eval=FALSE}
