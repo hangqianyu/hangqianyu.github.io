@@ -440,7 +440,6 @@ prop.table(tab, 2)  # Conditional on columns, make column add to 1
 ------
 
 # Intro to Statistics with R
-
 ## Binwidth
 
 ```{r eval=FALSE}
@@ -463,6 +462,24 @@ cars %>%
 
 ```{r echo=FALSE, message=FALSE, out.width="50%"}
 include_graphics(list.files("images/", pattern = "binwidth", full.names = TRUE))
+```
+
+```{r eval=FALSE}
+# Compute groupwise measures of spread
+gap2007 %>%
+  group_by(continent) %>%
+  summarize(sd(lifeExp),
+            IQR(lifeExp),
+            n())
+
+# Generate overlaid density plots
+gap2007 %>%
+  ggplot(aes(x = lifeExp, fill = continent)) +
+  geom_density(alpha = 0.3)
+```
+
+```{r echo=FALSE, message=FALSE, out.width="70%", fig.align='center'}
+include_graphics("images/another21.png")
 ```
 
 # `ggplot2` Visualization
