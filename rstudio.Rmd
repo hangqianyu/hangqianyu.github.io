@@ -585,21 +585,46 @@ Second, the point (x¯,y¯) is always on the least squares regression line, wher
 
 **Fitting simple linear models**
 
+An `lm()` object contains a host of information about the regression model that you fit. There are various ways of extracting different pieces of information. The `oef()` function displays only the values of the coefficients. Conversely, the `summary()` function displays not only that information, but a bunch of other information, including the associated standard error and p-value for each coefficient, the R2, adjusted R2, and the residual standard error.
 
+```{r eval=FALSE}
+mod <- lm(wgt ~ hgt, data = bdims)
+# Show the coefficients
+coef(mod)
+# Show the full output
+summary(mod)
+```
 
+The `augment()` function from the `broom` package can tidy linear model. It takes a model object as an argument and returns a data frame that contains the data on which the model was fit, along with several quantities specific to the regression model, including the fitted values, residuals, leverage scores, and standardized residuals.
 
+**Adding a regression line to a plot manually**
 
+```{r eval=FALSE}
+# Add the line to the scatterplot
+ggplot(data = bdims, aes(x = hgt, y = wgt)) + 
+  geom_point() + 
+  geom_abline(data = coefs, 
+              aes(intercept = `(Intercept)`, slope = hgt),  
+              color = "dodgerblue")
+```
 
+```{r echo=FALSE, message=FALSE, out.width="70%", fig.align='center'}
+include_graphics("images/another23.png")
+```
 
+## Assessing model fit
+Calculate the stanard error of residuals/RMSE (Root mean squared error). 
 
+```{r eval=FALSE}
+# Compute the mean of the residuals
+mean(residuals(mod))
+# Compute RMSE
+sqrt(sum(residuals(mod)^2) / df.residual(mod))
+```
 
+**Leverage**
 
-
-
-
-
-
-
+The leverage of an observation in a regression model is defined entirely in terms of the distance of that observation from the mean of the explanatory variable. That is, observations close to the mean of the explanatory variable have low leverage, while observations far from the mean of the explanatory variable have high leverage. Points of high leverage may or may not be influential. The influence of an observation depends not only on its leverage, but also on the magnitude of its residual. Recall that while leverage only takes into account the explanatory variable (x), the residual depends on the response variable (y) and the fitted value (y^).
 
 
 
