@@ -389,7 +389,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Data analysis in R Studio</h1>
 <h4 class="author"><em><a href="https://github.com/hangqianyu">Qianyu Hang</a> at NC State University</em></h4>
-<h4 class="date"><em>Wed May 09, 2018</em></h4>
+<h4 class="date"><em>Thu May 10, 2018</em></h4>
 
 </div>
 
@@ -782,6 +782,15 @@ ggplot(data = mammals, aes(x = BodyWt, y = BrainWt)) +
 <h2>Correlation</h2>
 <p>The <code>cor(x, y)</code> function will compute the Pearson product-moment correlation between variables, x and y. Since this quantity is symmetric with respect to x and y, it doesn’t matter in which order you put the variables. At the same time, the <code>cor()</code> function is very conservative when it encounters missing data (e.g. NAs). The use argument allows you to override the default behavior of returning NA whenever any of the values encountered is NA. Setting the use argument to “pairwise.complete.obs” allows <code>cor()</code> to compute the correlation coefficient for those observations where the values of x and y are both not missing. <a href="http://bbs.pinggu.org/thread-3675473-1-1.html">This website</a> gives a detailed introduction to <code>cor()</code> function.</p>
 <p>By the way, <code>group_by()</code> function has always been used in R. It might be easier for you to understand the function if you take a look at an example <a href="https://blog.csdn.net/hao1066821456/article/details/69556644">here</a>.</p>
+</div>
+<div id="fitting-a-linear-model-by-hand" class="section level2">
+<h2>Fitting a linear model “by hand”</h2>
+<p>Recall the simple linear regression model:</p>
+<p>Y = b0 + b1 * X</p>
+<p>Two facts enable you to compute the slope b1 and intercept b0 of a simple linear regression model from some basic summary statistics. First, the slope can be defined as:</p>
+<p>b1 = r(X,Y) * sY / sX where r(X,Y) represents the correlation (cor()) of X and Y and sX and sY represent the standard deviation (sd()) of X and Y, respectively.</p>
+<p>Second, the point (x¯,y¯) is always on the least squares regression line, where x¯ and y¯ denote the average of x and y, respectively.</p>
+<p><strong>Fitting simple linear models</strong></p>
 </div>
 </div>
 <div id="ggplot2-visualization" class="section level1">

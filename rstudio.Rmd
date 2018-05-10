@@ -572,12 +572,18 @@ The `cor(x, y)` function will compute the Pearson product-moment correlation bet
 
 By the way, `group_by()` function has always been used in R. It might be easier for you to understand the function if you take a look at an example [here](https://blog.csdn.net/hao1066821456/article/details/69556644). 
 
+## Fitting a linear model "by hand"
+Recall the simple linear regression model: 
 
+Y = b0 + b1 * X
 
+Two facts enable you to compute the slope b1 and intercept b0 of a simple linear regression model from some basic summary statistics. First, the slope can be defined as:
 
+b1 = r(X,Y) * sY / sX where r(X,Y)  represents the correlation (cor()) of X and Y and sX and sY represent the standard deviation (sd()) of X and Y, respectively.
 
+Second, the point (x¯,y¯) is always on the least squares regression line, where x¯ and y¯ denote the average of x and y, respectively.
 
-
+**Fitting simple linear models**
 
 
 
