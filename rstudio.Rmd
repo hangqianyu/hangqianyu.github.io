@@ -537,6 +537,52 @@ email %>%
 include_graphics(list.files("images/", pattern = "spam", full.names = TRUE))
 ```
 
+**Boxplots as discretized/conditioned scatterplots**
+
+```{r eval=FALSE}
+ggplot(data = ncbirths, 
+       aes(x = cut(weeks, breaks = 5), y = weight)) + 
+  geom_boxplot()
+```
+
+```{r echo=FALSE, message=FALSE, out.width="70%", fig.align='center'}
+include_graphics("images/another22.png")
+```
+
+**Transformation**
+
+```{r eval=FALSE}
+# Scatterplot with coord_trans()
+ggplot(data = mammals, aes(x = BodyWt, y = BrainWt)) +
+  geom_point() + 
+  coord_trans(x = "log10", y = "log10")
+# Scatterplot with scale_x_log10() and scale_y_log10()
+ggplot(data = mammals, aes(x = BodyWt, y = BrainWt)) +
+  geom_point() +
+  scale_x_log10() + scale_y_log10()
+```
+
+```{r echo=FALSE, message=FALSE, out.width="50%"}
+include_graphics(list.files("images/", pattern = "transformation", full.names = TRUE))
+```
+
+## Correlation
+
+The `cor(x, y)` function will compute the Pearson product-moment correlation between variables, x and y. Since this quantity is symmetric with respect to x and y, it doesn't matter in which order you put the variables. At the same time, the `cor()` function is very conservative when it encounters missing data (e.g. NAs). The use argument allows you to override the default behavior of returning NA whenever any of the values encountered is NA. Setting the use argument to "pairwise.complete.obs" allows `cor()` to compute the correlation coefficient for those observations where the values of x and y are both not missing. [This website](http://bbs.pinggu.org/thread-3675473-1-1.html) gives a detailed introduction to `cor()` function.
+
+By the way, `group_by()` function has always been used in R. It might be easier for you to understand the function if you take a look at an example [here](https://blog.csdn.net/hao1066821456/article/details/69556644). 
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
