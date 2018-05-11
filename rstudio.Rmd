@@ -597,6 +597,10 @@ summary(mod)
 
 The `augment()` function from the `broom` package can tidy linear model. It takes a model object as an argument and returns a data frame that contains the data on which the model was fit, along with several quantities specific to the regression model, including the fitted values, residuals, leverage scores, and standardized residuals.
 
+A traditional way to return the fitted values (i.e. the y^'s) is to run the `predict()` function on the model object. This will return a vector of the fitted values. Note that `predict()` will take an optional newdata argument that will allow you to make predictions for observations that are not in the original data.
+
+A newer alternative is the `augment()` function from the broom package, which returns a data.frame with the response varible (y), the relevant explanatory variables (the x's), the fitted value (y^) and some information about the residuals (e). `augment()` will also take a newdata argument that allows you to make predictions.
+
 **Adding a regression line to a plot manually**
 
 ```{r eval=FALSE}
@@ -625,6 +629,48 @@ sqrt(sum(residuals(mod)^2) / df.residual(mod))
 **Leverage**
 
 The leverage of an observation in a regression model is defined entirely in terms of the distance of that observation from the mean of the explanatory variable. That is, observations close to the mean of the explanatory variable have low leverage, while observations far from the mean of the explanatory variable have high leverage. Points of high leverage may or may not be influential. The influence of an observation depends not only on its leverage, but also on the magnitude of its residual. Recall that while leverage only takes into account the explanatory variable (x), the residual depends on the response variable (y) and the fitted value (y^).
+
+```{r eval=FALSE}
+# Augment the model
+augmented_mod <- augment(mod)
+glimpse(augmented_mod)
+# scatterplot, with color
+data_space <- ggplot(augmented_mod, aes(x = wheels, y = totalPr, color = cond)) + 
+  geom_point()
+# single call to geom_line()
+data_space + 
+  geom_line(aes(y = .fitted))
+```
+
+### R-squared vs. adjusted R-squared
+Here is a website about [indexes intro](https://blog.csdn.net/l18930738887/article/details/50629409) which is pretty helpful.
+
+For interaction plot, 
+
+```{r eval=FALSE}
+# interaction plot
+ggplot(mario_kart, aes(y = totalPr, x = duration, color = cond)) + 
+  geom_point() + 
+  geom_smooth(method = "lm", se = FALSE)
+```
+
+```{r echo=FALSE, message=FALSE, out.width="70%", fig.align='center'}
+include_graphics("images/another24.png")
+```
+
+```{r eval=FALSE}
+slr <- ggplot(mario_kart, aes(y = totalPr, x = duration)) + 
+  geom_point() + 
+  geom_smooth(method = "lm", se = 0)
+# model with one slope
+lm(totalPr ~ duration, data = mario_kart)
+# plot with two slopes
+slr + aes(color = cond)
+```
+
+```{r echo=FALSE, message=FALSE, out.width="70%", fig.align='center'}
+include_graphics("images/another25.png")
+```
 
 
 
