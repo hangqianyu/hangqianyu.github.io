@@ -8,7 +8,9 @@ navbar:
         - text: "Stream Restoration"
           href: stream.html
         - text: "Research Questions"
-          href: questions.html  
+          href: questions.html
+        - text: "Field Visit"
+          href: field.html
     - text: "Tutorial"
       menu: 
         - text: "R Studio"

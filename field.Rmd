@@ -1,0 +1,24 @@
+---
+title: "Field visit at Claridge site in Goldsboro, NC"
+author:  "[Qianyu Hang](https://github.com/hangqianyu) at NC State University"
+date: '`r format(Sys.Date(), "%a %b %d, %Y")`'
+output:
+  html_document:
+    fig_width: 9
+    toc: yes
+    toc_float: yes
+---
+
+```{r echo=FALSE, message=FALSE, out.width="80%", fig.align='center'}
+library(knitr)
+include_graphics("images/field.jpg")
+```
+
+----------
+# Introduction
+For claridge project, we usually go there biweekly to do a manual service/check. There are several reasons: 1) we used isco sampler to automatically collect water samples every 14 hours, but We need to replace full bottles with empty ones after two weeks. 2) download data because S::CAN and sontek data can only be stored within a short period of time. 3) check solar and marine battery. 4) manually clean Manta, Sontek, and S::CAN probe lenser. 5) take grab samples back to the lab for detecting if there is any difference between samples measured immediately and samples measured after two weeks. 6) take muanal flow measurement 7) download Manta data 8) clean the flume and stream, sometimes there will be plenty of trims/algae in streams 9) cut the grass because summer is coming. 10) grab tributary samples back to the lab. 11) finally check everything works all right, then you are good to go. 
+
+In this part, i will mainly record some interesting stories i have seen (some are research-related, some are not) during each field visit. Go Pack, Go Field!
+
+# Field visit on May 11, 2018
+
