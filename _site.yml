@@ -1,7 +1,7 @@
-name: "Qianyu's Life"
+name: "Qianyu's Blog"
 output_dir: "."
 navbar:
-  title: "Qianyu's Life"
+  title: "Qianyu's Blog"
   left:
     - text: "Research"
       menu: 
