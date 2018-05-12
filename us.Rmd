@@ -3,6 +3,8 @@ title: "Chat away from research"
 output:
   html_document:
     fig_width: 0.5
+    toc: yes
+    toc_float: yes
 ---
 
 ```{r echo=FALSE, message=FALSE, out.width = "40%", fig.align='center'}

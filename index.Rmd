@@ -16,7 +16,7 @@ var imlocation = "images/";
    }
  }
 image = new ImageArray(7);
-image[0] = 'index1.JPG';
+image[0] = 'index1.jpg';
 image[1] = 'index2.jpg';
 image[2] = 'index3.jpg';
 image[3] = 'index4.jpg';
@@ -33,7 +33,7 @@ document.write('<img src="' + imlocation + image[imagenumber] + '">');
 
 --------
 
-<div style="float: left; position: relative"><img src="images/qianyu.jpg" width = "300" />
+<div style="float: left; position: relative"><img src="images/qianyu.JPG" width = "210" />
 <center>
 <br/>
 <a href='mailto:qhang@ncsu.edu'><i class="fa fa-envelope-o fa-2x" aria-hidden="true"></i></a>&nbsp;&nbsp;
