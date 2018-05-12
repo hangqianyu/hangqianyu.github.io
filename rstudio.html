@@ -392,7 +392,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Data analysis in R Studio</h1>
 <h4 class="author"><em><a href="https://github.com/hangqianyu">Qianyu Hang</a> at NC State University</em></h4>
-<h4 class="date"><em>Fri May 11, 2018</em></h4>
+<h4 class="date"><em>Sat May 12, 2018</em></h4>
 
 </div>
 
@@ -1913,6 +1913,66 @@ autoplot(iris_k, data = iris, frame = TRUE)
 # Autoplot: above, plus shape according to species
 autoplot(iris_k, data = iris, frame = TRUE, shape = &#39;Species&#39;)</code></pre>
 <p><img src="images/cluster1.png" width="50%" /><img src="images/cluster2.png" width="50%" /></p>
+</div>
+<div id="time-series" class="section level1">
+<h1>Time Series</h1>
+<div id="xts-package" class="section level2">
+<h2><code>xts</code> package</h2>
+<p>The main <code>xts</code> constructor takes a number of arguments, but the two most important are <code>x</code> for the data and order.by for the index. <code>x</code> must be a vector or matrix. order.by is a vector which must be the same length or number of rows as <code>x</code>, be a proper time or date object (very important!), and be in increasing order.</p>
+<pre class="r"><code># Create the object data using 5 random numbers
+data &lt;- rnorm(5)
+# Create dates as a Date class object starting from 2016-01-01
+dates &lt;- seq(as.Date(&quot;2016-01-01&quot;), length = 5, by = &quot;days&quot;)
+# Use xts() to create smith
+smith &lt;- xts(x = data, order.by = dates)
+# Create bday (1899-05-08) using a POSIXct date class object
+bday &lt;- as.POSIXct(&quot;1899-05-08&quot;)
+# Create hayek and add a new attribute called born
+hayek &lt;- xts(x = data, order.by = dates, born = bday)</code></pre>
+<p>The most important of these attributes is the index. The index holds all the information we need for xts to treat our data as a time series. When working with time series, it will sometimes be necessary to separate your time series into its core data and index attributes for additional analysis and manipulation. The core data is the matrix portion of xts. You can separate this from the xts object using <code>coredata()</code>. The index portion of the xts object is available using the <code>index()</code> function. Note that both of these functions are methods from the zoo class, which xts extends.</p>
+<pre class="r"><code># Extract the core data of hayek
+hayek_core &lt;- coredata(hayek)
+# View the class of hayek_core
+class(hayek_core) # data
+# Extract the index of hayek
+hayek_index &lt;- index(hayek)
+# View the class of hayek_index
+class(hayek_index) # date</code></pre>
+<pre class="r"><code># Create dates increasing with 1 day
+dates &lt;- as.Date(&quot;2016-01-01&quot;) + 0:4
+# Create ts_a
+ts_a &lt;- xts(x = 1:5, order.by = dates)
+# Create ts_b
+ts_b &lt;- xts(x = 1:5, order.by = as.POSIXct(dates))
+# Extract the rows of ts_a using the index of ts_b
+ts_a[index(ts_b)]
+# Extract the rows of ts_b using the index of ts_a
+ts_b[index(ts_a)]</code></pre>
+<p>It is often necessary to convert between classes when working with time series data in R. Conversion can be required for many reasons, but typically you’ll be looking to use a function that may not be time series aware or you may want to use a particular aspect of xts with something that doesn’t necessarily need to be a full time series.</p>
+<p>Luckily, it is quite easy to convert back and forth using the standard as.* style functionality provided in R (for example, <code>as.POSIXct()</code> or <code>as.matrix()</code>). xts provides methods to convert all of the major objects you are likely to come across. Suitable native R types like matrix, data.frame, and ts are supported, as well as contributed ones such as <code>timeSeries</code>, <code>fts</code> and of course <code>zoo</code>. <code>as.xts()</code> is the workhorse function to do the conversions to xts, and similar functions will provide the reverse behavior.</p>
+<pre class="r"><code># 1. Create dat by reading tmp_file
+dat &lt;- read.csv(tmp_file)
+# Convert dat into xts
+xts(dat, order.by = as.Date(rownames(dat), &quot;%m/%d/%Y&quot;))
+# 2. Read tmp_file using read.zoo
+dat_zoo &lt;- read.zoo(tmp_file, index.column = 0, sep = &quot;,&quot;, format = &quot;%m/%d/%Y&quot;)
+# Convert dat_zoo to xts
+dat_xts &lt;- as.xts(dat_zoo)</code></pre>
+<p>There are two main use cases for exporting xts objects. First, you may require an object to persist across sessions for use in later analysis. In this case, it is almost always best to use <code>saveRDS()</code> and <code>readRDS()</code> to serialize single R objects. Alternatively, you may find yourself needing to share the results of your analysis with others, often expecting the data to be consumed by processes unaware of both R and xts. Most of us would prefer not to think of this horrible fate for our data, but the real world mandates that we at least understand how this works. One of the best ways to write an xts object from R is to use the <code>zoo</code> function <code>write.zoo()</code>.</p>
+<pre class="r"><code>data(&quot;sunspots&quot;)
+library(xts)
+library(zoo)
+# Convert sunspots to xts using as.xts().
+sunspots_xts &lt;- as.xts(sunspots)
+# Get the temporary file name
+tmp &lt;- tempfile()
+# Write the xts object using zoo to tmp 
+write.zoo(sunspots_xts, sep = &quot;,&quot;, file = tmp)
+# Read the tmp file. FUN = as.yearmon converts strings such as Jan 1749 into a proper time class
+sun &lt;- read.zoo(tmp, sep = &quot;,&quot;, FUN = as.yearmon)
+# Convert sun into xts. Save this as sun_xts
+sun_xts &lt;- as.xts(sun)</code></pre>
+</div>
 </div>
 <div id="references" class="section level1">
 <h1>References</h1>
