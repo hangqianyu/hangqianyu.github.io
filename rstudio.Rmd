@@ -2204,6 +2204,113 @@ sun <- read.zoo(tmp, sep = ",", FUN = as.yearmon)
 sun_xts <- as.xts(sun)
 ```
 
+One of the most powerful aspects of working with time series in xts is the ability to quickly and efficiently specify dates and time ranges for subsetting. Date ranges can be extracted from `xts` objects by simply specifying the period(s) you want using special character strings in your subset. 
+```{r eval=FALSE}
+A["20090825"]       # Aug 25, 2009
+A["201203/201212"]  # Mar to Dec 2012
+A["/201601"]        # Up to and including January 2016
+```
+
+The most common time series data "in the wild" is daily. On occasion, you may find yourself working with intraday data, which contains both dates and times. In this case it is sometimes necessary to view only a subset of time for each day over multiple days. Using `xts`, you can slice days easily by using special notation in the `i =` argument to the single bracket extraction (i.e. `[i, j]`).
+
+```{r eval=FALSE}
+# Extract all data from irreg between 8AM and 10AM
+morn_2010 <- irreg["T08:00/T10:00"]
+# Extract the observations in morn_2010 for January 13th, 2010
+morn_2010["2010-01-13"]
+```
+
+Sometimes you need to locate data by relative time. Something that is easier said than put into code. This is equivalent to requesting the head or tail of a series, but instead of using an absolute offset, you describe a relative position in time. A simple example would be something like the last 3 weeks of a series, or the first day of current month. Without a time aware object, this gets quite complicated very quickly. Luckily, xts has the necessary prerequisites built in for you to use with very little learning required. Using the `first()` and `last()` functions it is actually quite easy!
+
+```{r eval=FALSE}
+# Create lastweek using the last 1 week of temps
+lastweek <- last(temps, "1 week")
+# Print the last 2 observations in lastweek
+last(lastweek, 2)
+# Extract all but the first two days of lastweek
+first(lastweek, "-2 days")
+```
+
+**Combining first and last**
+
+```{r eval=FALSE}
+# Extract the first three days of the second week of temps
+first(last(first(temps, "2 weeks"), "1 week"), "3 days")
+```
+
+xts makes it easy to join data by column and row using a few different functions. All results will be correctly ordered in time, regardless of original frequencies or date class. One of the most important functions to accomplish this is `merge()`. It takes one or more series and joins them by column. It's also possible to combine a series with a vector of dates. This is especially useful for normalizing observations to a fixed calendar.`merge()` takes three key arguments which we will emphasize here. First is the `...,` which lets you pass in an arbitrary number of objects to combine. The second argument is `join`, which specifies how to join the series - accepting arguments such as inner or left. This is similar to a relational database join, only here, the index is what we join on. The final argument for this exercise is `fill`. This keyword specifies what to do with the new values in a series if there is missingness introduced as a result of the merge.
+
+```{r eval=FALSE}
+# Basic argument use
+merge(a, b, join = "right", fill = 9999)
+```
+
+Now that you have merged data by column, you will be happy to know it's just as easy to add new rows to your data. `xts` provides its own S3 method to the base `rbind()` generic function. The `xts` rbind function is much simpler than `merge()`. The only argument that matters is `...`, which takes an arbitrary number of objects to bind. What is different is that rbind requires a time series, since we need to have timestamps for R to know where to insert new data.
+
+```{r eval=FALSE}
+# Row bind temps_june30 to temps, assign this to temps2
+temps2 <- rbind(temps_june30, temps)
+# Row bind temps_july17 and temps_july18 to temps2, call this temps3
+temps3 <- rbind(temps_july17, temps_july18, temps2)
+```
+
+
+**Fill missing values using last or previous observation** As you've encountered already, it's not uncommon to find yourself with missing values (i.e. NAs) in your time series. This may be the result of a data omission or some mathematical or merge operation you do on your data. you will use the most basic of these, `na.locf()`. This function takes the last observation carried forward approach. In most circumstances this is the correct thing to do. It both preserves the last known value and prevents any look-ahead bias from entering into the data. You can also apply next observation carried backward by setting `fromLast = TRUE`.
+
+```{r eval=FALSE}
+# Last obs. carried forward
+na.locf(x)                
+# Next obs. carried backward
+na.locf(x, fromLast = TRUE) 
+```
+
+On occasion, a simple carry forward approach to missingness isn't appropriate. It may be that a series is missing an observation due to a higher frequency sampling than the generating process. You might also encounter an observation that is in error, yet expected to be somewhere between the values of its neighboring observations. These are scenarios where interpolation is useful. `zoo` provides a powerful tool to do this. Based on simple linear interpolation between points, implemented with `na.approx()` the data points are approximated using the distance between the index values. In other words, the estimated value is linear in time.
+
+```{r eval=FALSE}
+# Interpolate NAs using linear approximation
+na.approx(AirPass)
+```
+
+**Combine a leading and lagging time series** Both zoo and xts implement this behavior, and in fact extend it from the ts original in R. There are two major differences between xts and zoo implementations that you need to be aware of. One is the direction of the lag for a given k. The second is how missingness is handled afterwards.
+
+For historical reasons in R, zoo uses a convention for the sign of k in which negative values indicate lags and positive values indicate leads. That is, in zoo lag(x, k = 1) will shift future values one step back in time. This is inconsistent with the vast majority of the time series literature, but is consistent with behavior in base R. xts implements the exact opposite, namely for a positive k, the series will shift the last value in time one period forward; this is consistent with intuition, but quite different than zoo.
+
+```{r eval=FALSE}
+# Create a leading object called lead_x
+lead_x <- lag(x, k = -1)
+# Create a lagging object called lag_x
+lag_x <- lag(x, k = 1)
+# Merge your three series together and assign to z
+z <- merge(lead_x, x, lag_x)
+```
+
+**Calculate a difference of a series using diff().** Another common operation on time series, typically on those that are non-stationary, is to take a difference of the series. The number of differences to take of a series is an application of recursively calling the difference function n times.
+
+A simple way to view a single (or "first order") difference is to see it as `x(t) - x(t-k)` where `k` is the number of lags to go back. Higher order differences are simply the reapplication of a difference to each prior result. In R, the difference operator for `xts` is made available using the `diff()` command. This function takes two arguments of note. The first is the lag, which is the number of periods, and the second is `differences`, which is the order of the difference (e.g. how many times `diff()` is called).
+
+```{r eval=FALSE}
+# These are the same
+diff(x, differences = 2)
+diff(diff(x))
+```
+
+```{r eval=FALSE}
+# Calculate the first difference of AirPass using lag and subtraction
+diff_by_hand <- AirPass - lag(AirPass)
+# Use merge to compare the first parts of diff_by_hand and diff(AirPass)
+merge(head(diff_by_hand), head(diff(AirPass)))
+# Calculate the first order 12 month difference of AirPass
+diff(AirPass, lag = 12, differences = 1)
+```
+
+
+
+
+
+
+
+
+
 
 
 

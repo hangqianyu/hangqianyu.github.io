@@ -1972,6 +1972,60 @@ write.zoo(sunspots_xts, sep = &quot;,&quot;, file = tmp)
 sun &lt;- read.zoo(tmp, sep = &quot;,&quot;, FUN = as.yearmon)
 # Convert sun into xts. Save this as sun_xts
 sun_xts &lt;- as.xts(sun)</code></pre>
+<p>One of the most powerful aspects of working with time series in xts is the ability to quickly and efficiently specify dates and time ranges for subsetting. Date ranges can be extracted from <code>xts</code> objects by simply specifying the period(s) you want using special character strings in your subset.</p>
+<pre class="r"><code>A[&quot;20090825&quot;]       # Aug 25, 2009
+A[&quot;201203/201212&quot;]  # Mar to Dec 2012
+A[&quot;/201601&quot;]        # Up to and including January 2016</code></pre>
+<p>The most common time series data “in the wild” is daily. On occasion, you may find yourself working with intraday data, which contains both dates and times. In this case it is sometimes necessary to view only a subset of time for each day over multiple days. Using <code>xts</code>, you can slice days easily by using special notation in the <code>i =</code> argument to the single bracket extraction (i.e. <code>[i, j]</code>).</p>
+<pre class="r"><code># Extract all data from irreg between 8AM and 10AM
+morn_2010 &lt;- irreg[&quot;T08:00/T10:00&quot;]
+# Extract the observations in morn_2010 for January 13th, 2010
+morn_2010[&quot;2010-01-13&quot;]</code></pre>
+<p>Sometimes you need to locate data by relative time. Something that is easier said than put into code. This is equivalent to requesting the head or tail of a series, but instead of using an absolute offset, you describe a relative position in time. A simple example would be something like the last 3 weeks of a series, or the first day of current month. Without a time aware object, this gets quite complicated very quickly. Luckily, xts has the necessary prerequisites built in for you to use with very little learning required. Using the <code>first()</code> and <code>last()</code> functions it is actually quite easy!</p>
+<pre class="r"><code># Create lastweek using the last 1 week of temps
+lastweek &lt;- last(temps, &quot;1 week&quot;)
+# Print the last 2 observations in lastweek
+last(lastweek, 2)
+# Extract all but the first two days of lastweek
+first(lastweek, &quot;-2 days&quot;)</code></pre>
+<p><strong>Combining first and last</strong></p>
+<pre class="r"><code># Extract the first three days of the second week of temps
+first(last(first(temps, &quot;2 weeks&quot;), &quot;1 week&quot;), &quot;3 days&quot;)</code></pre>
+<p>xts makes it easy to join data by column and row using a few different functions. All results will be correctly ordered in time, regardless of original frequencies or date class. One of the most important functions to accomplish this is <code>merge()</code>. It takes one or more series and joins them by column. It’s also possible to combine a series with a vector of dates. This is especially useful for normalizing observations to a fixed calendar.<code>merge()</code> takes three key arguments which we will emphasize here. First is the <code>...,</code> which lets you pass in an arbitrary number of objects to combine. The second argument is <code>join</code>, which specifies how to join the series - accepting arguments such as inner or left. This is similar to a relational database join, only here, the index is what we join on. The final argument for this exercise is <code>fill</code>. This keyword specifies what to do with the new values in a series if there is missingness introduced as a result of the merge.</p>
+<pre class="r"><code># Basic argument use
+merge(a, b, join = &quot;right&quot;, fill = 9999)</code></pre>
+<p>Now that you have merged data by column, you will be happy to know it’s just as easy to add new rows to your data. <code>xts</code> provides its own S3 method to the base <code>rbind()</code> generic function. The <code>xts</code> rbind function is much simpler than <code>merge()</code>. The only argument that matters is <code>...</code>, which takes an arbitrary number of objects to bind. What is different is that rbind requires a time series, since we need to have timestamps for R to know where to insert new data.</p>
+<pre class="r"><code># Row bind temps_june30 to temps, assign this to temps2
+temps2 &lt;- rbind(temps_june30, temps)
+# Row bind temps_july17 and temps_july18 to temps2, call this temps3
+temps3 &lt;- rbind(temps_july17, temps_july18, temps2)</code></pre>
+<p><strong>Fill missing values using last or previous observation</strong> As you’ve encountered already, it’s not uncommon to find yourself with missing values (i.e. NAs) in your time series. This may be the result of a data omission or some mathematical or merge operation you do on your data. you will use the most basic of these, <code>na.locf()</code>. This function takes the last observation carried forward approach. In most circumstances this is the correct thing to do. It both preserves the last known value and prevents any look-ahead bias from entering into the data. You can also apply next observation carried backward by setting <code>fromLast = TRUE</code>.</p>
+<pre class="r"><code># Last obs. carried forward
+na.locf(x)                
+# Next obs. carried backward
+na.locf(x, fromLast = TRUE) </code></pre>
+<p>On occasion, a simple carry forward approach to missingness isn’t appropriate. It may be that a series is missing an observation due to a higher frequency sampling than the generating process. You might also encounter an observation that is in error, yet expected to be somewhere between the values of its neighboring observations. These are scenarios where interpolation is useful. <code>zoo</code> provides a powerful tool to do this. Based on simple linear interpolation between points, implemented with <code>na.approx()</code> the data points are approximated using the distance between the index values. In other words, the estimated value is linear in time.</p>
+<pre class="r"><code># Interpolate NAs using linear approximation
+na.approx(AirPass)</code></pre>
+<p><strong>Combine a leading and lagging time series</strong> Both zoo and xts implement this behavior, and in fact extend it from the ts original in R. There are two major differences between xts and zoo implementations that you need to be aware of. One is the direction of the lag for a given k. The second is how missingness is handled afterwards.</p>
+<p>For historical reasons in R, zoo uses a convention for the sign of k in which negative values indicate lags and positive values indicate leads. That is, in zoo lag(x, k = 1) will shift future values one step back in time. This is inconsistent with the vast majority of the time series literature, but is consistent with behavior in base R. xts implements the exact opposite, namely for a positive k, the series will shift the last value in time one period forward; this is consistent with intuition, but quite different than zoo.</p>
+<pre class="r"><code># Create a leading object called lead_x
+lead_x &lt;- lag(x, k = -1)
+# Create a lagging object called lag_x
+lag_x &lt;- lag(x, k = 1)
+# Merge your three series together and assign to z
+z &lt;- merge(lead_x, x, lag_x)</code></pre>
+<p><strong>Calculate a difference of a series using diff().</strong> Another common operation on time series, typically on those that are non-stationary, is to take a difference of the series. The number of differences to take of a series is an application of recursively calling the difference function n times.</p>
+<p>A simple way to view a single (or “first order”) difference is to see it as <code>x(t) - x(t-k)</code> where <code>k</code> is the number of lags to go back. Higher order differences are simply the reapplication of a difference to each prior result. In R, the difference operator for <code>xts</code> is made available using the <code>diff()</code> command. This function takes two arguments of note. The first is the lag, which is the number of periods, and the second is <code>differences</code>, which is the order of the difference (e.g. how many times <code>diff()</code> is called).</p>
+<pre class="r"><code># These are the same
+diff(x, differences = 2)
+diff(diff(x))</code></pre>
+<pre class="r"><code># Calculate the first difference of AirPass using lag and subtraction
+diff_by_hand &lt;- AirPass - lag(AirPass)
+# Use merge to compare the first parts of diff_by_hand and diff(AirPass)
+merge(head(diff_by_hand), head(diff(AirPass)))
+# Calculate the first order 12 month difference of AirPass
+diff(AirPass, lag = 12, differences = 1)</code></pre>
 </div>
 </div>
 <div id="references" class="section level1">
