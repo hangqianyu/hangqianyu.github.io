@@ -1,8 +1,25 @@
 ---
-title: "US"
+title: "Chat away from research"
 output:
   html_document:
     fig_width: 0.5
 ---
 
+```{r echo=FALSE, message=FALSE, out.width = "40%", fig.align='center'}
+library(knitr)
+include_graphics("images/yanhua1.jpg")
+```
+
+----------
+
+<div style="float: left; position: relative"><img src="images/group.jpg" width = "260" />
+</div>
+
+<div class = "col-md-8">
+
+<div style="float: right; position: relative"><img src="images/family.jpg" width = "260" />
+</div>
+
+# Chew the fat
 This is not all about research though. Some stories to show the support from my family, Yanhua and all people care about me. Thank you all.
+
