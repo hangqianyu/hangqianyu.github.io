@@ -539,8 +539,8 @@ fromJSON(json2)</code></pre>
 <hr />
 </div>
 </div>
-<div id="import-data-from-statistical-softwares-like-sas-stata-spss-into-r" class="section level1">
-<h1>Import data from statistical softwares (like SAS, STATA, SPSS) into R</h1>
+<div id="import-data-from-statistical-softwares-into-r" class="section level1">
+<h1>Import data from statistical softwares into R</h1>
 <p>Two packages can be useful to do this. One is “haven”, the other is “foreign” package. “haven” can deal with data from SAS, STATA and SPSS. For “haven” package</p>
 <pre class="r"><code>read_sas() # to import SAS data
 
@@ -2026,6 +2026,85 @@ diff_by_hand &lt;- AirPass - lag(AirPass)
 merge(head(diff_by_hand), head(diff(AirPass)))
 # Calculate the first order 12 month difference of AirPass
 diff(AirPass, lag = 12, differences = 1)</code></pre>
+<p>One of the benefits to working with time series objects is how easy it is to apply functions by time. The main function in <code>xts</code> to facilitate this is <code>endpoints()</code>. It takes a time series (or a vector of times) and returns the locations of the last observations in each interval. The argument on supports a variety of periods, including <code>&quot;years&quot;</code>, <code>&quot;quarters&quot;</code>, <code>&quot;months&quot;</code>, as well as intraday intervals such as <code>&quot;hours&quot;</code>, and <code>&quot;minutes&quot;</code>. What is returned is a vector starting with 0 and ending with the extent (last row) of your data.</p>
+<pre class="r"><code># Locate the end of week in temps data
+endpoints(temps, on = &quot;weeks&quot;)
+# Locate the end of every second week
+endpoints(temps, on = &quot;weeks&quot;, k = 2)</code></pre>
+<p>Make use of the xts <code>split()</code> command to chunk your data by time. The <code>split()</code> function creates a list containing an element for each split. The f argument in <code>split()</code> is a character string describing the period to split by (i.e. <code>&quot;months&quot;</code>, <code>&quot;years&quot;</code>, etc.).</p>
+<pre class="r"><code># Split temps by week
+temps_weekly &lt;- split(temps, f = &quot;weeks&quot;)
+# Create a list of weekly means, temps_avg
+temps_avg &lt;- lapply(X = temps_weekly, FUN = mean)</code></pre>
+<p><strong>Convert univariate series to OHLC data.</strong> You’ll convert from a univariate series into OHLC series, and then convert your final OHLC series back into a univariate series using the xts function <code>to.period()</code>. This function takes a time-series, <code>x</code>, and a string for the <code>period</code> (i.e. <code>months</code>, <code>days</code>, etc.), in addition to a number of other optional arguments.</p>
+<pre class="r"><code>to.period(x,
+          period = &quot;months&quot;, 
+          k = 1, 
+          indexAt, 
+          name=NULL,
+          OHLC = TRUE,
+          ...)</code></pre>
+<pre class="r"><code># Convert usd_eur to weekly and assign to usd_eur_weekly
+usd_eur_weekly &lt;- to.period(usd_eur, period = &quot;weeks&quot;)
+# Convert usd_eur to monthly and assign to usd_eur_monthly
+usd_eur_monthly &lt;- to.period(usd_eur, period = &quot;months&quot;)
+# Convert usd_eur to yearly univariate and assign to usd_eur_yearly, no OHLC bars
+usd_eur_yearly &lt;- to.period(usd_eur, period = &quot;years&quot;, OHLC = FALSE)</code></pre>
+<p>One common aggregation you may want to apply involves doing a calculation within the context of a period, but returning the interim results for each observation of the period. For example, you may want to calculate a running month-to-date cumulative sum of a series. This would be relevant when looking at monthly performance of a mutual fund you are interested in investing in. You’ll calculate the cumulative annual return using the edhec fund data from the last exercise. To do this, you’ll follow the <code>split()-lapply()-rbind()</code> pattern demonstrated below:</p>
+<pre class="r"><code>x_split &lt;- split(x, f = &quot;months&quot;)
+x_list &lt;- lapply(x_split, cummax)
+x_list_rbind &lt;- do.call(rbind, x_list)</code></pre>
+<p>Note the last call uses R’s somewhat strange <code>do.call(rbind, ...)</code> syntax, which allows you to pass a list to <code>rbind</code> instead of passing each object one at a time. This is a handy shortcut for your R toolkit.</p>
+<pre class="r"><code># View the first three indexes of temps
+index(temps)[1:3]
+# Get the index class of temps
+indexClass(temps)
+# Get the timezone of temps
+indexTZ(temps)
+# Change the format of the time display
+indexFormat(temps) &lt;- &quot;%b-%d-%Y&quot;</code></pre>
+<p>One of the trickiest parts to working with time series in general is dealing with time zones. <code>xts</code> provides a simple way to leverage time zones on a per-series basis. While R provides time zone support in native classes <code>POSIXct</code> and <code>POSIXlt</code>, <code>xts</code> extends this power to the entire object, allowing you to have multiple time zones across various objects.</p>
+<p>Some internal operation system functions require a time zone to do date math. If a time zone isn’t explicitly set, one is chosen for you! Be careful to always set a time zone in your environment to prevent errors when working with dates and times. <code>xts</code> provides the function <code>tzone()</code>, which allows you to extract or set time zones.</p>
+<pre class="r"><code># Construct times_xts with tzone set to America/Chicago
+times_xts &lt;- xts(1:10, order.by = times, tzone = &quot;America/Chicago&quot;)
+# Change the time zone of times_xts to Asia/Hong_Kong
+tzone(times_xts) &lt;- &quot;Asia/Hong_Kong&quot;</code></pre>
+<p><code>xts</code> provides a handy tool to discover this regularity in your data by estimating the frequency of the observations - what we are referring to as periodicity - using the <a href="http://www.rdocumentation.org/packages/xts/versions/0.9-7/topics%20periodicity">periodicity()</a> command</p>
+<pre class="r"><code># Calculate the periodicity of temps
+periodicity(temps)
+# Calculate the periodicity of edhec
+periodicity(edhec)
+# Convert edhec to yearly
+edhec_yearly &lt;- to.yearly(edhec)
+# Calculate the periodicity of edhec_yearly
+periodicity(edhec_yearly)</code></pre>
+<p>Often it is handy to know not just the range of your time series index, but also how many discrete irregular periods your time series data covers. You shouldn’t be surprised to learn that xts provides a set of functions to do just that!</p>
+<p>If you have a time series, it is now easy to see how many days, weeks or years your data contains. To do so, simply use the function <code>ndays()</code> and its shortcut functions <code>nmonths()</code>, <code>nquarters()</code>, and so forth, making counting irregular periods easy.</p>
+<pre class="r"><code># Count the months
+nmonths(edhec)
+# Count the quarters
+nquarters(edhec)
+# Count the years
+nyears(edhec)</code></pre>
+<p><code>xts</code> uses a very special attribute called <code>index</code> to provide time support to your objects. For performance and design reasons, the index is stored in a special way. This means that regardless of the class of your index (e.g. <code>Date</code> or <code>yearmon</code>) everything internally looks the same to <code>xts</code>. The raw index is actually a simple vector of fractional seconds since the UNIX epoch. Normally you want to access the times you stored. <code>index()</code> does this magically for you by using your <code>indexClass</code>. To get to the raw vector of the index, you can use <code>.index()</code>. Note the critical dot before the function name. More useful than extracting raw seconds is the ability to extract time components similar to the POSIXlt class, which closely mirrors the underlying POSIX internal compiled structure tm. This functionality is provided by a handful of commands such as <code>.indexday()</code>, <code>.indexmon()</code>, <code>.indexyear()</code>, and more.</p>
+<pre class="r"><code># Explore underlying units of temps in two commands: .index() and .indexwday()
+.index(temps)
+.indexwday(temps)
+# Create an index of weekend days using which()
+index &lt;- which(.indexwday(temps) == 6 | .indexwday(temps) == 0)
+# Select the index
+temps[index]</code></pre>
+<p>If you find that you have observations with identical timestamps, it might be useful to perturb or remove these times to allow for uniqueness. <code>xts</code> provides the function <code>make.index.unique()</code> for just this purpose. The eps argument, short for epsilon or small change, controls how much identical times should be perturbed, and <code>drop = TRUE</code> lets you just remove duplicate observations entirely.</p>
+<p>On other ocassions you might find your timestamps a bit too precise. In these instances it might be better to round up to some fixed interval, for example an observation may occur at any point in an hour, but you want to record the latest as of the beginning of the next hour. For this situation, the <code>align.time()</code> command will do what you need, setting the n argument to the number of seconds you’d like to round to.</p>
+<pre class="r"><code>make.index.unique(x, eps = 1e-4)  # Perturb
+make.index.unique(x, drop = TRUE) # Drop duplicates
+align.time(x, n = 60) # Round to the minute</code></pre>
+<pre class="r"><code># Make z have unique timestamps
+z_unique &lt;- make.index.unique(z, eps = 1e-4)
+# Remove duplicate times in z
+z_dup &lt;- make.index.unique(z, drop = TRUE)
+# Round observations in z to the next hour
+z_round &lt;- align.time(z, n = 3600)</code></pre>
 </div>
 </div>
 <div id="references" class="section level1">
