@@ -392,7 +392,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Data analysis in R Studio</h1>
 <h4 class="author"><em><a href="https://github.com/hangqianyu">Qianyu Hang</a> at NC State University</em></h4>
-<h4 class="date"><em>Sat May 12, 2018</em></h4>
+<h4 class="date"><em>Sun May 13, 2018</em></h4>
 
 </div>
 
@@ -848,6 +848,26 @@ lm(totalPr ~ duration, data = mario_kart)
 slr + aes(color = cond)</code></pre>
 <p><img src="images/another25.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
+</div>
+<div id="models-in-3d" class="section level2">
+<h2>Models in 3D</h2>
+<p>An alternative way to visualize a multiple regression model with two numeric explanatory variables is as a plane in three dimensions. This is possible in R using the <code>plotly</code> package.</p>
+<p>Much like <code>ggplot()</code>, the <code>plot_ly()</code> function will allow you to create a plot object with variables mapped to <code>x</code>, <code>y</code>, and <code>z</code> aesthetics. The <code>add_markers()</code> function is similar to <code>geom_point()</code> in that it allows you to add points to your 3D plot. Note that <code>plot_ly</code> uses the pipe (<code>%&gt;%</code>) operator to chain commands together.</p>
+<pre class="r"><code># draw the 3D scatterplot
+p &lt;- plot_ly(data = mario_kart, z = ~totalPr, x = ~duration, y = ~startPr, opacity = 0.6) %&gt;%
+  add_markers() 
+# draw the plane
+p %&gt;%
+  add_surface(x = ~x, y = ~y, z = ~plane, showscale = FALSE)</code></pre>
+<p><img src="images/another26.png" width="70%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code># draw the 3D scatterplot
+p &lt;- plot_ly(data = mario_kart, z = ~totalPr, x = ~duration, y = ~startPr, opacity = 0.6) %&gt;%
+  add_markers(color = ~cond) 
+# draw two planes
+p %&gt;%
+  add_surface(x = ~x, y = ~y, z = ~plane0, showscale = FALSE) %&gt;%
+  add_surface(x = ~x, y = ~y, z = ~plane1, showscale = FALSE)</code></pre>
+<p><img src="images/another27.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="ggplot2-visualization" class="section level1">
@@ -1576,7 +1596,7 @@ ggplot(movies_small, aes(x = rating, y = votes)) +
                width = 0.2,
                col = &quot;red&quot;) +
   scale_y_log10() # transform the y scale</code></pre>
-<p><img src="rstudio_files/figure-html/unnamed-chunk-155-1.png" width="864" /></p>
+<p><img src="rstudio_files/figure-html/unnamed-chunk-159-1.png" width="864" /></p>
 <pre class="r"><code>ggplot(diamonds, aes(x = carat, y = price, col = color)) +
   geom_point(alpha = 0.5, size = 0.5, shape = 16) +
   scale_x_log10(expression(log[10](Carat)), limits = c(0.1,10)) +
@@ -1680,7 +1700,7 @@ p + geom_density(kernel = &quot;e&quot;)</code></pre>
 <pre class="r"><code>ggplot(diamonds, aes(x = cut, y = price, col = color)) +
   geom_boxplot(varwidth = T) +
   facet_grid(. ~ color)</code></pre>
-<p><img src="rstudio_files/figure-html/unnamed-chunk-169-1.png" width="864" /></p>
+<p><img src="rstudio_files/figure-html/unnamed-chunk-173-1.png" width="864" /></p>
 <pre class="r"><code># Individual densities
 ggplot(mammals[mammals$vore == &quot;Insectivore&quot;, ], aes(x = sleep_total, fill = vore)) +
   geom_density(col = NA, alpha = 0.35) +
@@ -1745,10 +1765,10 @@ p &lt;- ggplot(faithful, aes(x = waiting, y = eruptions)) +
 
 # 1 - Use geom_density_2d()
 p + geom_density_2d()</code></pre>
-<p><img src="rstudio_files/figure-html/unnamed-chunk-174-1.png" width="864" /></p>
+<p><img src="rstudio_files/figure-html/unnamed-chunk-178-1.png" width="864" /></p>
 <pre class="r"><code># 2 - Use stat_density_2d() with arguments
 p + stat_density_2d(aes(col = ..level..), h = c(5, 0.5))</code></pre>
-<p><img src="rstudio_files/figure-html/unnamed-chunk-174-2.png" width="864" /></p>
+<p><img src="rstudio_files/figure-html/unnamed-chunk-178-2.png" width="864" /></p>
 <p>Here you’ll explore the viridis package. This package contains multi-hue color palettes suitable for continuous variables. The advantage of these scales is that instead of providing an even color gradient for a continuous scale, they highlight the highest values by using an uneven color gradient on purpose. The high values are lighter colors (yellow versus blue), so they stand out more.</p>
 <pre class="r"><code>library(viridis)</code></pre>
 <pre><code>## Loading required package: viridisLite</code></pre>
@@ -1759,7 +1779,7 @@ ggplot(faithful, aes(x = waiting, y = eruptions)) +
   coord_fixed(60/4.5) +
   stat_density_2d(geom = &quot;tile&quot;, aes(fill = ..density..), h=c(5,.5), contour = FALSE)+
   scale_fill_viridis()</code></pre>
-<p><img src="rstudio_files/figure-html/unnamed-chunk-175-1.png" width="864" /></p>
+<p><img src="rstudio_files/figure-html/unnamed-chunk-179-1.png" width="864" /></p>
 </div>
 </div>
 <div id="for-large-data" class="section level1">
@@ -2105,6 +2125,59 @@ z_unique &lt;- make.index.unique(z, eps = 1e-4)
 z_dup &lt;- make.index.unique(z, drop = TRUE)
 # Round observations in z to the next hour
 z_round &lt;- align.time(z, n = 3600)</code></pre>
+</div>
+</div>
+<div id="basic-time-series-plot" class="section level1">
+<h1>Basic time series plot</h1>
+<p>While simple commands such as <code>print()</code>, <code>length()</code>, <code>head()</code>, and <code>tail()</code> provide crucial information about your time series data, another very useful way to explore any data is to generate a plot.</p>
+<pre class="r"><code># Plot the Nile data with xlab and ylab arguments
+plot(Nile, xlab = &quot;Year&quot;, ylab = &quot;River Volume (1e9 m^{3})&quot;)
+# Plot the Nile data with xlab, ylab, main, and type arguments
+plot(Nile, xlab = &quot;Year&quot;, ylab = &quot;River Volume (1e9 m^{3})&quot;, main = &quot;Annual River Nile Volume at Aswan, 1871-1970&quot;, type =&quot;b&quot;)</code></pre>
+<p><img src="images/basicplot1.png" width="50%" /><img src="images/basicplot2.png" width="50%" /></p>
+<p>The <code>start()</code> and <code>end()</code> functions return the time index of the first and last observations, respectively. The <code>time()</code> function calculates a vector of time indices, with one element for each time index on which the series was observed.</p>
+<p>The <code>deltat()</code> function returns the fixed time interval between observations and the <code>frequency()</code> function returns the number of observations per unit time. Finally, the <code>cycle()</code> function returns the position in the cycle of each observation.</p>
+<p>The function <code>ts()</code> can be applied to create time series objects. A time series object is a vector (univariate) or matrix (multivariate) with additional attributes, including time indices for each observation, the sampling frequency and time increment between observations, and the cycle length for periodic data. Such objects are of the <code>ts</code> class, and represent data that has been observed at (approximately) equally spaced time points.</p>
+<pre class="r"><code># Use print() and plot() to view data_vector
+plot(data_vector)
+# Convert data_vector to a ts object with start = 2004 and frequency = 4
+time_series &lt;- ts(data_vector, start = 2004, frequency = 4)
+# Use print() and plot() to view time_series
+plot(time_series)</code></pre>
+<p><img src="images/create%20a%20time%20series1.png" width="50%" /><img src="images/create%20a%20time%20series2.png" width="50%" /></p>
+<p>When you use datasets from others, such as those included in an R package, you can check whether they are ts objects using the <code>is.ts()</code> command. The result of the test is either <code>TRUE</code> when the data is of the ts class, or <code>FALSE</code> if it is not.</p>
+<p>For time series exhibiting seasonal trends, seasonal differencing can be applied to remove these periodic patterns. For example, monthly data may exhibit a strong twelve month pattern. In such situations, changes in behavior from year to year may be of more interest than changes from month to month, which may largely follow the overall seasonal pattern.</p>
+<p>The function <code>diff(..., lag = s)</code> will calculate the lag <code>s</code> difference or length <code>s</code> seasonal change series. For monthly or quarterly data, an appropriate value of <code>s</code> would be 12 or 4, respectively. The <code>diff()</code> function has <code>lag = 1</code> as its default for first differencing. Similar to before, a seasonally differenced series will have <code>s</code> fewer observations than the original series.</p>
+<pre class="r"><code># Generate a diff of x with lag = 4. Save this to dx
+dx &lt;- diff(x, lag = 4)
+# Plot dx
+ts.plot(dx)</code></pre>
+<p><img src="images/difference1.png" width="50%" /><img src="images/difference2.png" width="50%" /></p>
+<div id="simulate-the-white-noise-model" class="section level2">
+<h2>Simulate the white noise model</h2>
+<p>The white noise (WN) model is a basic time series model. It is also a basis for the more elaborate models we will consider. We will focus on the simplest form of WN, independent and identically distributed data. The <code>arima.sim()</code> function can be used to simulate data from a variety of time series models. ARIMA is an abbreviation for the autoregressive integrated moving average class of models. An <code>ARIMA(p, d, q)</code> model has three parts, the autoregressive order <code>p</code>, the order of integration (or differencing) <code>d</code>, and the moving average order <code>q</code>. For now we note that the <code>ARIMA(0, 0, 0)</code> model, i.e., with all of these components zero, is simply the WN model.</p>
+<pre class="r"><code># Simulate a WN model with list(order = c(0, 0, 0))
+white_noise &lt;- arima.sim(model = list(order = c(0, 0, 0)), n = 100)
+# Plot your white_noise data
+ts.plot(white_noise)
+# Simulate from the WN model with: mean = 100, sd = 10
+white_noise_2 &lt;- arima.sim(model = list(order = c(0, 0, 0)), n = 100, mean = 100, sd = 10)
+# Plot your white_noise_2 data
+ts.plot(white_noise_2)</code></pre>
+<p><img src="images/white_noise1.png" width="50%" /><img src="images/white_noise2.png" width="50%" /></p>
+</div>
+<div id="simulate-the-random-walk-model" class="section level2">
+<h2>Simulate the random walk model</h2>
+<p>The random walk (RW) model is also a basic time series model. It is the cumulative sum (or integration) of a mean zero white noise (WN) series, such that the first difference series of a RW is a WN series. Note for reference that the RW model is an <code>ARIMA(0, 1, 0)</code> model, in which the middle entry of 1 indicates that the model’s order of integration is 1. The <code>arima.sim()</code> function can be used to simulate data from the RW by including the <code>model = list(order = c(0, 1, 0))</code> argument. We also need to specify a series length <code>n</code>. Finally, you can specify a <code>sd</code> for the series (increments), where the default value is 1.</p>
+<pre class="r"><code># Generate a RW model using arima.sim
+random_walk &lt;- arima.sim(model = list(order = c(0, 1, 0)), n = 100)
+# Plot random_walk
+ts.plot(random_walk)
+# Calculate the first difference series
+random_walk_diff &lt;- diff(random_walk)
+# Plot random_walk_diff
+ts.plot(random_walk_diff)</code></pre>
+<p><img src="images/randomwalk1.png" width="50%" /><img src="images/randomwalk2.png" width="50%" /></p>
 </div>
 </div>
 <div id="references" class="section level1">
