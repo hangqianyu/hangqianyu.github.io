@@ -10,7 +10,7 @@ output:
 ---
 
 # Introduction
-To be honest, i am lacy and not very into cooking. I don't wanna put any energy and do a research on how to make a tasty food. Now, you might be wondering why would you set a recipe section on your blog. The most important reason supporting me to do so is that i have a roommate who is a 'food expert'. I learned a lot from him. Let's take a look at recipes he shared with me!
+To be honest, i am lacy and not very into cooking. I don't wanna put any energy and do a research on how to make a tasty food. Now, you might be wondering why would you set a recipe section in your blog. The most important reason supporting me to do so is that i have a roommate who is a 'food expert'. I learned a lot from him. He taught me to do cheap and tasty food. Let's take a look at recipes he shared with me! :-D
 
 # Cheesecake
 
@@ -25,5 +25,5 @@ To be honest, i am lacy and not very into cooking. I don't wanna put any energy 
 * Vanilla extract (1.5g)
 * Pie (one)
 
-Mix them in the order shown above, top with pie filling before baking. Bake 1 hour 15 min to 1hour 25 min under water, cool before removing rim. Remember to refrigerate cheesecake 4 hours.
+Mix them in the order shown above, top with pie filling before baking. Bake 1 hour 15 min to 1hour 25 min under water basin with 300 F, cool before removing rim. Remember to refrigerate cheesecake 4 hours.
 
