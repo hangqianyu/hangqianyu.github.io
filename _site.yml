@@ -17,6 +17,10 @@ navbar:
           href: rstudio.html
         - text: "R Markdown"
           href: rmarkdown.html
+    - text: "Courses"
+      menu:
+        - text: "Open Channel Flow"
+          href: channel.html
     - text: "CV"
       href: cv.html
   right:

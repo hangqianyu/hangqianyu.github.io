@@ -1,0 +1,11 @@
+---
+title: "Open Channel Flow"
+author:  "[Qianyu Hang](https://github.com/hangqianyu) at NC State University"
+date: '`r format(Sys.Date(), "%a %b %d, %Y")`'
+output:
+  html_document:
+    fig_width: 9
+    toc: yes
+    toc_float: yes
+---
+
