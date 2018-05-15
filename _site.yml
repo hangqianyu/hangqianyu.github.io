@@ -34,8 +34,12 @@ navbar:
           href: https://www.bae.ncsu.edu/
     - text: "US"
       href: us.html
-    - text: "Stories"
-      href: stories.html
+    - text: "Life"
+      menu:
+        - text: "Stories"
+          href: stories.html
+        - text: "Recipes"
+          href: recipes.html
     - text: "Connect"
       icon: fa-link
       menu:
