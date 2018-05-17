@@ -56,6 +56,25 @@ Laboratory.
 For each field visit, the discrete water samples were stored on ice and transported to the
 laboratory for analysis. The selections of the discrete samples for laboratory analysis depended on the initial water quality results from UV-Vis spectrophotometer and the flow events, i.e., the samples taken during flow events when concentrations change rapidly were preferentially selected.
 
+**Handling of missing and erroneous flow data**
+
+The accumulations of sand/leaves in the flumes and the growth of algae on the Doppler
+sensors could disturb the measured signal of Doppler velocity meters and induced noisy measurements and outliers. After removing the ‘spikes’ or obviously unreliable data points, the flow dataset was corrected by applying the moving average velocity method. 
+
+From the long-term observations on flow data, there were similar patterns and trends for
+the flow in both non-storm and storm event conditions between the three monitoring stations in the Claridge Canal. As a result, flow rates from one station could be reliably predicted from those of the other stations, using simple linear regressions around the missing data periods. To obtain the best results, with consideration of the distances between the three stations, the predicted flow at one station was derived from the nearest station with available flow data. All the filling work was accomplished in Microsoft Excel.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
