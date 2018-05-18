@@ -64,6 +64,34 @@ sensors could disturb the measured signal of Doppler velocity meters and induced
 From the long-term observations on flow data, there were similar patterns and trends for
 the flow in both non-storm and storm event conditions between the three monitoring stations in the Claridge Canal. As a result, flow rates from one station could be reliably predicted from those of the other stations, using simple linear regressions around the missing data periods. To obtain the best results, with consideration of the distances between the three stations, the predicted flow at one station was derived from the nearest station with available flow data. All the filling work was accomplished in Microsoft Excel.
 
+**Degradation sample study results**
+
+A paired t-test was applied to evaluate the differences between the “Fresh” and
+“Degraded” samples for each water quality parameter (NO3-N, NH4-N, TDN, TKN, DOC, TP, and PO4-P) at the three stations for two-time periods: spring-summer, and fall-winter (The dates of each season were separated based on spring equinox, summer solstice, fall equinox, and winter solstice of the monitoring years.). There were several significant differences (α=0.05) between “Fresh” and “Degraded” samples in spring and summer, including NO3-N and NH4- N at MD and DN, TKN and TP at the three stations, and DOC at MD. There were no significant differences (α=0.05) between “Fresh” and “Degraded” samples for each water quality parameter at the three stations during the fall and winter period. 
+
+*Notes: p < 0.05 means there is significant difference between two samples*
+
+The consequence of this analysis is that when there was a significant difference (α=0.05)
+between ‘fresh’ and ‘degraded’ samples for the water quality parameters in spring and summer (Table 2.1), only the discrete samples collected within 48 hours prior to the field date were used to improve the quality of PLSR calibration. All the discrete samples collected in fall and winter were used in the PLSR calibration, as no significant degradation was found at these times.
+
+**Global calibration vs discrete sample results**
+
+The results showed significant linear correlations between discrete and raw instrument values with large departure from the one to one line. This justifies the need to find methods to create local calibration that can correct slope, intercept and RMSE. Hence PLSR method has been suggested.
+
+**PLSR calibration fitting procedure**
+
+For each parameter and each calibration period, the optimum number of components was chosen as the least number of components above which the percentage of the variance did not increase significantly and for which R² values were acceptable. 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
