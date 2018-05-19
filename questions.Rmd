@@ -82,6 +82,49 @@ The results showed significant linear correlations between discrete and raw inst
 
 For each parameter and each calibration period, the optimum number of components was chosen as the least number of components above which the percentage of the variance did not increase significantly and for which R² values were acceptable. 
 
+**Challenges and maintenance for the application of UV-Vis spectrophotometers in situ**
+
+There are several main challenges associated with obtaining high-frequency water quality and hydrology data continuously, and keeping the monitoring system working properly in situ including: (1) biofouling on optics surface, (2) sufficient power supply, (3) heat supply in adverse weather, (4) animal effects and equipment maintenance. 
+
+**Chapter 3: Uncertainties assessment for continuous and infrequent sampling in measuring nutrient loads with the application of UV-Visual spectrophotometers in an agricultural coastal plain stream**
+
+*Research questions*
+
+* What kind of uncertainty should one expect on concentration and load values from continuous water quality instruments? 
+* Can one develop guidance on how to minimize uncertainty with the use of these instruments using an affordable number of calibration points?
+* How do uncertainties associated with the UV- Vis sensors compare with those associated with infrequent sampling on the annual load indicator?
+
+**Objectives**
+
+As a result, the objectives of the research were addressed as follows: (1) evaluate the
+uncertainties on concentration values and annual loads calculated by the ‘global calibration’ provided by the manufacturer, and calculated using PLSR depending upon the number and the distribution of the calibration points used; (2) compare these uncertainties to those that would be induced by infrequent sampling on estimating annual loads with best load algorithm methods; (3) provide guidance to users to minimize uncertainties and maximize the potential of their UV-Vis spectrophotometers.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
