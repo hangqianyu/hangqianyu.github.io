@@ -58,3 +58,34 @@ Two roads diverged in a wood, and I—
 I took the one less traveled by,
 
 And that has made all the difference.
+
+* Intro
+
+To date, there are hundreds and thousands challenges in my life during almost each period from middle school to now as a PhD student. You can never imagine what you will look like tomorrow. So i will make this part as a "diary" to document what i went through since now.
+
+# May 20, 2018
+I am not good at hydraulics and statistics. But what i am doing now is about hydraulics and statistics. Sometimes, I questioned myself if i should go for a PhD abroad in this area rather soon after graduating from CRAES. Would that be better if i work for several years to gain experience in related areas? Yeah, i have to tell myself i thought too much. People also tell me everyone can face challenges in their life, and you are not exceptional either. To face the truth, i was learning how to use R Studio for data analysis, R markdown for nice documentation, Github for co-working on a same project effectively and make a personal website. And now, i am considering to read more literature regarding stream restoration. First literature is Chiao-Wen's dissertation. I hope i can make a progress soon.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
