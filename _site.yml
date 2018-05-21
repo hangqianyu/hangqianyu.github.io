@@ -57,6 +57,8 @@ navbar:
           href: https://www.linkedin.com/in/qianyu-hang-99562215a/
         - text: "ResearchGate"
           href: https://www.researchgate.net/profile/Qianyu_Hang2
+    - text: "Comments"
+      href: comments.html
 
 output:
   html_document:
