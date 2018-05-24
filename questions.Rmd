@@ -103,10 +103,15 @@ uncertainties on concentration values and annual loads calculated by the ‘glob
 
 The majority of the area is covered with sandy soils, although four hydraulic soil groups are present. Group A: soils (less than 10% clay, and more than 90 % sand; loamy sand; sandy loam) have low runoff potential and high infiltration rates when thoroughly wetted. Group B: soils (10%~ 20% clay, and 50%~ 90% sand; silt loam, silt) have moderately low runoff and moderate infiltration rates when thoroughly wetted. Group C: soils (20%~ 40% clay, and less than 50% sand; sandy clay loam; clay loam) have moderately high runoff potential and low filtration rates when thoroughly wetted. Group D: soils (greater than 40% clay, and less than 50% sand; silty clay loam; silty clay) have high runoff potential when thoroughly wetted and have high shrink-swell potential.
 
+# Literature 2
 
+*Addressing the fouling of the in situ ultraviolet-visual spectrometers used to continuously monitor water quality in brackish tidal marsh waters*
 
+The introduction of portable in situ ultraviolet-visual spectrometers has made possible the collection of water quality parameters at a high frequency in dynamic systems such as tidal marshes. The usefulness of this technology is inhibited by fouling of the instrument’s optics. During a 2-wk period, the absorbance measured in air at 220 nm increased from 9 to 549 m-1
+, indicating major fouling. An antifouling system was developed that reduced the time of exposure of the optics to stream water and used a pressurized fresh water cleaning. Aſter implementation of the system, the absorbance in air increased to at most 63 m-1
+aſter 2 wk of data collection. The dramatic reduction in fouling will allow quality long-term data to be collected using this technology.
 
-
+There are a lot of methods to reduce fouling. One is the mechanical wiper or brush. However, the brush was effective at removing the visible fouling but was not effective at removing the chemical fouling. Another option is to remove spectrometers from the stream and mount them inside a dark instrument housing. Stream water could then be pumped to the instrument, significantly reducing the amount of time that the measurement windows were exposed to stream water. The output DOC concentrations showed little drift during the 2-wk period between manual cleanings. But futher work is required to prevent all fouling for measurement of CDOM properties, such as the slope ratio.
 
 
 
