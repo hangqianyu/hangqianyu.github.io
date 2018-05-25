@@ -38,9 +38,13 @@ Another interesting and problematic question is that cleaning tool of S::CAN len
 include_graphics("images/scanprobe.PNG")
 ```
 
+# Field visit on May 24, 2018
 
+List to do:
 
-
+* Download groundwater data
+* Check the mechanical wiper's position
+* Calibrate pH measurement
 
 
 
