@@ -52,7 +52,7 @@ Birds have grown and flown away. I did not move the nest just in case they will 
 
 **Grassy stream**
 
-The temperature is getting higher and higher. Weeds and insects are really everywhere. So cleaning flume, sontek, manta and spectrolyser lenses are thus crucial. For spectro lenses in CLUP station, the fingerprint maximum for DI water after cleaning (three times!!!) is 16, which is still more than 10. What might be the reason? I guess there are a lot of branches, algae and grasses in the stream, which may significantly polluted the lenses. However, lenses in CLDN and CLMD station are perfect. I will didcuss it with Francois next week to find a solution.
+The temperature is getting higher and higher. Weeds and insects are really everywhere. So cleaning flume, sontek, manta and spectrolyser lenses are thus crucial. For spectro lenses in CLUP station, the maximum of the measured absorbance for DI water after cleaning (three times!!!) is 16, which is still more than 10. What might be the reason? I guess there are a lot of branches, algae and grasses in the stream, which may significantly polluted the lenses. However, lenses in CLDN and CLMD station are perfect. I will didcuss it with Francois next week to find a solution.
 
 ```{r echo=FALSE, message=FALSE, out.width="60%", fig.align='center'}
 include_graphics("images/grasses.jpg")

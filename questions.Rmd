@@ -4,8 +4,6 @@ author:  "[Qianyu Hang](https://github.com/hangqianyu) at NC State University"
 date: '`r format(Sys.Date(), "%a %b %d, %Y")`'
 output:
   html_document:
-    out_height: 0.1
-    out_width: 0.1
     toc: yes
     toc_float: yes
 ---
@@ -29,7 +27,7 @@ Characterization of the Solute Dynamics Signature of an Agricultural Coastal Pla
 * The effects of stream restoration are confounded within the measurement uncertainty (discrete sampling and measuring).
 * Lack of available data complicated making a robust assessment for success or failure of stream restoration projects.
 
-</div>
+
 **Research Questions**
 
 * Can one use in situ ultraviolet-visual (UV-vis) spectrophotometers to measure water quality on a continuous basis in an agricultural coastal plain stream? The answers to these very important questions are necessary to enrich guidance in the use of these instruments and create water quality rating curves to interpret the absorbance data.
@@ -112,50 +110,4 @@ The introduction of portable in situ ultraviolet-visual spectrometers has made p
 aſter 2 wk of data collection. The dramatic reduction in fouling will allow quality long-term data to be collected using this technology.
 
 There are a lot of methods to reduce fouling. One is the mechanical wiper or brush. However, the brush was effective at removing the visible fouling but was not effective at removing the chemical fouling. Another option is to remove spectrometers from the stream and mount them inside a dark instrument housing. Stream water could then be pumped to the instrument, significantly reducing the amount of time that the measurement windows were exposed to stream water. The output DOC concentrations showed little drift during the 2-wk period between manual cleanings. But futher work is required to prevent all fouling for measurement of CDOM properties, such as the slope ratio.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
