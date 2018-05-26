@@ -38,17 +38,31 @@ Another interesting and problematic question is that cleaning tool of S::CAN len
 include_graphics("images/scanprobe.PNG")
 ```
 
-# Field visit on May 24, 2018
+# Field visit on May 25, 2018
 
-List to do:
+To do list:
 
-* Download groundwater data
-* Check the mechanical wiper's position
-* Calibrate pH measurement
+* Download groundwater data (Not yet)
+* Check the mechanical wiper's position (Done)
+* Calibrate pH measurement (Done)
 
+**Birds have gone**
 
+Birds have grown and flown away. I did not move the nest just in case they will come back sometimes. Picture was not taken. Welcome you guys come back!
 
+**Grassy stream**
 
+The temperature is getting higher and higher. Weeds and insects are really everywhere. So cleaning flume, sontek, manta and spectrolyser lenses are thus crucial. For spectro lenses in CLUP station, the fingerprint maximum for DI water after cleaning (three times!!!) is 16, which is still more than 10. What might be the reason? I guess there are a lot of branches, algae and grasses in the stream, which may significantly polluted the lenses. However, lenses in CLDN and CLMD station are perfect. I will didcuss it with Francois next week to find a solution.
+
+```{r echo=FALSE, message=FALSE, out.width="60%", fig.align='center'}
+include_graphics("images/grasses.jpg")
+```
+
+Sam and I will wipe a path for walking next time. 
+
+**Tablet work**
+
+Previously, i did a lot of stream work. So not good at tablet work. Recently, i did several tablet work and knew how everything (almost) works. Yeah! Finally.
 
 
 
