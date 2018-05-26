@@ -111,3 +111,15 @@ aſter 2 wk of data collection. The dramatic reduction in fouling will allow qua
 
 There are a lot of methods to reduce fouling. One is the mechanical wiper or brush. However, the brush was effective at removing the visible fouling but was not effective at removing the chemical fouling. Another option is to remove spectrometers from the stream and mount them inside a dark instrument housing. Stream water could then be pumped to the instrument, significantly reducing the amount of time that the measurement windows were exposed to stream water. The output DOC concentrations showed little drift during the 2-wk period between manual cleanings. But futher work is required to prevent all fouling for measurement of CDOM properties, such as the slope ratio.
 
+# Literature 3
+
+*Using in situ ultraviolet-visual spectroscopy to measure nitrogen, carbon, phosphorus, and suspended solids concentrations at a high frequency in a brackish tidal marsh*
+
+
+
+
+
+
+
+
+
