@@ -1,0 +1,28 @@
+---
+title: "Some useful "
+author:  "[Qianyu Hang](https://github.com/hangqianyu) at NC State University"
+date: '`r format(Sys.Date(), "%a %b %d, %Y")`'
+output:
+  html_document:
+    fig_width: 9
+    toc: yes
+    toc_float: yes
+---
+
+# Intro
+Recently, I am using Microsoft Excel to work on data analysis. I will recommend some powerful and useful shortcuts i know to you guys. All right, let's get the ball rolling. 
+
+# Shortcuts
+
+**Extend selection** - Control + Shift + arrow keys
+**Fill down** - Control + D to copy values from the cell above without copy paste
+**Autosum** - Alt + =
+**Go to first cell/last cell** - Control + Home / Control + End
+**Data navigation** - Control + arrow keys
+**Fill handle** - Double click the little square at the bottom right of any selection
+**New table** - Control + T
+
+# References
+[20 very popular Excel shortcuts](https://exceljet.net/blog/20-very-popular-excel-shortcuts)
+
+
