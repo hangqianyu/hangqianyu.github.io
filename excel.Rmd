@@ -21,6 +21,7 @@ Recently, I am using Microsoft Excel to work on data analysis. I will recommend 
 **Data navigation** - Control + arrow keys
 **Fill handle** - Double click the little square at the bottom right of any selection
 **New table** - Control + T
+**Close the new window** - Control + W to close the dumplicate view of excel file
 
 # References
 [20 very popular Excel shortcuts](https://exceljet.net/blog/20-very-popular-excel-shortcuts)
