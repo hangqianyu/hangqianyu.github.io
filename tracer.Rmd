@@ -8,7 +8,29 @@ output:
     toc_float: yes
 ---
 
-# Intro
+# Literature 1
 
-Recently, we've planned to do a tracer study. Here are basically some essential info regarding tracer study.
+*基于OTIS模型的巢湖十五里河源头段氮磷迁移转化规律及模拟*
+
+**潜流带 (Hyporheic Zone):** 从地表水与地下水相互作用为研究对象和目的出发，将潜流带定义为“潜流带是生物地球化学活动强烈的地表水与地下水的混合区域”。就河流而言，潜流带位于蓄水层之下并接近河流与河床的位置，与水体和河床密切相连，是上覆水与地下水进行交换和混合的区域，所以说潜流带是河流连续体的重要组成部分，连接着河流的陆地、地表和地下。
+
+**暂态存储区**是指水体中水流较为缓慢的区域，包括潜流带、死水区以及由河流形态、河床地貌等因素造成的溶质暂时存储区域，是影响溶质滞留和吸收的重要因素。
+
+OTIS (One-Dimensional Transport with Inflow and Storage)和参数自动优化包OTIS-P (One-Dimensional Transport with Inflow and Storage with Parameter Optimization)。Knust等将小河流经修复和不进行任何修复作为对比研究潜流活动，发现溶质在修复河段内的Residence Time Distribution，RTD有所延长
+
+OTIS 应用程序是通过 Crank-Nicolson差分数值算法进行模型求解，利用示踪实验中测定的溶质浓度数据，定量估算影响小河流溶质迁移转化的水力参数。该程序是应用试错法（trial-and-error）调整模型参数值，使模拟得到的溶质浓度值与观测值相匹配。由于试错法存在参数识别性差、其他组参数值可能会提供相同或更好的匹配等缺陷和不足，Runkel 又利用改进的反演模型（inverse  modeling）OTIS-P，将 OTIS 的数学模型框架和 STARPAC 的非线性最小二乘法（Nonlinear Least Squares，NLS）结合，提供一种自动估计模型参数的方法。
+
+应用 OTIS 程序需要具备输入/输出文件。输入文件包含控制文件（controlfile）、参数文件（parameterfile）、流量文件（flow file）。其中，控制文件用于列明其他输入输出文件的文件名，其文件名control.inp不可更改；参数文件用于设置模拟选项、上游边界条件以及在模型运行过程中的常量参数；流量文件包含模拟期间可能变化的模型参数（如Q和A）。将编辑好的输入文件和应用程序放在同一目录下，点击OTIS.exe，若程序成功执行，则会生成输出文件：响应文件（echo.out）和溶质输出文件（solute output file），如若考虑溶质吸附作用，将会相应生成溶质吸附输出文件(sorption output file )。  
+
+同样，应用 OTIS-P 程序也需要具备输入/输出文件，其要求 5 个输入文件，前 3 个输入文件（control、  parameter 和  flow file）与上述OTIS 输入文件的描述相同。第 4 个输入文件是数据文件（data file），用于提供参数估计步骤所需的观测值；最后是 STARPAC 输入文件（STARPAC input file），用于指定将由 OTIS-P 优化的参数和其他固定参数的设置。上述输入文件完成后，与应用程序放在同一根目录下，点击OTIS-P.exe，若程序成功执行，则会生成响应文件、溶质输出文件，参数输出文件（parameter output file）和 STARPAC 输出文件（STARPAC output file），若考虑吸附作用，将相应生成吸附输出文件。
+
+结合
+
+
+
+
+
+
+
+
 
