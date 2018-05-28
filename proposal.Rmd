@@ -1,0 +1,29 @@
+---
+title: "Research proposal -- Claridge Canal"
+author:  "[Qianyu Hang](https://github.com/hangqianyu) at NC State University"
+date: '`r format(Sys.Date(), "%a %b %d, %Y")`'
+output:
+  html_document:
+    toc: yes
+    toc_float: yes
+---
+
+Structure of research proposal: 
+
+* **Introduction**
+  - Need for the proposed project
+  - Overall Goals
+  - Key Personnel
+* **Rationale and Significance**
+  - Rationale
+  - Research Implications
+  - Program Area Priorities
+  - Long-Range Improvement and Sustainability
+* **Theoretical Approach**
+* **Applied Research Approach**
+  - Laboratory
+  - Field Experiments
+* Timeline with Annual Milestones
+  - Laboratory Experiments
+  - Field Experiments
+
