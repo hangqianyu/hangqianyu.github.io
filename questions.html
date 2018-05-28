@@ -291,6 +291,9 @@ div.tocify {
       <a href="questions.html">Research Questions</a>
     </li>
     <li>
+      <a href="tracer.html">Tracer study</a>
+    </li>
+    <li>
       <a href="field.html">Field Visit</a>
     </li>
   </ul>
@@ -410,7 +413,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Thoughts through literature reading</h1>
 <h4 class="author"><em><a href="https://github.com/hangqianyu">Qianyu Hang</a> at NC State University</em></h4>
-<h4 class="date"><em>Sat May 26, 2018</em></h4>
+<h4 class="date"><em>Sun May 27, 2018</em></h4>
 
 </div>
 
@@ -479,6 +482,22 @@ div.tocify {
 <div id="literature-3" class="section level1">
 <h1>Literature 3</h1>
 <p><em>Using in situ ultraviolet-visual spectroscopy to measure nitrogen, carbon, phosphorus, and suspended solids concentrations at a high frequency in a brackish tidal marsh</em></p>
+<p><strong>Partial least squares regression</strong></p>
+<p>Partial least squares regression (PLSR) is a chemometric technique that in this application reduces the dimension of absorption spectra measurements from hundreds of wavelengths to a smaller number of components, which have max- imal correlation with nutrient concentrations. The num- ber of PLSR components used in the model was based on the results of cross validation. The model training and validation was carried out using 10-fold cross validation where 10% of the data were randomly withheld from the training set for use in model validation. The model developed using the training data were applied to the validation data and a root mean square error of prediction (RMSEP) was calculated to quantify the error in model fit. To determine the number of compo- nents to use in the final model, cross validation was used to calculate the RMSEP for models with different numbers of components. The model with the number of components that produced the minimum RMSEP was chosen as the model to use for calibration.</p>
+<p><strong>Lasso and stepwise regression</strong></p>
+<p><a href="https://blog.csdn.net/hfutxiaoguozhi/article/details/78847040">I find a useful website for basically understand Lasso regression</a>. Lasso and stepwise regression were carried out using the lars package in R. The multiple linear regression was carried out because it requires less data collection than does PLSR. Lasso improves predic- tion accuracy when compared with a general linear model by shrinking coefficients in magnitude and setting some to zero, while stepwise regression chooses the predictors that are most correlated with the response variable without shrinking the coefficients.</p>
+<p><strong>Nitrate and DOC prediction</strong></p>
+<p>Based on <a href="https://aslopubs.onlinelibrary.wiley.com/doi/epdf/10.4319/lo.1992.37.4.0907">Crumpton et al. 1992</a> and <a href="https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/2010GL046152">Fichot and Benner 2011</a>, respectively.</p>
+<p><strong>Goodness of fit indicators</strong></p>
+<p>The R2, standard error of regression (SEP) and RMSEP were applied to determine the goodness of fit indicators.</p>
+<p><strong>Discussion</strong></p>
+<p>Of all the statistical techniques tested, it was found that PLSR resulted in the most acceptable R2 and RMSEP values for the water quality parameters measured and are similar to or better than previously published results for the parameters that had previously been measured using UV-Vis spectroscopy.</p>
+</div>
+<div id="literature-4" class="section level1">
+<h1>Literature 4</h1>
+<p><em>Quantifying nutrient and suspended solids fluxes in a constructed tidal marsh following rainfall: The value of capturing the rapid changes in flow and concentrations</em></p>
+<p><strong>Objective</strong></p>
+<p>The goal of this work was to examine water quality data collected at a high temporal resolution in a created brackish marsh in the 10 days following an April 2012 rainfall event, to demonstrate hownutrient and suspended solids dynamics could be described in detail. The nutrient and suspended solids retention or release was quantified using a mass balance approach to determine whether the marsh was a source or sink for nutrients and suspended solids during the short term event. Simulations of 2-h, 6-h, and 12-h sam- pling intervals were run to additionally demonstrate the potential error induced by less frequent sample collection and the value of near continuous concentration data.</p>
 </div>
 
 

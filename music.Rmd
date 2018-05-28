@@ -1,0 +1,21 @@
+---
+title: "Music - a statement of each period"
+author:  "[Qianyu Hang](https://github.com/hangqianyu) at NC State University"
+date: '`r format(Sys.Date(), "%a %b %d, %Y")`'
+output:
+  html_document:
+    toc: yes
+    toc_float: yes
+---
+
+**前座后座** - May 27, 2018
+
+
+
+
+
+
+
+
+
+

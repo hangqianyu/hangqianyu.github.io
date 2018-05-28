@@ -38,6 +38,10 @@ Another thing i wanna mention is color! You will definitely think about color wh
 # Make a nice report
 Still learning, but refered a website [R markdown and Knitr](http://www.xueqing.tv/cms/article/101). 
 
+# Shortcuts
+
+**Switch to another file in R studio** - Control + F11/f12
+
 **My experience till now**
 
 1. Always do not use system code of rmarkdown to import images, otherwise your rmarkdown will suddenly break down one day. I encounted this problem recently. I, at first, thought it might be because i used wrong codes making it die. Then I checked all codes letter by letter which seems right though. And then i realized i imported a lot of images in Rmd files using `![image](img/path)` system code which must be too heavy for a "small" package. Like i recommended before, [list of tips and tricks for working with images in R markdown document](https://www.zevross.com/blog/2017/06/19/tips-and-tricks-for-working-with-images-and-figures-in-r-markdown-documents/) solved the problem and made images nicer! I used `include_graphics` function in `knitr` package for local downloaded images. For figures produced by R, you will need to choose another way to make it.

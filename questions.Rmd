@@ -115,6 +115,41 @@ There are a lot of methods to reduce fouling. One is the mechanical wiper or bru
 
 *Using in situ ultraviolet-visual spectroscopy to measure nitrogen, carbon, phosphorus, and suspended solids concentrations at a high frequency in a brackish tidal marsh*
 
+**Partial least squares regression**
+
+Partial least squares regression (PLSR) is a chemometric technique that in this application reduces the dimension of absorption spectra measurements from hundreds of wavelengths to a smaller number of components, which have max- imal correlation with nutrient concentrations. The num- ber of PLSR components used in the model was based on the results of cross validation. The model training and validation was carried out using 10-fold cross validation where 10% of the data were randomly withheld from the training set for use in model validation. The model developed using the training data were applied to the validation data and a root mean square error of prediction (RMSEP) was calculated to quantify the error in model fit. To determine the number of compo- nents to use in the final model, cross validation was used to calculate the RMSEP for models with different numbers of components. The model with the number of components that produced the minimum RMSEP was chosen as the model to use for calibration.
+
+**Lasso and stepwise regression**
+
+[I find a useful website for basically understand Lasso regression](https://blog.csdn.net/hfutxiaoguozhi/article/details/78847040). Lasso and stepwise regression were carried out using the lars package in R. The multiple linear regression was carried out because it requires less data collection than does PLSR. Lasso improves predic- tion accuracy when compared with a general linear model by shrinking coefficients in magnitude and setting some to zero, while stepwise regression chooses the predictors that are most correlated with the response variable without shrinking the coefficients. 
+
+**Nitrate and DOC prediction**
+
+Based on [Crumpton et al. 1992](https://aslopubs.onlinelibrary.wiley.com/doi/epdf/10.4319/lo.1992.37.4.0907) and [Fichot and Benner 2011](https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/2010GL046152), respectively. 
+
+**Goodness of fit indicators**
+
+The R2, standard error of regression (SEP) and RMSEP were applied to determine the goodness of fit indicators.
+
+**Discussion**
+
+Of all the statistical techniques tested, it was found that PLSR resulted in the most acceptable R2 and RMSEP values for the water quality parameters measured and are similar to or better than previously published results for the parameters that had previously been measured using UV-Vis spectroscopy. 
+
+# Literature 4
+
+*Quantifying nutrient and suspended solids fluxes in a constructed tidal marsh following rainfall: The value of capturing the rapid changes in flow and concentrations*
+
+**Objective**
+
+The goal of this work was to examine water quality data collected at a high temporal resolution in a created brackish marsh in the 10 days following an April 2012 rainfall event, to demonstrate hownutrient and suspended solids dynamics could be described in detail. The nutrient and suspended solids retention or release was quantified using a mass balance approach to determine whether the marsh was a source or sink for nutrients and suspended solids during the short term event. Simulations of 2-h, 6-h, and 12-h sam- pling intervals were run to additionally demonstrate the potential error induced by less frequent sample collection and the value of near continuous concentration data.
+
+
+
+
+
+
+
+
 
 
 

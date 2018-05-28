@@ -9,6 +9,8 @@ navbar:
           href: stream.html
         - text: "Research Questions"
           href: questions.html
+        - text: "Tracer study"
+          href: tracer.html
         - text: "Field Visit"
           href: field.html
     - text: "Tutorial"

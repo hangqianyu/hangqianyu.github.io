@@ -1,0 +1,14 @@
+---
+title: "Proposal for tracer study"
+author:  "[Qianyu Hang](https://github.com/hangqianyu) at NC State University"
+date: '`r format(Sys.Date(), "%a %b %d, %Y")`'
+output:
+  html_document:
+    toc: yes
+    toc_float: yes
+---
+
+# Intro
+
+Recently, we've planned to do a tracer study. Here are basically some essential info regarding tracer study.
+
