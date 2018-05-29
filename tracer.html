@@ -12,7 +12,7 @@
 <meta name="author" content="Qianyu Hang at NC State University" />
 
 
-<title>Proposal for tracer study</title>
+<title>Info for tracer study</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -411,7 +411,7 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Proposal for tracer study</h1>
+<h1 class="title toc-ignore">Info for tracer study</h1>
 <h4 class="author"><em><a href="https://github.com/hangqianyu">Qianyu Hang</a> at NC State University</em></h4>
 <h4 class="date"><em>Mon May 28, 2018</em></h4>
 
@@ -427,7 +427,18 @@ div.tocify {
 <p>OTIS 应用程序是通过 Crank-Nicolson差分数值算法进行模型求解，利用示踪实验中测定的溶质浓度数据，定量估算影响小河流溶质迁移转化的水力参数。该程序是应用试错法（trial-and-error）调整模型参数值，使模拟得到的溶质浓度值与观测值相匹配。由于试错法存在参数识别性差、其他组参数值可能会提供相同或更好的匹配等缺陷和不足，Runkel 又利用改进的反演模型（inverse modeling）OTIS-P，将 OTIS 的数学模型框架和 STARPAC 的非线性最小二乘法（Nonlinear Least Squares，NLS）结合，提供一种自动估计模型参数的方法。</p>
 <p>应用 OTIS 程序需要具备输入/输出文件。输入文件包含控制文件（controlfile）、参数文件（parameterfile）、流量文件（flow file）。其中，控制文件用于列明其他输入输出文件的文件名，其文件名control.inp不可更改；参数文件用于设置模拟选项、上游边界条件以及在模型运行过程中的常量参数；流量文件包含模拟期间可能变化的模型参数（如Q和A）。将编辑好的输入文件和应用程序放在同一目录下，点击OTIS.exe，若程序成功执行，则会生成输出文件：响应文件（echo.out）和溶质输出文件（solute output file），如若考虑溶质吸附作用，将会相应生成溶质吸附输出文件(sorption output file )。</p>
 <p>同样，应用 OTIS-P 程序也需要具备输入/输出文件，其要求 5 个输入文件，前 3 个输入文件（control、 parameter 和 flow file）与上述OTIS 输入文件的描述相同。第 4 个输入文件是数据文件（data file），用于提供参数估计步骤所需的观测值；最后是 STARPAC 输入文件（STARPAC input file），用于指定将由 OTIS-P 优化的参数和其他固定参数的设置。上述输入文件完成后，与应用程序放在同一根目录下，点击OTIS-P.exe，若程序成功执行，则会生成响应文件、溶质输出文件，参数输出文件（parameter output file）和 STARPAC 输出文件（STARPAC output file），若考虑吸附作用，将相应生成吸附输出文件。</p>
-<p>结合</p>
+<p>结合电导率和<span class="math inline">\(Cl^{-1}\)</span>浓度相结合的试验方案，发现<span class="math inline">\(Cl^{-1}\)</span>浓度与电导率呈显著线性相关关系，以此模拟<span class="math inline">\(Cl^{-1}\)</span>浓度，获得高频率提高准确度。此外，该研究分析了OTIS模型中不同功能模块作用效果，比如侧向补给<span class="math inline">\(q_L = 0\)</span>或暂态存储<span class="math inline">\(\alpha = 0\)</span>。若不计侧向补给作用，则将延迟溶质迁移到达下游的时间，且模拟浓度超过实测值；而若忽略暂态存储模块影响，则不仅导致模拟浓度值远高于观测值，也影响溶质模拟浓度穿透曲线的形状，并明显缩短了溶质迁移到达下游河段的时间。</p>
+<p><em>暂态存储度量指标</em></p>
+<p><strong>达姆科勒数（Damkohler number，DaI）</strong>常用来评估模型对暂态存储过程的灵敏性和暂态存储参数<span class="math inline">\(A_s\)</span>和 的可靠性。DaI反映了迁移作用和存储过程对溶质迁移扩散影响的均衡程度。理想情况下，DaI处于0.1和1.0之间，在此范围内，认为暂态存储参数的不确定性最低；在0.1~10之间，认为参数值可以接受，此时在河段内主河道和暂态存储区之间有足够的溶质进行交换，以支持暂态存储参数的估值。当DaI远小于1时，可能由于河水流速过快、<span class="math inline">\(\alpha\)</span>和<span class="math inline">\(\frac{A}{A_s}\)</span>过小导致的交换作用时间尺度长或河段长度过短。</p>
+<p><strong>河水（或溶质）在进入暂态存储区之前的平均行进长度，也即水力吸附长度</strong></p>
+<p><strong>河水（或溶质）在暂态存储区内的平均停留时间</strong></p>
+<p><strong>每单位河段长度上通过暂态存储区的河水通量</strong></p>
+<p><strong>水力停留因子，考虑了河水（或溶质）在暂态存储区的停留时间以及在进入暂态存储区之前的平均行进长度所需时间，即单位河段长度上溶质在暂态存储区的停留时间。</strong></p>
+<p><span class="math display">\[R_h = \frac{T_s}{L_s} = \frac{A_s}{Q}\]</span></p>
+<p><span class="math inline">\(F_{med}\)</span>是由于暂态存储作用产生的迁移时间中值分数，反映流速与暂态存储之间的相互作用。由于<span class="math inline">\(F_{med}\)</span>的数值大小与河段长度有关，为便于不同河段或小河流/溪流之间的比较，通常取标准长度200 m进行计算，即<span class="math inline">\(F_{med}^{200}\)</span>。在实验河段内，若暂态存储作用显著影响溶质向下游迁移，则<span class="math inline">\(F_{med}^{200}\)</span>较高，这表明溶质在河流迁移时间尺度长，主要是由于暂态存储作用的结果。与之相反，若溶质向下游迁移几乎不受暂态存储作用的影响，则<span class="math inline">\(F_{med}^{200}\)</span>较低。</p>
+<p><span class="math display">\[F_{med} = (1 - e^{\frac{L\alpha}{v}}) \ast \frac{A_s}{A + A_s}\]</span></p>
+<p><strong>灵敏度分析:</strong> <code>RMSE</code></p>
+<p>灵敏度排序结果表明，在十五里河源头河段，影响模型的最灵敏参数为断面面积A，其次是暂态存储参数<span class="math inline">\(A_s\)</span>和<span class="math inline">\(\alpha\)</span>，扩散系数D则为最弱，即灵敏度排序为A &gt; <span class="math inline">\(A_s\)</span> &gt; <span class="math inline">\(\alpha\)</span> &gt; D。</p>
 </div>
 
 

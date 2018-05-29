@@ -42,6 +42,9 @@ Still learning, but refered a website [R markdown and Knitr](http://www.xueqing.
 
 **Switch to another file in R studio** - Control + F11/f12
 
+# Symbols
+You would benefit from [A table](https://reu.dimacs.rutgers.edu/Symbols.pdf) so much. Do not forget to add `$...$` between LATEX codes if you wanna insert a symbol. And do not forget to add `$$...$$` if you wanna insert a mathematical equation/symbol. Also, refer to the `tracer.Rmd` file for an example. 
+
 **My experience till now**
 
 1. Always do not use system code of rmarkdown to import images, otherwise your rmarkdown will suddenly break down one day. I encounted this problem recently. I, at first, thought it might be because i used wrong codes making it die. Then I checked all codes letter by letter which seems right though. And then i realized i imported a lot of images in Rmd files using `![image](img/path)` system code which must be too heavy for a "small" package. Like i recommended before, [list of tips and tricks for working with images in R markdown document](https://www.zevross.com/blog/2017/06/19/tips-and-tricks-for-working-with-images-and-figures-in-r-markdown-documents/) solved the problem and made images nicer! I used `include_graphics` function in `knitr` package for local downloaded images. For figures produced by R, you will need to choose another way to make it.

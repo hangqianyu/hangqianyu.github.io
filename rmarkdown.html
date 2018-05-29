@@ -452,6 +452,10 @@ div.tocify {
 <div id="shortcuts" class="section level1">
 <h1>Shortcuts</h1>
 <p><strong>Switch to another file in R studio</strong> - Control + F11/f12</p>
+</div>
+<div id="symbols" class="section level1">
+<h1>Symbols</h1>
+<p>You would benefit from <a href="https://reu.dimacs.rutgers.edu/Symbols.pdf">A table</a> so much. Do not forget to add <code>$...$</code> between LATEX codes if you wanna insert a symbol. And do not forget to add <code>$$...$$</code> if you wanna insert a mathematical equation/symbol. Also, refer to the <code>tracer.Rmd</code> file for an example.</p>
 <p><strong>My experience till now</strong></p>
 <ol style="list-style-type: decimal">
 <li><p>Always do not use system code of rmarkdown to import images, otherwise your rmarkdown will suddenly break down one day. I encounted this problem recently. I, at first, thought it might be because i used wrong codes making it die. Then I checked all codes letter by letter which seems right though. And then i realized i imported a lot of images in Rmd files using <code>![image](img/path)</code> system code which must be too heavy for a “small” package. Like i recommended before, <a href="https://www.zevross.com/blog/2017/06/19/tips-and-tricks-for-working-with-images-and-figures-in-r-markdown-documents/">list of tips and tricks for working with images in R markdown document</a> solved the problem and made images nicer! I used <code>include_graphics</code> function in <code>knitr</code> package for local downloaded images. For figures produced by R, you will need to choose another way to make it.</p></li>
