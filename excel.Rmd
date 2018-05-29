@@ -15,12 +15,19 @@ Recently, I am using Microsoft Excel to work on data analysis. I will recommend 
 # Shortcuts
 
 **Extend selection** - Control + Shift + arrow keys
+
 **Fill down** - Control + D to copy values from the cell above without copy paste
+
 **Autosum** - Alt + =
+
 **Go to first cell/last cell** - Control + Home / Control + End
+
 **Data navigation** - Control + arrow keys
+
 **Fill handle** - Double click the little square at the bottom right of any selection
+
 **New table** - Control + T
+
 **Close the new window** - Control + W to close the dumplicate view of excel file
 
 # References
