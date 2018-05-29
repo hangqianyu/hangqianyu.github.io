@@ -8,7 +8,7 @@ output:
     toc_float: yes
 ---
 
-Structure of research proposal: 
+Structure of research proposal from a USDA proposal shared by Dr. Fox: 
 
 * **Introduction**
   - Need for the proposed project
@@ -26,4 +26,33 @@ Structure of research proposal:
 * Timeline with Annual Milestones
   - Laboratory Experiments
   - Field Experiments
+
+**Introduction**
+
+**UV-Vis monitoring and loads calculation**
+
+**Tracer study to investigate biogeochemical processes of nutrients**
+
+# Chapter 1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

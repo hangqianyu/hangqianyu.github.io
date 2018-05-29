@@ -8,6 +8,9 @@ output:
     toc_float: yes
 ---
 
+# Introduction
+A tracer study involves the injection of certain concentrations of conservative or non-conservative solutes at a known constant rate into the stream for a certain time period and the measurement of the variations of the solutes concentration after injection at the downstream direction of the injection place; thus, the processes of advection, dispersion, lateral inflow and transient storage in the stream are able to be estimated. 
+
 # Literature 1
 
 *基于OTIS模型的巢湖十五里河源头段氮磷迁移转化规律及模拟*
@@ -49,9 +52,9 @@ $$F_{med} = (1 - e^{\frac{L\alpha}{v}}) \ast \frac{A_s}{A + A_s}$$
 灵敏度排序结果表明，在十五里河源头河段，影响模型的最灵敏参数为断面面积A，其次是暂态存储参数$A_s$和$\alpha$，扩散系数D则为最弱，即灵敏度排序为A > $A_s$ > $\alpha$ > D。
 
 
+# Literature 2
 
-
-
+*Natural channel design impacts on reach-scale transient storage*
 
 
 
