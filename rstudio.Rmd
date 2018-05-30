@@ -285,7 +285,7 @@ my_df[, -4]     # Omit fourth column of my_df
 
 ****************
 ## Type conversions
-It is often necessary to change, or coerce, the way that variables in a dataset are stored. This could be because of the way they were read into R (with `read.csv()`, for example) or perhaps the function you are using to analyze the data requires variables to be coded a certain way. Only certain coercions are allowed, but the rules for what works are generally pretty intuitive. For example, trying to convert a character string to a number gives an error: as.numeric("some text"). There are a few less intuitive results. For example, under the hood, the logical values TRUE and FALSE are coded as 1 and 0, respectively. Therefore, as.logical(1) returns TRUE and as.numeric(TRUE) returns 1.
+It is often necessary to change, or coerce, the way that variables in a dataset are stored. This could be because of the way they were read into R (with `read.csv()`, for example) or perhaps the function you are using to analyze the data requires variables to be coded a certain way. Only certain coercions are allowed, but the rules for what works are generally pretty intuitive. For example, trying to convert a character string to a number gives an error: as.numeric("some text"). There are a few less intuitive results. For example, under the hood, the logical values TRUE and FALSE are coded as 1 and 0, respectively. Therefore, `as.logical(1)` returns TRUE and `as.numeric(TRUE)` returns 1.
 
 ```{r eval=FALSE}
 as.character(...)
@@ -295,15 +295,15 @@ as.numeric(...)
 as.logical(...)
 ```
 
-Dates can be a challenge to work with in any programming language, but thanks to the lubridate package, working with dates in R isn't so bad. Since this course is about cleaning data, we only cover the most basic functions from lubridate to help us standardize the format of dates and times in our data.
+Dates can be a challenge to work with in any programming language, but thanks to the `lubridate` package, working with dates in R isn't so bad. Since this course is about cleaning data, we only cover the most basic functions from lubridate to help us standardize the format of dates and times in our data.
 
-As you saw in the video, these functions combine the letters y, m, d, h, m, s, which stand for year, month, day, hour, minute, and second, respectively. The order of the letters in the function should match the order of the date/time you are attempting to read in, although not all combinations are valid. Notice that the functions are "smart" in that they are capable of parsing multiple formats.
+These functions combine the letters y, m, d, h, m, s, which stand for year, month, day, hour, minute, and second, respectively. The order of the letters in the function should match the order of the date/time you are attempting to read in, although not all combinations are valid. Notice that the functions are "smart" in that they are capable of parsing multiple formats.
 
     . ymd()
     . ymd_hms()
     . ...just ?ymd or ?ymd_hms, you will find out which function you want.
 
-## String manipulation ("stringr" package)
+## String manipulation (`stringr` package)
 There are four key functions in stringr for cleaning data:
 
     -str_trim() - Trim leading and trailing white space

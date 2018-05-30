@@ -413,7 +413,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Data analysis in R Studio</h1>
 <h4 class="author"><em><a href="https://github.com/hangqianyu">Qianyu Hang</a> at NC State University</em></h4>
-<h4 class="date"><em>Tue May 29, 2018</em></h4>
+<h4 class="date"><em>Wed May 30, 2018</em></h4>
 
 </div>
 
@@ -612,20 +612,20 @@ my_df[, -4]     # Omit fourth column of my_df</code></pre>
 </div>
 <div id="type-conversions" class="section level2">
 <h2>Type conversions</h2>
-<p>It is often necessary to change, or coerce, the way that variables in a dataset are stored. This could be because of the way they were read into R (with <code>read.csv()</code>, for example) or perhaps the function you are using to analyze the data requires variables to be coded a certain way. Only certain coercions are allowed, but the rules for what works are generally pretty intuitive. For example, trying to convert a character string to a number gives an error: as.numeric(“some text”). There are a few less intuitive results. For example, under the hood, the logical values TRUE and FALSE are coded as 1 and 0, respectively. Therefore, as.logical(1) returns TRUE and as.numeric(TRUE) returns 1.</p>
+<p>It is often necessary to change, or coerce, the way that variables in a dataset are stored. This could be because of the way they were read into R (with <code>read.csv()</code>, for example) or perhaps the function you are using to analyze the data requires variables to be coded a certain way. Only certain coercions are allowed, but the rules for what works are generally pretty intuitive. For example, trying to convert a character string to a number gives an error: as.numeric(“some text”). There are a few less intuitive results. For example, under the hood, the logical values TRUE and FALSE are coded as 1 and 0, respectively. Therefore, <code>as.logical(1)</code> returns TRUE and <code>as.numeric(TRUE)</code> returns 1.</p>
 <pre class="r"><code>as.character(...)
 as.factor(...)
 as.integer(...)
 as.numeric(...)
 as.logical(...)</code></pre>
-<p>Dates can be a challenge to work with in any programming language, but thanks to the lubridate package, working with dates in R isn’t so bad. Since this course is about cleaning data, we only cover the most basic functions from lubridate to help us standardize the format of dates and times in our data.</p>
-<p>As you saw in the video, these functions combine the letters y, m, d, h, m, s, which stand for year, month, day, hour, minute, and second, respectively. The order of the letters in the function should match the order of the date/time you are attempting to read in, although not all combinations are valid. Notice that the functions are “smart” in that they are capable of parsing multiple formats.</p>
+<p>Dates can be a challenge to work with in any programming language, but thanks to the <code>lubridate</code> package, working with dates in R isn’t so bad. Since this course is about cleaning data, we only cover the most basic functions from lubridate to help us standardize the format of dates and times in our data.</p>
+<p>These functions combine the letters y, m, d, h, m, s, which stand for year, month, day, hour, minute, and second, respectively. The order of the letters in the function should match the order of the date/time you are attempting to read in, although not all combinations are valid. Notice that the functions are “smart” in that they are capable of parsing multiple formats.</p>
 <pre><code>. ymd()
 . ymd_hms()
 . ...just ?ymd or ?ymd_hms, you will find out which function you want.</code></pre>
 </div>
 <div id="string-manipulation-stringr-package" class="section level2">
-<h2>String manipulation (“stringr” package)</h2>
+<h2>String manipulation (<code>stringr</code> package)</h2>
 <p>There are four key functions in stringr for cleaning data:</p>
 <pre><code>-str_trim() - Trim leading and trailing white space
 -str_pad - Pad with additional characters
