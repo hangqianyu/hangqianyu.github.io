@@ -34,11 +34,11 @@ Structure of research proposal from a USDA proposal shared by Dr. Fox:
 **Tracer study to investigate biogeochemical processes of nutrients**
 
 # Chapter 1
+River restoration is a multi-billion dollar industry that impacts thousands of US river reaches and promises to improve aquatic ecosystems (Bernhardt et al., 2005). River restoration projects typically have specific goals addressing one of several physical (e.g. bedform morphology), biological (e.g. fish population), or chemical (e.g. biogeochemical cycling) concerns. Despite stated goals of increasing ecological integrity, post-implementation monitoring programs are often voluntary or not explicitly part of the project (Bash and Ryan, 2002) creating difficulty when assessing the successfulness of restoration.
 
+Measures of hyporheic exchange and transient storage, important indicators of hydrologic retention in biogeochemically active zones, provide an alternative way to assess a component of the ecological impact of NCD restoration that does not necessitate waiting for biological recovery (Hester and Gooseff, 2010). Transient storage is considered a valuable indicator of ecological function, in part because it is important to riverine reach-scale biogeochemistry and food webs (Valett et al., 1997; Boulton et al., 2010). 
 
-
-
-
+Stream tracer experiments combined with advection–dispersion modeling provide a relatively low cost method of assessing transient storage characteristics in streams (Hester and Gooseff, 2010; Bencala and Walters, 1983; Runkel 1998; Hall et al., 2002). 
 
 
 
