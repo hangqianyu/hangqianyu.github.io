@@ -40,7 +40,7 @@ Still learning, but refered a website [R markdown and Knitr](http://www.xueqing.
 
 For writing journal papers in Rmarkdown, i benefited a lot reading [this blog](http://www.janfreyberg.com/blog/2017-05-27-workflow-papers-rmarkdown/). To insert references, i use the package `citr` alongside a `.bib` file that you synchronised to your library. Then click `Addins` button, there is an option to insert citation. Do it, and choose whichever reference you wanna cite. 
 
-For me, i am using `rticles` package to write a journal manuscript. And create a template markdown file for various formats including:
+For me, i am using `rticles` package installed in R Studio and `elsarticle` package installed in MiKTek to write a journal manuscript. And create a template markdown file for various formats including:
 
 * JSS articles
 * R journal articles

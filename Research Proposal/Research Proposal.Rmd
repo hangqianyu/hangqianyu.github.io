@@ -12,75 +12,11 @@ address:
   - code: NC State University
     address: Biological and Agricultural Engineering, Capus Box 7625, Raleigh, NC, 27695
 abstract: |
-  This is the abstract.
-
-  It consists of two paragraphs.
+  A growing number of stream restoration projects have been undertaken to counteract the adverse effects of stream degradation worldwide. Nevertheless, controversies on the real impacts of stream restoration still exist. The objective of this paper is to review the current knowledge base on the impacts of stream restoration in water quality, hydromorphology and fish/invertebrate community. Based on the database developed in this study, 67% of projects indicated a positive effect of nitrogen reduction following restoration. Hydromorphological improvements were identified almost by all hydromorphological restoration efforts. As fish/invertebrate community require a long time-frame to recover, reaching common ground can therefore be difficult due to different time-frames applied by researchers. Given that restoration studies are usually site- and approach-specific, it is impossible to predict every outcome of a stream restoration project by simply extrapolating the results from one single study. However, finding some robust indicators for which could show the uniform trend following restoration is helpful for evaluating the effectiveness of stream restoration projects. Several future research needs should be highlighted: 1) implement high-resolution data analysis, in particular for water quality; 2) choose robust indicators for restoration project evaluation; and 3) avoid comparison using nearby reference streams.
 
 bibliography: mybibfile.bib
 output: rticles::elsevier_article
 ---
-
-The Elsevier article class
-==========================
-
-#### Installation
-
-If the document class *elsarticle* is not available on your computer,
-you can download and install the system package *texlive-publishers*
-(Linux) or install the LaTeX package *elsarticle* using the package
-manager of your TeX installation, which is typically TeX Live or MikTeX.
-
-#### Usage
-
-Once the package is properly installed, you can use the document class
-*elsarticle* to create a manuscript. Please make sure that your
-manuscript follows the guidelines in the Guide for Authors of the
-relevant journal. It is not necessary to typeset your manuscript in
-exactly the same way as an article, unless you are submitting to a
-camera-ready copy (CRC) journal.
-
-#### Functionality
-
-The Elsevier article class is based on the standard article class and
-supports almost all of the functionality of that class. In addition, it
-features commands and options to format the
-
--   document style
-
--   baselineskip
-
--   front matter
-
--   keywords and MSC codes
-
--   theorems, definitions and proofs
-
--   lables of enumerations
-
--   citation style and labeling.
-
-Front matter
-============
-
-The author names and affiliations could be formatted in two ways:
-
-(1) Group the authors per affiliation.
-
-(2) Use footnotes to indicate the affiliations.
-
-See the front matter of this document for examples. You are recommended
-to conform your choice to the journal you are submitting to.
-
-Bibliography styles
-===================
-
-There are various bibliography styles available. You can select the
-style of your choice in the preamble of this document. These styles are
-Elsevier styles based on standard styles like Harvard and Vancouver.
-Please use BibTeX to generate your bibliography and include DOIs
-whenever available.
-
-Here are two sample references: @Feynman1963118 [@Dirac1953888].
 
 References {#references .unnumbered}
 ==========
