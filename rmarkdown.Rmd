@@ -38,6 +38,28 @@ Another thing i wanna mention is color! You will definitely think about color wh
 # Make a nice report
 Still learning, but refered a website [R markdown and Knitr](http://www.xueqing.tv/cms/article/101). 
 
+For writing journal papers in Rmarkdown, i benefited a lot reading [this blog](http://www.janfreyberg.com/blog/2017-05-27-workflow-papers-rmarkdown/). To insert references, i use the package `citr` alongside a `.bib` file that you synchronised to your library. Then click `Addins` button, there is an option to insert citation. Do it, and choose whichever reference you wanna cite. 
+
+For me, i am using `rticles` package to write a journal manuscript. And create a template markdown file for various formats including:
+
+* JSS articles
+* R journal articles
+* CTeX documents
+* ACM articles
+* ACS articles
+* AMS articles
+* PeerJ articles
+* Elsevier journal submissions
+* AEA journal submissions
+* IEEE Transaction journal submission
+* Statistics in Medicine journal submission
+* Royal Society Open Science journal submission
+* Bulletin de I'AMQ journal submission
+* MDPI journal submission
+* Springer journal submission
+
+But, there is a but... I did not find Springer journal submission. 
+
 # Shortcuts
 
 **Switch to another file in R studio** - Control + F11/f12
