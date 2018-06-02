@@ -1,5 +1,5 @@
 ---
-title: "Some useful "
+title: "Some useful knowledge you need to know"
 author:  "[Qianyu Hang](https://github.com/hangqianyu) at NC State University"
 date: '`r format(Sys.Date(), "%a %b %d, %Y")`'
 output:
