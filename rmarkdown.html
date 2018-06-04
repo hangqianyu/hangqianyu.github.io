@@ -413,7 +413,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Tips for Rmarkdown</h1>
 <h4 class="author"><em><a href="https://github.com/hangqianyu">Qianyu Hang</a> at NC State University</em></h4>
-<h4 class="date"><em>Fri Jun 01, 2018</em></h4>
+<h4 class="date"><em>Mon Jun 04, 2018</em></h4>
 
 </div>
 
@@ -468,6 +468,17 @@ div.tocify {
 <li>Springer journal submission</li>
 </ul>
 <p>But, there is a but… I did not find Springer journal submission.</p>
+<p><strong>Updates: June 1, 2018</strong></p>
+<p>Currently, i found it is not perfect to use <code>elsarticle</code> template from <code>rticles</code> package. Through a few days’ work, i found an <a href="https://github.com/hangqianyu/Academic_paper_demo">awesome website</a> that can realize what i wanted. But there are several typos in the <code>manuscript.Rmd</code> file. I did several changes to write my own paper.</p>
+<p>First, here is a <a href="https://github.com/jhollist/manuscriptPackage">manuscript repo</a> which i folked. You need to install the package and gain access to the materials.</p>
+<pre class="r"><code>install.packages(&quot;devtools&quot;)
+library(&quot;devtools&quot;)
+install_github(&quot;jhollist/manuscriptPackage&quot;,build_vignettes=TRUE)
+library(&quot;manuscriptPackage&quot;)</code></pre>
+<p>Now you are free to play with it.</p>
+<p><strong>Some tips:</strong> it is beneficial to use <code>\clearpage</code> syntax after abstract before submission (some journals may not require though). You could use <code>\tableofcontents</code> to construct a table of contents on the title page. If you wanna start page numbering from the second page in R markdown, you could add <code>\pagenumbering{gobble}</code> just before the second page and <code>\pagenumbering{arabic}</code> after the title page. In order to use <code>Times New Roman</code> font both for the text and the math in the manuscript, you could use <code>usepackage: {newtxtext, newtxmath}</code> in the preamble to specify it. The <code>netxt</code> package was installed in <code>MiKTeK</code>. If you want to reference your figure, you can use <code>\@ref(fig:ancient-aliens)</code>.</p>
+<p><strong>Updates: June 4, 2018</strong></p>
+<p>After talking with Wenlong, i still haven’t solved “table” question in LaTeX through Rmarkdown. I am not familiar with <code>LaTex</code>. So i do not want to put much energy to learning coding rather than considering my research. I will put “writing an academic paper using rmarkdown” away now.</p>
 </div>
 <div id="shortcuts" class="section level1">
 <h1>Shortcuts</h1>

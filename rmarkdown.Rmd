@@ -60,6 +60,27 @@ For me, i am using `rticles` package installed in R Studio and `elsarticle` pack
 
 But, there is a but... I did not find Springer journal submission. 
 
+**Updates: June 1, 2018**
+
+Currently, i found it is not perfect to use `elsarticle` template from `rticles` package. Through a few days' work, i found an [awesome website](https://github.com/hangqianyu/Academic_paper_demo) that can realize what i wanted. But there are several typos in the `manuscript.Rmd` file. I did several changes to write my own paper.
+
+First, here is a [manuscript repo](https://github.com/jhollist/manuscriptPackage) which i folked. You need to install the package and gain access to the materials.
+
+```{r eval=FALSE}
+install.packages("devtools")
+library("devtools")
+install_github("jhollist/manuscriptPackage",build_vignettes=TRUE)
+library("manuscriptPackage")
+```
+
+Now you are free to play with it.
+
+**Some tips:** it is beneficial to use `\clearpage` syntax after abstract before submission (some journals may not require though). You could use `\tableofcontents` to construct a table of contents on the title page. If you wanna start page numbering from the second page in R markdown, you could add `\pagenumbering{gobble}` just before the second page and `\pagenumbering{arabic}` after the title page. In order to use `Times New Roman` font both for the text and the math in the manuscript, you could use `usepackage: {newtxtext, newtxmath}` in the preamble to specify it. The `netxt` package was installed in `MiKTeK`. If you want to reference your figure, you can use `\@ref(fig:ancient-aliens)`. 
+
+**Updates: June 4, 2018**
+
+After talking with Wenlong, i still haven't solved "table" question in LaTeX through Rmarkdown. I am not familiar with `LaTex`. So i do not want to put much energy to learning coding rather than considering my research. I will put "writing an academic paper using rmarkdown" away now.
+
 # Shortcuts
 
 **Switch to another file in R studio** - Control + F11/f12
