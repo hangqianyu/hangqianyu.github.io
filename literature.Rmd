@@ -1,0 +1,67 @@
+---
+output:
+  html_document:
+    toc: yes
+    toc_float: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+tutblog <- read.csv("research_tutblogs.csv", encoding = "UTF-8")
+selection<-tutblog[tutblog$name=="Paper pending to read",]
+```
+`r paste0("# ",selection$name)`
+`r paste0("### *by ",selection$authors,"*")`
+
+<div class = "row">
+<div class = "col-md-9">`r paste0("*started ",selection$date," and updated ",format(Sys.Date(), '%Y-%m-%d'),"*")`</div>
+
+<br/>
+
+```{r echo=FALSE, message=FALSE, out.width="70%", fig.align='center'}
+library(knitr)
+include_graphics("images/literature.jpg")
+```
+
+-------------
+
+# Paper list pending to read
+
+**Effects of an increase in large wood on abundance and survival of juvenile salmonids (Oncorhynchus spp.) in an Oregon coastal stream**
+
+* Ecology of course woody debris in temperate ecosystems
+* Influence of habitat complexity on resistance to flooding and resilience of stream fish assemblages
+* Density, and size of juvenile salmonids in response to placement of large woody debris in western Oregon and Washington streams
+* Aspects of the winter ecology of juvenile coho salmon (Oncorhynchus kisutch) and steelhead trout (Salmo gairdneri)
+* Seasonal changes in habitat use by juvenile coho salmon (Oncorhynchus kisutch) in Oregon coastal streams
+* Effectiveness of selected stream improvement techniques to create suitable summer and winter rearing habitat for juvenile coho salmon (Oncorhynchus kisutch) in Oregon coastal streams
+* FIsh habitat restoration in the Pacific Northwest: Fish Creek of Oregon. In watershed restoration: principles and practices
+* Effects of increasing winter rearing habitat on abundance of salmonids in two coastal Oregon streams
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# References
+[Literature pic](https://ideas.ted.com/required-reading-the-books-that-students-read-in-28-countries-around-the-world/)
