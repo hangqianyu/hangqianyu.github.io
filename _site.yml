@@ -14,13 +14,7 @@ navbar:
         - text: "Field Visit"
           href: field.html
     - text: "Tutorial"
-      menu: 
-        - text: "R Studio"
-          href: rstudio.html
-        - text: "R Markdown"
-          href: rmarkdown.html
-        - text: "Microsoft Excel"
-          href: excel.html
+      href: tutorial.html
     - text: "Courses"
       menu:
         - text: "Open Channel Flow"

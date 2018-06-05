@@ -1,7 +1,4 @@
 ---
-title: "Tips for Rmarkdown"
-author:  "[Qianyu Hang](https://github.com/hangqianyu) at NC State University"
-date: '`r format(Sys.Date(), "%a %b %d, %Y")`'
 output:
   html_document:
     out_height: 0.1
@@ -9,6 +6,19 @@ output:
     toc: yes
     toc_float: yes
 ---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+tutblog <- read.csv("qianyu_tutblogs.csv", encoding = "UTF-8")
+selection<-tutblog[tutblog$name=="Tips for Rmarkdown",]
+```
+`r paste0("# ",selection$name)`
+`r paste0("### *by ",selection$authors,"*")`
+
+<div class = "row">
+<div class = "col-md-9">`r paste0("*started ",selection$date," and updated ",format(Sys.Date(), '%Y-%m-%d'),"*")`</div>
+
+<br/>
 
 ```{r echo=FALSE, message=FALSE, out.width="50%", fig.align='center'}
 library(knitr)

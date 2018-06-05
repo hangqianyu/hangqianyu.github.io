@@ -1,13 +1,23 @@
 ---
-title: "Some useful knowledge you need to know"
-author:  "[Qianyu Hang](https://github.com/hangqianyu) at NC State University"
-date: '`r format(Sys.Date(), "%a %b %d, %Y")`'
 output:
   html_document:
     fig_width: 9
     toc: yes
     toc_float: yes
 ---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+tutblog <- read.csv("qianyu_tutblogs.csv", encoding = "UTF-8")
+selection<-tutblog[tutblog$name=="Some useful knowledge you need to know",]
+```
+`r paste0("# ",selection$name)`
+`r paste0("### *by ",selection$authors,"*")`
+
+<div class = "row">
+<div class = "col-md-9">`r paste0("*started ",selection$date," and updated ",format(Sys.Date(), '%Y-%m-%d'),"*")`</div>
+
+<br/>
 
 # Intro
 Recently, I am using Microsoft Excel to work on data analysis. I will recommend some powerful and useful shortcuts i know to you guys. All right, let's get the ball rolling. 
