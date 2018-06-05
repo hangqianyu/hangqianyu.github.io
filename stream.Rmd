@@ -1,7 +1,4 @@
 ---
-title: "Controversial voices among the effects of stream restoration call for evaluation of robust indicators"
-author:  "[Qianyu Hang](https://github.com/hangqianyu) at NC State University"
-date: '`r format(Sys.Date(), "%a %b %d, %Y")`'
 output:
   html_document:
     toc: yes
@@ -9,6 +6,19 @@ output:
 link-citation: yes
 bibliography: Bibliography.bib
 ---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+tutblog <- read.csv("research_tutblogs.csv", encoding = "UTF-8")
+selection<-tutblog[tutblog$name=="Controversial voices among the effects of stream restoration call for evaluation of robust indicators",]
+```
+`r paste0("# ",selection$name)`
+`r paste0("### *by ",selection$authors,"*")`
+
+<div class = "row">
+<div class = "col-md-9">`r paste0("*started ",selection$date," and updated ",format(Sys.Date(), '%Y-%m-%d'),"*")`</div>
+
+<br/>
 
 ---------
 # Abstract

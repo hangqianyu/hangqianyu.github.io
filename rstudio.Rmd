@@ -1,5 +1,4 @@
 ---
-date: '`r format(Sys.Date(), "%a %b %d, %Y")`'
 output:
   html_document:
     fig_width: 9

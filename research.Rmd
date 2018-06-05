@@ -1,5 +1,5 @@
 ---
-title: "Tutorials and tips"
+title: "Research since 2018"
 output:
   html_document:
     toc: true
@@ -7,7 +7,7 @@ output:
 ---
 
 ```{r echo=FALSE, results="asis",comment=FALSE}
-tutblog <- read.csv("qianyu_tutblogs.csv", encoding = "UTF-8")
+tutblog <- read.csv("research_tutblogs.csv", encoding = "UTF-8")
 tutblog$date <- as.POSIXlt(as.Date(tutblog$date))
 year<-(tutblog$date)$year + 1900
 tutblog <- cbind(tutblog,year)

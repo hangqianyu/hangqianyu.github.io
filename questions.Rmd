@@ -1,12 +1,22 @@
 ---
-title: "Thoughts through literature reading"
-author:  "[Qianyu Hang](https://github.com/hangqianyu) at NC State University"
-date: '`r format(Sys.Date(), "%a %b %d, %Y")`'
 output:
   html_document:
     toc: yes
     toc_float: yes
 ---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+tutblog <- read.csv("research_tutblogs.csv", encoding = "UTF-8")
+selection<-tutblog[tutblog$name=="Thoughts through literature reading",]
+```
+`r paste0("# ",selection$name)`
+`r paste0("### *by ",selection$authors,"*")`
+
+<div class = "row">
+<div class = "col-md-9">`r paste0("*started ",selection$date," and updated ",format(Sys.Date(), '%Y-%m-%d'),"*")`</div>
+
+<br/>
 
 ```{r echo=FALSE, message=FALSE, out.width="100%", fig.align='center'}
 library(knitr)

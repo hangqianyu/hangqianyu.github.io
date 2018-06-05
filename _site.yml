@@ -4,15 +4,7 @@ navbar:
   title: "Qianyu's Blog"
   left:
     - text: "Research"
-      menu: 
-        - text: "Stream Restoration"
-          href: stream.html
-        - text: "Research Questions"
-          href: questions.html
-        - text: "Tracer study"
-          href: tracer.html
-        - text: "Field Visit"
-          href: field.html
+      href: research.html
     - text: "Tutorial"
       href: tutorial.html
     - text: "Courses"
