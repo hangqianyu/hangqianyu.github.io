@@ -5,13 +5,6 @@ output:
     toc_float: yes
 ---
 
-```{r echo=FALSE, message=FALSE, out.width="70%", fig.align='center'}
-library(knitr)
-include_graphics("images/birds.jpeg")
-```
-
--------------
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 tutblog <- read.csv("research_tutblogs.csv", encoding = "UTF-8")
@@ -24,6 +17,13 @@ selection<-tutblog[tutblog$name=="Info for tracer study",]
 <div class = "col-md-9">`r paste0("*started ",selection$date," and updated ",format(Sys.Date(), '%Y-%m-%d'),"*")`</div>
 
 <br/>
+
+```{r echo=FALSE, message=FALSE, out.width="70%", fig.align='center'}
+library(knitr)
+include_graphics("images/birds.jpeg")
+```
+
+-------------
 
 # Introduction
 A tracer study involves the injection of certain concentrations of conservative or non-conservative solutes at a known constant rate into the stream for a certain time period and the measurement of the variations of the solutes concentration after injection at the downstream direction of the injection place; thus, the processes of advection, dispersion, lateral inflow and transient storage in the stream are able to be estimated. 
