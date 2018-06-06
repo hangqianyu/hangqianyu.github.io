@@ -5,6 +5,13 @@ output:
     toc_float: yes
 ---
 
+```{r echo=FALSE, message=FALSE, out.width="70%", fig.align='center'}
+library(knitr)
+include_graphics("images/birds.jpeg")
+```
+
+-------------
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 tutblog <- read.csv("research_tutblogs.csv", encoding = "UTF-8")
@@ -89,4 +96,5 @@ $$F_{med} = (1 - e^{\frac{L\alpha}{v}}) \ast \frac{A_s}{A + A_s}$$
 
 
 
-
+# References
+[Picture](https://onehdwallpaper.com/owl-hd-wallpapers-desktop-pictures/)
