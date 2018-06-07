@@ -381,8 +381,8 @@ div.tocify {
 </div>
 
 
-<div id="field-visit-at-claridge-site-in-goldsboro-nc" class="section level1">
-<h1>Field visit at Claridge site in Goldsboro, NC</h1>
+<div id="field-visit-at-claridge" class="section level1">
+<h1>Field visit at Claridge</h1>
 <div id="by-qianyu-hang" class="section level3">
 <h3><em>by Qianyu Hang</em></h3>
 <div class = "row">
@@ -398,6 +398,52 @@ div.tocify {
 <h1>Introduction</h1>
 <p>For claridge project, we usually go there biweekly to do a manual service/check. There are several reasons: 1) we used isco sampler to automatically collect water samples every 14 hours, but We need to replace full bottles with empty ones after two weeks. 2) download data because S::CAN and sontek data can only be stored within a short period of time. 3) check solar and marine battery. 4) manually clean Manta, Sontek, and S::CAN probe lenser. 5) take grab samples back to the lab for detecting if there is any difference between samples measured immediately and samples measured after two weeks. 6) take muanal flow measurement 7) download Manta data 8) clean the flume and stream, sometimes there will be plenty of trims/algae in streams 9) cut the grass because summer is coming. 10) grab tributary samples back to the lab. 11) finally check everything works all right, then you are good to go.</p>
 <p>In this part, i will mainly record some interesting stories i have seen (some are research-related, some are not) during each field visit. Go Pack, Go Field!</p>
+<p>Based on summary of the laboratory analyses for discrete samples in Chiao-Wen’s dissertation, there is a general range for water quality parameters.</p>
+<ul>
+<li>CLUP
+<ul>
+<li>Nitrate-nitrogen: 2.98 <span class="math inline">\(\pm\)</span> 0.61</li>
+<li>Ammonium-nitrogen: 0.19 <span class="math inline">\(\pm\)</span> 0.16</li>
+<li>TDN: 3.50 <span class="math inline">\(\pm\)</span> 0.63</li>
+<li>TKN: 0.61 <span class="math inline">\(\pm\)</span> 0.29</li>
+<li>DOC: 5.03 <span class="math inline">\(\pm\)</span> 1.60</li>
+<li>TP: 0.09 <span class="math inline">\(\pm\)</span> 0.15</li>
+<li>Phosphate-Phosphorus: 0.02 <span class="math inline">\(\pm\)</span> 0.03</li>
+<li>TSS: 16.46 <span class="math inline">\(\pm\)</span> 32.74</li>
+</ul></li>
+<li>CLMD
+<ul>
+<li>Nitrate-nitrogen: 2.69 <span class="math inline">\(\pm\)</span> 0.59</li>
+<li>Ammonium-nitrogen: 0.14 <span class="math inline">\(\pm\)</span> 0.06</li>
+<li>TDN: 3.16 <span class="math inline">\(\pm\)</span> 0.54</li>
+<li>TKN: 0.65 <span class="math inline">\(\pm\)</span> 0.25</li>
+<li>DOC: 6.10 <span class="math inline">\(\pm\)</span> 2.12</li>
+<li>TP: 0.08 <span class="math inline">\(\pm\)</span> 0.05</li>
+<li>Phosphate-Phosphorus: 0.01 <span class="math inline">\(\pm\)</span> 0.02</li>
+<li>TSS: 21.51 <span class="math inline">\(\pm\)</span> 31.47</li>
+</ul></li>
+<li>CLDN
+<ul>
+<li>Nitrate-nitrogen: 2.41 <span class="math inline">\(\pm\)</span> 0.50</li>
+<li>Ammonium-nitrogen: 0.20 <span class="math inline">\(\pm\)</span> 0.12</li>
+<li>TDN: 2.96 <span class="math inline">\(\pm\)</span> 0.52</li>
+<li>TKN: 0.71 <span class="math inline">\(\pm\)</span> 0.27</li>
+<li>DOC: 6.14 <span class="math inline">\(\pm\)</span> 1.88</li>
+<li>TP: 0.11 <span class="math inline">\(\pm\)</span> 0.10</li>
+<li>Phosphate-Phosphorus: 0.02 <span class="math inline">\(\pm\)</span> 0.01</li>
+<li>TSS: 23.74 <span class="math inline">\(\pm\)</span> 29.70</li>
+</ul></li>
+</ul>
+<p><strong>Note: The detection limit is 0.1 mg/L for Nitrate-nitrogen, TDN, and DOC; 0.28 mg/L for TKN; 0.01 mg/L for TP and Phosphate-phosphorus; no detection limit for TSS.</strong></p>
+</div>
+<div id="tutorial-for-field-visit" class="section level1">
+<h1>Tutorial for field visit</h1>
+<p>Cyrus Belenky has done an awesome job in writing a <code>To-do list</code> for field visit. It is perfect for servicing in the field, but not enough for data analysis later. So here i will summarize what i know to make it easier for you.</p>
+<div id="where-the-data-are-located-on-the-tablet" class="section level2">
+<h2>Where the data are located on the tablet?</h2>
+<p>For Scan data, there are two, one is <strong>continuous data</strong> measuring every 15 min; the other one is <strong>tributary data</strong>. Part of <strong>Continuous data</strong> are located in <code>Drive C/s-canV5.0/Results/ORIGINAL/Logger</code>, while the else should be in <code>Drive C/s-canV5.0/Results/ORIGINAL/offline</code> if you did data visualization back home or in <code>Drive C/s-canV5.0/Results/ORIGINAL/logger</code> if you did in the field. <strong>Tributary data</strong> are not organized and saved in <code>Drive C/s-canV5.0/Results/ORIGINAL</code>. The file name is the <code>date_time</code> you saved. The global calibration documents are <code>.PAR</code> file. The spectro::lyser spectra data are <code>,fp</code> file. <code>PAR</code> files can be used to compare with results of PLSR calibration.</p>
+<p>For Sontek data starting from Mar. 2018, CLUP data are saved in <code>Dropbox/Sontek/CLUP</code>, CLMD data are saved in <code>Dropbox/Sontek/CLMD</code>, CLDN data are saved in <code>Dropbox/Sontek/CLDN</code>. The original data are <code>IQ</code> files. In order to get <code>.csv</code> files, you need to open <code>IQ</code> software on the desktop and select the data you wanna download, then save it to <code>.csv</code> file one by one. The <code>csv</code> file is for smoothing velocity data.</p>
+</div>
 </div>
 <div id="field-visit-on-may-11-2018" class="section level1">
 <h1>Field visit on May 11, 2018</h1>
@@ -424,6 +470,14 @@ div.tocify {
 <p>Sam and I will wipe a path for walking next time.</p>
 <p><strong>Tablet work</strong></p>
 <p>Previously, i did a lot of stream work. So not good at tablet work. Recently, i did several tablet work and knew how everything (almost) works. Yeah! Finally.</p>
+</div>
+<div id="field-visit-on-jun-8-2018" class="section level1">
+<h1>Field visit on Jun 8, 2018</h1>
+<p><strong>To do list:</strong></p>
+<ul>
+<li>Get the weed out of the stream</li>
+<li>Download groundwater data</li>
+</ul>
 </div>
 
 

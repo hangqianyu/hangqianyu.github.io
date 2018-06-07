@@ -8,7 +8,7 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 tutblog <- read.csv("research_tutblogs.csv", encoding = "UTF-8")
-selection<-tutblog[tutblog$name=="Info for tracer study",]
+selection<-tutblog[tutblog$name=="Tracer study",]
 ```
 `r paste0("# ",selection$name)`
 `r paste0("### *by ",selection$authors,"*")`

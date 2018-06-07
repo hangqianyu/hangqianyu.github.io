@@ -9,7 +9,7 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 tutblog <- read.csv("research_tutblogs.csv", encoding = "UTF-8")
-selection<-tutblog[tutblog$name=="Field visit at Claridge site in Goldsboro, NC",]
+selection<-tutblog[tutblog$name=="Field visit at Claridge",]
 ```
 `r paste0("# ",selection$name)`
 `r paste0("### *by ",selection$authors,"*")`
@@ -25,10 +25,53 @@ include_graphics("images/field.jpg")
 ```
 
 ----------
+
 # Introduction
 For claridge project, we usually go there biweekly to do a manual service/check. There are several reasons: 1) we used isco sampler to automatically collect water samples every 14 hours, but We need to replace full bottles with empty ones after two weeks. 2) download data because S::CAN and sontek data can only be stored within a short period of time. 3) check solar and marine battery. 4) manually clean Manta, Sontek, and S::CAN probe lenser. 5) take grab samples back to the lab for detecting if there is any difference between samples measured immediately and samples measured after two weeks. 6) take muanal flow measurement 7) download Manta data 8) clean the flume and stream, sometimes there will be plenty of trims/algae in streams 9) cut the grass because summer is coming. 10) grab tributary samples back to the lab. 11) finally check everything works all right, then you are good to go. 
 
 In this part, i will mainly record some interesting stories i have seen (some are research-related, some are not) during each field visit. Go Pack, Go Field!
+
+Based on summary of the laboratory analyses for discrete samples in Chiao-Wen's dissertation, there is a general range for water quality parameters.
+
+* CLUP
+  - Nitrate-nitrogen: 2.98 $\pm$ 0.61
+  - Ammonium-nitrogen: 0.19 $\pm$ 0.16
+  - TDN: 3.50 $\pm$ 0.63
+  - TKN: 0.61 $\pm$ 0.29
+  - DOC: 5.03 $\pm$ 1.60
+  - TP: 0.09 $\pm$ 0.15
+  - Phosphate-Phosphorus: 0.02 $\pm$ 0.03
+  - TSS: 16.46 $\pm$ 32.74
+* CLMD
+  - Nitrate-nitrogen: 2.69 $\pm$ 0.59
+  - Ammonium-nitrogen: 0.14 $\pm$ 0.06
+  - TDN: 3.16 $\pm$ 0.54
+  - TKN: 0.65 $\pm$ 0.25
+  - DOC: 6.10 $\pm$ 2.12
+  - TP: 0.08 $\pm$ 0.05
+  - Phosphate-Phosphorus: 0.01 $\pm$ 0.02
+  - TSS: 21.51 $\pm$ 31.47
+* CLDN
+  - Nitrate-nitrogen: 2.41 $\pm$ 0.50
+  - Ammonium-nitrogen: 0.20 $\pm$ 0.12
+  - TDN: 2.96 $\pm$ 0.52
+  - TKN: 0.71 $\pm$ 0.27
+  - DOC: 6.14 $\pm$ 1.88
+  - TP: 0.11 $\pm$ 0.10
+  - Phosphate-Phosphorus: 0.02 $\pm$ 0.01
+  - TSS: 23.74 $\pm$ 29.70
+
+**Note: The detection limit is 0.1 mg/L for Nitrate-nitrogen, TDN, and DOC; 0.28 mg/L for TKN; 0.01 mg/L for TP and Phosphate-phosphorus; no detection limit for TSS.**
+
+# Tutorial for field visit
+
+Cyrus Belenky has done an awesome job in writing a `To-do list` for field visit. It is perfect for servicing in the field, but not enough for data analysis later. So here i will summarize what i know to make it easier for you.
+
+## Where the data are located on the tablet?
+
+For Scan data, there are two, one is **continuous data** measuring every 15 min; the other one is **tributary data**. Part of **Continuous data** are located in `Drive C/s-canV5.0/Results/ORIGINAL/Logger`, while the else should be in `Drive C/s-canV5.0/Results/ORIGINAL/offline` if you did data visualization back home or in `Drive C/s-canV5.0/Results/ORIGINAL/logger` if you did in the field. **Tributary data** are not organized and saved in `Drive C/s-canV5.0/Results/ORIGINAL`. The file name is the `date_time` you saved. The global calibration documents are `.PAR` file. The spectro::lyser spectra data are `,fp` file. `PAR` files can be used to compare with results of PLSR calibration.
+
+For Sontek data starting from Mar. 2018, CLUP data are saved in `Dropbox/Sontek/CLUP`, CLMD data are saved in `Dropbox/Sontek/CLMD`, CLDN data are saved in `Dropbox/Sontek/CLDN`. The original data are `IQ` files. In order to get `.csv` files, you need to open `IQ` software on the desktop and select the data you wanna download, then save it to `.csv` file one by one. The `csv` file is for smoothing velocity data.
 
 # Field visit on May 11, 2018
 
@@ -74,6 +117,12 @@ Sam and I will wipe a path for walking next time.
 
 Previously, i did a lot of stream work. So not good at tablet work. Recently, i did several tablet work and knew how everything (almost) works. Yeah! Finally.
 
+# Field visit on Jun 8, 2018
+
+**To do list:**
+
+* Get the weed out of the stream
+* Download groundwater data
 
 
 

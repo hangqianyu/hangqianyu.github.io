@@ -8,7 +8,7 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 tutblog <- read.csv("research_tutblogs.csv", encoding = "UTF-8")
-selection<-tutblog[tutblog$name=="Thoughts through literature reading",]
+selection<-tutblog[tutblog$name=="Ideas or Thoughts",]
 ```
 `r paste0("# ",selection$name)`
 `r paste0("### *by ",selection$authors,"*")`
@@ -27,38 +27,6 @@ include_graphics("images/questions.jpg")
 
 # Introduction
 Based on what i have read through literature, here are some notes and thoughts.
-
-Based on summary of the laboratory analyses for discrete samples in Chiao-Wen's dissertation, there is a general range for water quality parameters.
-
-* CLUP
-  - Nitrate-nitrogen: 2.98 $\pm$ 0.61
-  - Ammonium-nitrogen: 0.19 $\pm$ 0.16
-  - TDN: 3.50 $\pm$ 0.63
-  - TKN: 0.61 $\pm$ 0.29
-  - DOC: 5.03 $\pm$ 1.60
-  - TP: 0.09 $\pm$ 0.15
-  - Phosphate-Phosphorus: 0.02 $\pm$ 0.03
-  - TSS: 16.46 $\pm$ 32.74
-* CLMD
-  - Nitrate-nitrogen: 2.69 $\pm$ 0.59
-  - Ammonium-nitrogen: 0.14 $\pm$ 0.06
-  - TDN: 3.16 $\pm$ 0.54
-  - TKN: 0.65 $\pm$ 0.25
-  - DOC: 6.10 $\pm$ 2.12
-  - TP: 0.08 $\pm$ 0.05
-  - Phosphate-Phosphorus: 0.01 $\pm$ 0.02
-  - TSS: 21.51 $\pm$ 31.47
-* CLDN
-  - Nitrate-nitrogen: 2.41 $\pm$ 0.50
-  - Ammonium-nitrogen: 0.20 $\pm$ 0.12
-  - TDN: 2.96 $\pm$ 0.52
-  - TKN: 0.71 $\pm$ 0.27
-  - DOC: 6.14 $\pm$ 1.88
-  - TP: 0.11 $\pm$ 0.10
-  - Phosphate-Phosphorus: 0.02 $\pm$ 0.01
-  - TSS: 23.74 $\pm$ 29.70
-
-**Note: The detection limit is 0.1 mg/L for Nitrate-nitrogen, TDN, and DOC; 0.28 mg/L for TKN; 0.01 mg/L for TP and Phosphate-phosphorus; no detection limit for TSS.**
 
 # Literature 1
 Characterization of the Solute Dynamics Signature of an Agricultural Coastal Plain Stream, North Carolina, USA.
