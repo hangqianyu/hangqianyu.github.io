@@ -1,6 +1,6 @@
 ---
 title: "Open Channel Flow"
-author:  "[Qianyu Hang](https://github.com/hangqianyu) at NC State University"
+author:  "[Qianyu Hang](https://www.researchgate.net/profile/Qianyu_Hang2) at NC State University"
 date: '`r format(Sys.Date(), "%a %b %d, %Y")`'
 output:
   html_document:
