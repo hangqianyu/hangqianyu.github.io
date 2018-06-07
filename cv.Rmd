@@ -21,6 +21,6 @@ list-style-type: none;
 <li><i class="fa fa-phone" aria-hidden="true"></i>  `r paste(" ",params$telephone)`</li>
 <li><i class="fa fa-globe" aria-hidden="true"></i>  [`r paste(" ",params$website)`](`r params$website`)</li>
 <li><i class="fa fa-clock-o" aria-hidden="true"></i> Last Updated: `r paste(" ",format(Sys.Date(), "%B %d, %Y"))`</li>
-<li><i class='fa fa-download' aria-hidden='true'></i><a href='Qianyu_Hang.pdf'> Download CV (pdf)</a></li>
+<li><i class='fa fa-download' aria-hidden='true'></i><a href='CV_Qianyu.pdf'> Download CV (pdf)</a></li>
 </ul>
 <br/>
