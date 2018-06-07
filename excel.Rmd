@@ -9,7 +9,7 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 tutblog <- read.csv("qianyu_tutblogs.csv", encoding = "UTF-8")
-selection<-tutblog[tutblog$name=="Some useful knowledge you need to know",]
+selection<-tutblog[tutblog$name=="Microsoft Excel shortcuts",]
 ```
 `r paste0("# ",selection$name)`
 `r paste0("### *by ",selection$authors,"*")`
