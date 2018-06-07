@@ -25,6 +25,12 @@ include_graphics("images/literature.jpg")
 
 -------------
 
+# Paper have been read
+
+* Technical Note: Testing an improved index for analysing storm discharge–concentration hysteresis
+* Patterns of c-q hysteresis loops and within an integrative pollutograph for selected inorganic and organic solutes and E. coli in an urban salted watershed during winter-early spring periods
+* High-frequency dissolved organic carbon and nitrate measurements reveal differences in storm hysteresis and loading in relation to land cover and seasonality (Similar to what i did)
+
 # Paper list pending to read
 
 **Effects of an increase in large wood on abundance and survival of juvenile salmonids (Oncorhynchus spp.) in an Oregon coastal stream**

@@ -1,5 +1,26 @@
 ---
-title: "CV"
+title: "Qianyu Hang"
+params:
+   address: 3110 Faucette Drive, 158 Weaver Labs, Biological & Agricultural Engineering Department, North Carolina State University, Raleigh, NC 27695-7625, USA
+   email: qhang@ncsu.edu
+   telephone: "+1 (919)-272 4026"
+   website: https://hangqianyu.github.io/
 ---
 
-Qianyu Hang
+<!--html_preserve-->
+<style type="text/css">
+ul.CV {
+list-style-type: none;
+}
+</style>
+<!--/html_preserve-->
+
+<ul class="CV">
+<li><i class="fa fa-home" aria-hidden="true"></i>  `r paste(" ",params$address)`</li>
+<li><i class="fa fa-envelope-o" aria-hidden="true"></i>  `r paste(" ",params$email)`</li>
+<li><i class="fa fa-phone" aria-hidden="true"></i>  `r paste(" ",params$telephone)`</li>
+<li><i class="fa fa-globe" aria-hidden="true"></i>  [`r paste(" ",params$website)`](`r params$website`)</li>
+<li><i class="fa fa-clock-o" aria-hidden="true"></i> Last Updated: `r paste(" ",format(Sys.Date(), "%B %d, %Y"))`</li>
+<li><i class='fa fa-download' aria-hidden='true'></i><a href='Qianyu_Hang.pdf'> Download CV (pdf)</a></li>
+</ul>
+<br/>
