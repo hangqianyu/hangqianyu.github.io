@@ -7,7 +7,6 @@ output:
 ---
 
 ```{r, echo=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
 tutblog <- read.csv("qianyu_tutblogs.csv", encoding = "UTF-8")
 selection<-tutblog[tutblog$name=="Data analysis in R Studio",]
 ```
