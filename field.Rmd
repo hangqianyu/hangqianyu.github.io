@@ -6,7 +6,7 @@ output:
     toc_float: yes
 ---
 
-```{r setup, include=FALSE}
+```{r, echo=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 tutblog <- read.csv("research_tutblogs.csv", encoding = "UTF-8")
 selection<-tutblog[tutblog$name=="Field visit at Claridge",]

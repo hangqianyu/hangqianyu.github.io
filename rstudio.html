@@ -387,7 +387,7 @@ div.tocify {
 <h3><em>by Qianyu Hang</em></h3>
 <div class = "row">
 <div class="col-md-9">
-<em>started 2018/2/10 and updated 2018-06-07</em>
+<em>started 2018/2/10 and updated 2018-06-10</em>
 </div>
 <p><br/></p>
 <p><img src="images/rstudio.png" width="80%" style="display: block; margin: auto;" /></p>
@@ -418,7 +418,24 @@ x %in% c(a, b, c), TRUE if x is in the vector c(a, b, c)</code></pre>
 <p><strong>else if statement</strong></p>
 <p><strong>subsetting from dataset</strong></p>
 <p><strong>Useful math functions:</strong></p>
-<p><strong>Differences between [, [[ and $</strong> Please refer to <a href="https://www.r-bloggers.com/r-accessors-explained/">Detailed explanation</a></p>
+<p><strong>Some useful R function set up parameters</strong></p>
+<ul>
+<li>eval: (TRUE/FALSE) if run the codes</li>
+<li>tidy: (TRUE/FALSE) if tidy codes</li>
+<li>echo: (TRUE/FALSE) if output codes</li>
+<li>results: (<code>hide</code>/<code>asis</code>/<code>markup</code>/<code>hold</code>)</li>
+<li>warning, error, message: (TRUE/FALSE) if show corresponding messages</li>
+<li>split: (TRUE/FALSE) if seperate codes from comments</li>
+<li>include: (TRUE/FALSE) if save code or output results to the final document</li>
+<li>fig.path: figure path</li>
+<li>fig.show: (<code>asis</code>: follow by codes/<code>hold</code>: show figures lastly/<code>animate</code>: show as animated)</li>
+<li>fig.width, fig.height</li>
+<li>out.width, out.height</li>
+<li>fig.align: <code>default</code>: no adjustment/<code>left</code>/<code>right</code>/<code>center</code></li>
+<li>interval: animated index to define the time between two pictures</li>
+</ul>
+<p><strong>Differences between [, [[ and $</strong></p>
+<p>Please refer to <a href="https://www.r-bloggers.com/r-accessors-explained/">Detailed explanation</a></p>
 <hr />
 </div>
 <div id="operators" class="section level1">
@@ -429,7 +446,7 @@ x %in% c(a, b, c), TRUE if x is in the vector c(a, b, c)</code></pre>
 <div id="read-flatexcel-files" class="section level1">
 <h1>Read flat/excel files</h1>
 <p>There are several ways to do it. Basically, for “utils” package which is already existed in system library, it is east to read a table using <code>read.table()</code> function:</p>
-<p>Likewise, in the “readr” package, just use functions shown below:</p>
+<p>Likewise, in the <code>readr</code> package, just use functions shown below:</p>
 <p>Extra important arguments: through skip and n_max arguments, you can control which part of your flat file you are actually importing into R. skip specifies the number of lines you are ignoring in the flat file before actually starting to import data. n_max specifies the number of lines you are actually importing.</p>
 <p>For <code>data.table</code> package, the function to import data is <code>fread()</code> which is extremely perfect for lazy people. Despite the different seperators, <code>freed()</code> can easily read csv files without adding <code>sep = &quot;,/.&quot;</code> or <code>delim = &quot;,/.&quot;</code>.</p>
 <p>For <code>readxl</code> package, there are two main functions for importing excel sheets into R.</p>
@@ -520,6 +537,10 @@ x %in% c(a, b, c), TRUE if x is in the vector c(a, b, c)</code></pre>
 <p>The <code>droplevels()</code> function removes unused levels of factor variables from your dataset. As you saw in the video, it’s often useful to determine which levels are unused (i.e. contain zero values) with the <code>table()</code> function.</p>
 <p>load data by <code>data()</code> function in <code>dplyr</code> package. use <code>group_by()</code> function to <a href="https://blog.csdn.net/qq_28219759/article/details/52963773">group indexes together</a>.</p>
 </div>
+</div>
+<div id="subsetting" class="section level1">
+<h1>Subsetting</h1>
+<p>Please refer to <a href="http://adv-r.had.co.nz/Subsetting.html">subsetting - Advanced R</a></p>
 <div id="sampling-from-dataset" class="section level2">
 <h2>Sampling from dataset</h2>
 <p><strong>Simple random sample in R</strong></p>
@@ -826,7 +847,7 @@ x %in% c(a, b, c), TRUE if x is in the vector c(a, b, c)</code></pre>
 <p><img src="images/residual1.png" width="50%" /><img src="images/residual2.png" width="50%" /></p>
 <p>Notice that the function, <code>mosaicGG()</code>, takes multiple arguments, such as the data frame of interest and the variables that you want to create the mosaic plot for. None of the arguments have default values, so you’ll have to specify all three if you want the mosaicGG() function to work.</p>
 <p><img src="images/mosaic1.png" width="50%" /><img src="images/mosaic2.png" width="50%" /><img src="images/mosaic3.png" width="50%" /><img src="images/mosaic4.png" width="50%" /></p>
-<p><img src="rstudio_files/figure-html/unnamed-chunk-159-1.png" width="864" /></p>
+<p><img src="rstudio_files/figure-html/unnamed-chunk-160-1.png" width="864" /></p>
 <p><img src="images/another12.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Converse point plot to smooth plot:</p>
 <p><img src="images/another13.png" width="70%" style="display: block; margin: auto;" /></p>
@@ -872,17 +893,17 @@ x %in% c(a, b, c), TRUE if x is in the vector c(a, b, c)</code></pre>
 <p>you’ll use a dataset containing only four points, <code>small_data</code>, so that you can see how these three arguments affect the shape of the density plot.</p>
 <p><img src="images/empirical1.png" width="50%" /><img src="images/empirical2.png" width="50%" /><img src="images/empirical3.png" width="50%" /><img src="images/empirical4.png" width="50%" /><img src="images/empirical5.png" width="50%" /></p>
 <p>A drawback of showing a box plot per group, is that you don’t have any indication of the sample size, <code>n</code>, in each group, that went into making the plot. One way of dealing with this is to use a variable width for the box, which reflects differences in <code>n</code>. Here is an example:</p>
-<p><img src="rstudio_files/figure-html/unnamed-chunk-173-1.png" width="864" /></p>
+<p><img src="rstudio_files/figure-html/unnamed-chunk-174-1.png" width="864" /></p>
 <p><img src="images/mammals1.png" width="50%" /><img src="images/mammals2.png" width="50%" /><img src="images/mammals3.png" width="50%" /><img src="images/mammals4.png" width="50%" /></p>
 <p><img src="images/violin1.png" width="50%" /><img src="images/violin2.png" width="50%" /><img src="images/violin3.png" width="50%" /><img src="images/violin4.png" width="50%" /></p>
 </div>
 <div id="d-density-plots" class="section level2">
 <h2>2D Density Plots</h2>
 <p>You can consider two orthogonal density plots in the form of a 2D density plot. Just like with a 1D density plot, you can adjust the bandwidth of both axes independently.</p>
-<p><img src="rstudio_files/figure-html/unnamed-chunk-178-1.png" width="864" /><img src="rstudio_files/figure-html/unnamed-chunk-178-2.png" width="864" /></p>
+<p><img src="rstudio_files/figure-html/unnamed-chunk-179-1.png" width="864" /><img src="rstudio_files/figure-html/unnamed-chunk-179-2.png" width="864" /></p>
 <p>Here you’ll explore the viridis package. This package contains multi-hue color palettes suitable for continuous variables. The advantage of these scales is that instead of providing an even color gradient for a continuous scale, they highlight the highest values by using an uneven color gradient on purpose. The high values are lighter colors (yellow versus blue), so they stand out more.</p>
 <pre><code>## Loading required package: viridisLite</code></pre>
-<p><img src="rstudio_files/figure-html/unnamed-chunk-179-1.png" width="864" /></p>
+<p><img src="rstudio_files/figure-html/unnamed-chunk-180-1.png" width="864" /></p>
 </div>
 </div>
 <div id="for-large-data" class="section level1">

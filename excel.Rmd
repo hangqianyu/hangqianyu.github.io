@@ -6,7 +6,7 @@ output:
     toc_float: yes
 ---
 
-```{r setup, include=FALSE}
+```{r, echo=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 tutblog <- read.csv("qianyu_tutblogs.csv", encoding = "UTF-8")
 selection<-tutblog[tutblog$name=="Microsoft Excel shortcuts",]
@@ -42,5 +42,4 @@ Recently, I am using Microsoft Excel to work on data analysis. I will recommend 
 
 # References
 [20 very popular Excel shortcuts](https://exceljet.net/blog/20-very-popular-excel-shortcuts)
-
 

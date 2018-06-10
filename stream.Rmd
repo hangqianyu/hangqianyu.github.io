@@ -7,7 +7,7 @@ link-citation: yes
 bibliography: Bibliography.bib
 ---
 
-```{r setup, include=FALSE}
+```{r, echo=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 tutblog <- read.csv("research_tutblogs.csv", encoding = "UTF-8")
 selection<-tutblog[tutblog$name=="Controversial voices among the effects of stream restoration call for evaluation of robust indicators",]

@@ -6,7 +6,7 @@ output:
     toc_float: yes
 ---
 
-```{r setup, include=FALSE}
+```{r, echo=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 tutblog <- read.csv("qianyu_tutblogs.csv", encoding = "UTF-8")
 selection<-tutblog[tutblog$name=="Data analysis in R Studio",]
@@ -65,6 +65,7 @@ Logical operators
 Answering the question which grades in your class are higher than 75? with a vector of logicals is not very insightful. It's much better to ask the question how many grades in your class are higher than 75 instead. You can answer such questions with the sum() function. Each TRUE you passs count as 1, each FALSE as 0. <span style="color:red;"> Just in the same way, you can use mean(); this will give you the proportion of TRUE values in the data structure you pass it. 
 
 **else if statement**
+
 ```{r eval=FALSE}
 if (condition) {
   expr
@@ -76,11 +77,13 @@ if (condition) {
 ```
 
 **subsetting from dataset**
+
 ```{r eval=FALSE}
 subset(x, subset, ...) # subset: logical expression indicating elements or rows to keep
 ```
 
 **Useful math functions:**
+
 ```{r eval=FALSE}
 abs() calculate the absolute value.
 sum() calculate the sum of all the values in a data structure.
@@ -88,7 +91,24 @@ mean() calculate the arithmetic mean.
 round() Round the values to 0 decimal places by default. Try out ?round in the console for variations of round() and ways to change the number of digits to round to
 ```
 
+**Some useful R function set up parameters**
+
+* eval: (TRUE/FALSE) if run the codes
+* tidy: (TRUE/FALSE) if tidy codes
+* echo: (TRUE/FALSE) if output codes
+* results: (`hide`/`asis`/`markup`/`hold`)
+* warning, error, message: (TRUE/FALSE) if show corresponding messages
+* split: (TRUE/FALSE) if seperate codes from comments
+* include: (TRUE/FALSE) if save code or output results to the final document
+* fig.path: figure path
+* fig.show: (`asis`: follow by codes/`hold`: show figures lastly/`animate`: show as animated)
+* fig.width, fig.height
+* out.width, out.height
+* fig.align: `default`: no adjustment/`left`/`right`/`center`
+* interval: animated index to define the time between two pictures
+
 **Differences between [, [[ and $**
+
 Please refer to [Detailed explanation](https://www.r-bloggers.com/r-accessors-explained/)
 
 -----------
@@ -108,7 +128,7 @@ read.table("states.csv", header = TRUE/FALSE, sep = ",", stringsASFactors = FALS
 read.csv("states.csv", stringsASFactors = TRUE/FALSE) # To read a csv file
 ```
 
-Likewise, in the "readr" package, just use functions shown below:
+Likewise, in the `readr` package, just use functions shown below:
 
 ```{r eval=FALSE}
 read_csv(object, col_names = TRUE) # would be enough to import csv files
@@ -402,6 +422,9 @@ With `lapply()`, you could use `[[` to select specific elements from your list. 
 The `droplevels()` function removes unused levels of factor variables from your dataset. As you saw in the video, it's often useful to determine which levels are unused (i.e. contain zero values) with the `table()` function.
 
 load data by `data()` function in `dplyr` package. use `group_by()` function to [group indexes together](https://blog.csdn.net/qq_28219759/article/details/52963773).
+
+# Subsetting
+Please refer to [subsetting - Advanced R](http://adv-r.had.co.nz/Subsetting.html)
 
 ## Sampling from dataset
 
