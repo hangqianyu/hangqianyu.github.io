@@ -39,6 +39,8 @@ Recently, I am using Microsoft Excel to work on data analysis. I will recommend 
 
 **Close the new window** - Control + W to close the dumplicate view of excel file
 
+**Select non-adjacent data for a plot/chart** - [Shift + F8](http://www.office68.com/excel/23485.html) 
+
 # References
 [20 very popular Excel shortcuts](https://exceljet.net/blog/20-very-popular-excel-shortcuts)
 

@@ -118,14 +118,23 @@ Previously, i did a lot of stream work. So not good at tablet work. Recently, i 
 
 # Field visit on Jun 8, 2018
 
-**To do list:**
+**Weeds are everywhere in the stream**
 
-* Get the weed out of the stream
-* Download groundwater data
+<video width="350" height="240" controls>
+  <source src="before.mp4" type="video/mp4">
+</video>
 
+<video width="350" height="240" controls>
+  <source src="after.mp4" type="video/mp4">
+</video>
 
+I didn't know if any machine can do the cleaning. I just did it with bare hands which made it the most tiring trip till now. I'll bring a grass clippers next time because weeds are so sharp.
 
+**Centering boat in CLMD station**
 
+```{r echo=FALSE, message=FALSE, out.width="60%", fig.align='center'}
+include_graphics("images/boat_centering.jpg")
+```
 
-
+Since the boat is always leaning to the right of the center and lowering the right-bank velocity, i tied it to the center with a string. Especially thanks to Sam who showed me how to make a nice tie. 
 
