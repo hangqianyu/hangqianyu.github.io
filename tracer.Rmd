@@ -70,11 +70,23 @@ $$F_{med} = (1 - e^{\frac{L\alpha}{v}}) \ast \frac{A_s}{A + A_s}$$
 
 # Literature 2
 
-*Natural channel design impacts on reach-scale transient storage*
+*Development of a ‘‘smart’’ tracer for the assessment of microbiological activity and sediment-water interaction in natural waters: The resazurin-resorufin system*
 
+Several requirements for a qualified tracer:
 
+* Conservative except that it undergoes an irreversible change in the presence of processes or conditions under investigation
+* Clearly discernable from the background of the system
+* Low-toxicity
+* Insensitive to variations in solution or medium chemistry except that it undergoes an irreversible change in the presence of processes or conditions under investigation
+* Tracer and its measurement technique should be inexpensive, safe to handle and not harmful to the environment
 
+While this irreversible change must be:
 
++ Detectable with a measurement technique or sensor
++ Rapid relative to transport rates
++ Insensitive to likely chemical or other variations in the solution or medium
+
+Dr. Haggerty is genius!! I don't know how would he think about choosing Resazurin as a smart tracer. Besides, he demonstrated he is absolutely right! Well, just read his papers and you'll never regret!
 
 
 

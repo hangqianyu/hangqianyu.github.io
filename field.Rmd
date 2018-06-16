@@ -138,3 +138,7 @@ include_graphics("images/boat_centering.jpg")
 
 Since the boat is always leaning to the right of the center and lowering the right-bank velocity, i tied it to the center with a string. Especially thanks to Sam who showed me how to make a nice tie. 
 
+**Biofouling**
+
+Huge biofouling completely covered the Sontek, making it invisible. Cleaning weeds might help? We'll see!
+
