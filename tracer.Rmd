@@ -70,7 +70,7 @@ $$F_{med} = (1 - e^{\frac{L\alpha}{v}}) \ast \frac{A_s}{A + A_s}$$
 
 # Literature 2
 
-*Development of a ‘‘smart’’ tracer for the assessment of microbiological activity and sediment-water interaction in natural waters: The resazurin-resorufin system*
+*Development of a ‘‘smart’’ tracer for the assessment of microbiological activity and sediment-water interaction in natural waters: The resazurin-resorufin system, 2009*
 
 Several requirements for a qualified tracer:
 
@@ -86,7 +86,9 @@ While this irreversible change must be:
 + Rapid relative to transport rates
 + Insensitive to likely chemical or other variations in the solution or medium
 
-Dr. Haggerty is genius!! I don't know how would he think about choosing Resazurin as a smart tracer. Besides, he demonstrated he is absolutely right! Well, just read his papers and you'll never regret!
+Resazurin are relatively stable and nonreactive in water without sediments for days to weeks. However, sample exposure to intense light can result in a significant photochemical decay.
+
+
 
 
 
