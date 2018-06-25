@@ -148,7 +148,7 @@ Huge biofouling completely covered the Sontek, making it invisible. Cleaning wee
 François, Sam and I went to the field this time. I could not be more stupid that i forgot to bring lids. ISCO did not work well since the pump only sucked in air. As always, it is still green everywhere. Fortunately, Sam broght his weed wacker which made it easier for us to get rid of weeds in land (Fig. 1). We still used hands to get rid of weeds from streams.
 
 ```{r echo=FALSE, message=FALSE, out.width="60%", fig.align='center', fig.cap="\\label{fig:figs}Fig. 1 François did the cutting"}
-include_graphics("images/boat_centering.jpg")
+include_graphics("images/birgand.jpg")
 ```
 
 I walked along the stream with François and learned a lot (Fig. 2). And this is my first time to walk along the entire studied stream. NC DOT planted some trees along the Claridge Canal including willow, Juncus, and etc. Some floodplain areas have become constructed wetlands. There are a lot of butterflies around the stream. And you can clearly see some fish in the stream as well.
