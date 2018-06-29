@@ -8,13 +8,6 @@ output:
     out_width: 0.1
 ---
 
-------------
-
-* The insightful saying i personally like:
-
-**"Not everything that counts can be counted and not everything that's counted truly counts"**  - By Albert Einstein
-<br/><br/><br/>
-
 * The poem i personally like:
 
 **The Road Not Taken** - by *Robert Frost*
@@ -58,6 +51,10 @@ Two roads diverged in a wood, and I—
 I took the one less traveled by,
 
 And that has made all the difference.
+
+------------
+
+Things have been changing so fast. 
 
 
 

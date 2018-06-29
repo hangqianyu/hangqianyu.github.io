@@ -22,8 +22,6 @@ navbar:
           href: https://www.lib.ncsu.edu/
         - text: "Bio&Ag Eng"
           href: https://www.bae.ncsu.edu/
-    - text: "US"
-      href: us.html
     - text: "Stories"
       href: stories.html
     - text: "Connect"
