@@ -26,7 +26,7 @@ include_graphics("images/field.jpg")
 ----------
 
 # Introduction
-For claridge project, we usually go there biweekly to do a manual service/check. There are several reasons: 1) we used isco sampler to automatically collect water samples every 14 hours, but We need to replace full bottles with empty ones after two weeks. 2) download data because S::CAN and sontek data can only be stored within a short period of time. 3) check solar and marine battery. 4) manually clean Manta, Sontek, and S::CAN probe lenser. 5) take grab samples back to the lab for detecting if there is any difference between samples measured immediately and samples measured after two weeks. 6) take muanal flow measurement 7) download Manta data 8) clean the flume and stream, sometimes there will be plenty of trims/algae in streams 9) cut the grass because summer is coming. 10) grab tributary samples back to the lab. 11) finally check everything works all right, then you are good to go. 
+For claridge project, we usually go there biweekly to do a manual service/maintenance. There are several reasons: 1) we used isco sampler to automatically collect water samples every 14 hours, but We need to replace full bottles with empty ones after two weeks. 2) download data because S::CAN and sontek data can only be stored within a short period of time. 3) check solar and marine battery. 4) manually clean Manta, Sontek, and S::CAN probe lenser. 5) take grab samples back to the lab for detecting if there is any difference between samples measured immediately and samples measured after two weeks. 6) take muanal flow measurement 7) download Manta data 8) clean the flume and stream, sometimes there will be plenty of trims/algae in streams 9) cut the grass because summer is coming. 10) grab tributary samples back to the lab. 11) finally check everything works all right, then you are good to go. 
 
 In this part, i will mainly record some interesting stories i have seen (some are research-related, some are not) during each field visit. Go Pack, Go Field!
 
@@ -158,5 +158,49 @@ include_graphics("images/jogin.jpg")
 ```
 
 Flow data demonstrated these two weeks are dry periods. So i will choose only recent three samples (labeled as 22, 23, 24) to filter. 
+
+# Field visit on Sep 12, 2018
+
+To be honest, it was a tough day. As destructive hurricane Florence will be landing on North Carolina around Friday. Actually, two years ago, we lost several instruments during the hurricane. We learned from the past experience and do not want to see that happen again. So we decided to go to field to remove and secure instruments. 
+
+Also, another important task is to take plant biomass in five stream transects (1 m long $\times$ stream width) and corresponding floodplain plant biomass (3 sites, 1 $m^2$ for each site). Yeah we did make it, but kind of brutal.
+
+```{r echo=FALSE, message=FALSE, out.width="60%", fig.align='center'}
+include_graphics("images/sep_1.jpg")
+```
+
+```{r echo=FALSE, message=FALSE, out.width="60%", fig.align='center'}
+include_graphics("sep_2.jpg")
+```
+
+It will get better after 3 days. Back to lab around 3:30 pm, we let papage bags open and put them in the oven to dry biomass.
+
+```{r echo=FALSE, message=FALSE, out.width="60%", fig.align='center'}
+include_graphics("sep_3.jpg")
+```
+
+Things are that bad, at least the weather was pretty nice. I thought it might be raining really hard that day. It is sunny when we were out in the field.
+
+```{r echo=FALSE, message=FALSE, out.width="60%", fig.align='center'}
+include_graphics("spe_4.jpg")
+```
+
+We will go back one week later to see if we can get access to our stations. Hopefully, the water depth would not be so deep. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
