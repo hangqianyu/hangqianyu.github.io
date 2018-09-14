@@ -389,7 +389,7 @@ div.tocify {
 <h3><em>by Qianyu Hang</em></h3>
 <div class = "row">
 <div class="col-md-9">
-<em>started 2018/2/10 and updated 2018-06-28</em>
+<em>started 2018/10/2 and updated 2018-09-13</em>
 </div>
 <p><br/></p>
 <p><img src="images/rstudio.png" width="80%" style="display: block; margin: auto;" /></p>
@@ -1606,8 +1606,9 @@ mosaicGG(Vocab, &quot;education&quot;, &quot;vocabulary&quot;)</code></pre>
 <p><img src="images/mosaic1.png" width="50%" /><img src="images/mosaic2.png" width="50%" /><img src="images/mosaic3.png" width="50%" /><img src="images/mosaic4.png" width="50%" /></p>
 <pre class="r"><code># Create movies_small
 library(ggplot2movies)# movies data is in this package
-library(ggplot2)
-library(Hmisc)
+library(ggplot2)</code></pre>
+<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 3.5.1</code></pre>
+<pre class="r"><code>library(Hmisc)
 set.seed(123)
 movies_small &lt;- movies[sample(nrow(movies), 1000), ] # a random sample of 1000 observations from the larger movies dataset
 movies_small$rating &lt;- factor(round(movies_small$rating))
