@@ -287,17 +287,8 @@ div.tocify {
 <li>
   <a href="tutorial.html">Tutorial</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Courses
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="channel.html">Open Channel Flow</a>
-    </li>
-  </ul>
+<li>
+  <a href="courses.html">Courses</a>
 </li>
 <li>
   <a href="cv.html">CV</a>
@@ -389,7 +380,7 @@ div.tocify {
 <h3><em>by Qianyu Hang</em></h3>
 <div class = "row">
 <div class="col-md-9">
-<em>started 2018/1/5 and updated 2018-09-14</em>
+<em>started 2018/1/5 and updated 2018-12-26</em>
 </div>
 <p><br/></p>
 <p><img src="images/rmarkdown.png" width="50%" style="display: block; margin: auto;" /></p>
@@ -467,8 +458,8 @@ library(&quot;manuscriptPackage&quot;)</code></pre>
 <ol style="list-style-type: decimal">
 <li><p>Always do not use system code of rmarkdown to import images, otherwise your rmarkdown will suddenly break down one day. I encounted this problem recently. I, at first, thought it might be because i used wrong codes making it die. Then I checked all codes letter by letter which seems right though. And then i realized i imported a lot of images in Rmd files using <code>![image](img/path)</code> system code which must be too heavy for a “small” package. Like i recommended before, <a href="https://www.zevross.com/blog/2017/06/19/tips-and-tricks-for-working-with-images-and-figures-in-r-markdown-documents/">list of tips and tricks for working with images in R markdown document</a> solved the problem and made images nicer! I used <code>include_graphics</code> function in <code>knitr</code> package for local downloaded images. For figures produced by R, you will need to choose another way to make it.</p></li>
 <li><p>If you save your Rmd files in Google Drive, you might want to pause sync when you are working with Rmd files. Otherwise the error might frequently pop up when you try to make a change in the file. Just do not forget resuming Google Drive when you are done (I did once).</p></li>
+<li><p>Some researchers use Rmarkdown or Rbookdown to write journal articles or reports. But sometimes i asked myself why do people want to use Rmarkdown or RBookdown to write journal articles or reports. Consistant format with pieces of codes? Or easy to switch the format by just changing codes? One think to notice is that advisors/supervisors will revise/edit produced articles or reports in Microsoft Word. So why not just write directly in Word? Probably you have a better answer to this question.</p></li>
 </ol>
-<p>All right, i will go back learning coding, see you next time when i have something new to tell. Hope you enjoy!</p>
 </div>
 
 

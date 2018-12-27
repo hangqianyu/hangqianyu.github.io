@@ -8,9 +8,7 @@ navbar:
     - text: "Tutorial"
       href: tutorial.html
     - text: "Courses"
-      menu:
-        - text: "Open Channel Flow"
-          href: channel.html
+      href: courses.html
     - text: "CV"
       href: cv.html
   right:

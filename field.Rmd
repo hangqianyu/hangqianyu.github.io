@@ -179,13 +179,13 @@ It will get better after 3 days. Back to lab around 3:30 pm, we let papage bags 
 include_graphics("images/sep_3.jpg")
 ```
 
-Things are that bad, at least the weather was pretty nice. I thought it might be raining really hard that day. It is sunny when we were out in the field.
+Things are not that bad, at least the weather was pretty nice. I thought it might be raining really hard that day. It is sunny when we were out in the field.
 
 ```{r echo=FALSE, message=FALSE, out.width="60%", fig.align='center'}
 include_graphics("images/sep_4.jpg")
 ```
 
-We will go back one week later to see if we can get access to our stations. Hopefully, the water depth would not be so deep. 
+
 
 
 

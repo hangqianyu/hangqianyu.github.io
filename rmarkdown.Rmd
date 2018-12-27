@@ -103,6 +103,6 @@ You would benefit from [A table](https://reu.dimacs.rutgers.edu/Symbols.pdf) so 
 
 2. If you save your Rmd files in Google Drive, you might want to pause sync when you are working with Rmd files. Otherwise the error might frequently pop up when you try to make a change in the file. Just do not forget resuming Google Drive when you are done (I did once).
 
-All right, i will go back learning coding, see you next time when i have something new to tell. Hope you enjoy!
+3. Some researchers use Rmarkdown or Rbookdown to write journal articles or reports. But sometimes i asked myself why do people want to use Rmarkdown or RBookdown to write journal articles or reports. Consistant format with pieces of codes? Or easy to switch the format by just changing codes? One think to notice is that advisors/supervisors will revise/edit produced articles or reports in Microsoft Word. So why not just write directly in Word? Probably you have a better answer to this question.
 
 

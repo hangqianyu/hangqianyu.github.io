@@ -1,0 +1,22 @@
+---
+title: "FOR520 - Waershed Hydrology"
+params:
+   advisor: Ryan Emanuel
+   time: Fall 2018
+---
+
+<!--html_preserve-->
+<style type="text/css">
+ul.CV {
+list-style-type: none;
+}
+</style>
+<!--/html_preserve-->
+
+<ul class="CV">
+<li><i class="fa fa-home" aria-hidden="true"></i>  `r paste(" ",params$advisor)`</li>
+<li><i class="fa fa-globe" aria-hidden="true"></i>  `r paste(" ",params$time)`</li>
+<li><i class="fa fa-clock-o" aria-hidden="true"></i> Last Updated: `r paste(" ",format(Sys.Date(), "%B %d, %Y"))`</li>
+<li><i class='fa fa-download' aria-hidden='true'></i><a href='FOR520_Syllabus.pdf'> Download syllabus (pdf)</a></li>
+</ul>
+<br/>
